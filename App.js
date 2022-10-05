@@ -5,7 +5,7 @@ import Network from './screen/network';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello this is testing</Text>
+      <Text>Hello this is testing.Hello Sarah and Desmand.</Text>
       <StatusBar style="auto" />
     </View>
   );
