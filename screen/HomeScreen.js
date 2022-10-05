@@ -5,9 +5,9 @@ import Header from "../comps/Header";
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
-            <Header />
+            <Header label="Ohana Logo" />
             <Text>Hello this is testing</Text>
-            <StatusBar style="auto" />
+            <StatusBar barStyle="dark-content" />
         </View>
     )
 }
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
     },
 });
 
