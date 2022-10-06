@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 
 import Header from "../comps/Header";
 import Network from "./Network";
@@ -7,12 +7,19 @@ import Network from "./Network";
 
 const HomeScreen = () => {
     return (
-        <View style={styles.container}>
-            <Header label="Ohana Logo" />
-            <Text>Hello this is testing</Text>
-            <Network />
-            <StatusBar barStyle="dark-content" />
-        </View>
+        <SafeAreaView>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Header label="Ohana Logo" />
+                    <Text>Hello this is testing</Text>
+                    <Network />
+                    <Network />
+                    <Network />
+                    <Network />
+                    <StatusBar barStyle="dark-content" />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -21,6 +28,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
+        paddingTop: StatusBar.currentHeight,
         // justifyContent: 'center',
     },
 });

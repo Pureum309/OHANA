@@ -14,6 +14,7 @@ const deviceWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
     container: {
+   
         width: deviceWidth,
         height: 90,
         backgroundColor: '#DDF',
