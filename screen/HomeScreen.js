@@ -1,12 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
+
 import Header from "../comps/Header";
+import Network from "./Network";
+
 
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <Header label="Ohana Logo" />
             <Text>Hello this is testing</Text>
+            <Network />
             <StatusBar barStyle="dark-content" />
         </View>
     )
