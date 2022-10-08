@@ -1,8 +1,8 @@
 import React from "react";
+// imports for map and map functions 
 import MapView, { Marker, Callout } from 'react-native-maps';
 
-
-// testing
+// test stylings
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 
@@ -10,7 +10,9 @@ export default function Map() {
 
     return (
 
+        // TEST container
         <View style={styles.container}>
+            {/* our map */}
             <MapView
                 initialRegion={{
                     latitude: 49.246292,
@@ -30,6 +32,7 @@ export default function Map() {
                     }}
                     pinColor='green'
                 >
+                    {/* Tappable call out for the pin */}
                     <Callout>
                         <Text>BCIT</Text>
                     </Callout>
@@ -53,6 +56,7 @@ export default function Map() {
     );
 }
 
+// ******** Test Styling, can be changed later! **********
 const styles = StyleSheet.create({
     container: {
         flex: 1,
