@@ -1,8 +1,9 @@
 import React from "react";
-import MapView from 'react-native-maps';
+import MapView, { Marker, Callout } from 'react-native-maps';
+
 
 // testing
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 
 export default function Map() {
@@ -14,13 +15,39 @@ export default function Map() {
                 initialRegion={{
                     latitude: 49.246292,
                     longitude: -123.116226,
-                    latitudeDelta: 0.11,
-                    longitudeDelta: 0.1,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
                 }}
                 showsUserLocation={true}
                 style={styles.map}
                 provider="google"
-            />
+            >
+                {/* ****Test Markers**** */}
+                <Marker
+                    coordinate={{
+                        latitude: 49.251014,
+                        longitude: -123.003636
+                    }}
+                    pinColor='green'
+                >
+                    <Callout>
+                        <Text>BCIT</Text>
+                    </Callout>
+                </Marker>
+
+                <Marker
+                    coordinate={{
+                        latitude: 49.265746,
+                        longitude: -123.249492
+                    }}
+                    pinColor='green'
+                >
+                    <Callout>
+                        <Text>UBC</Text>
+                    </Callout>
+                </Marker>
+
+            </MapView>
         </View>
 
     );
