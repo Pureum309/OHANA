@@ -10,7 +10,17 @@ export default function Map() {
     return (
 
         <View style={styles.container}>
-            <MapView style={styles.map} />
+            <MapView
+                initialRegion={{
+                    latitude: 49.246292,
+                    longitude: -123.116226,
+                    latitudeDelta: 0.11,
+                    longitudeDelta: 0.1,
+                }}
+                showsUserLocation={true}
+                style={styles.map}
+                provider="google"
+            />
         </View>
 
     );
