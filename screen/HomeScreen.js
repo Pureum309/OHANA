@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 
 import Header from "../comps/Header";
-import Network from "./Network";
+import Map from "../comps/Map";
 
 
 const HomeScreen = () => {
@@ -11,11 +11,8 @@ const HomeScreen = () => {
             <ScrollView>
                 <View style={styles.container}>
                     <Header label="Ohana Logo" />
-                    <Text>Hello this is testing</Text>
-                    <Network />
-                    <Network />
-                    <Network />
-                    <Network />
+                    <Text>Testing Map</Text>
+                    <Map />
                     <StatusBar barStyle="dark-content" />
                 </View>
             </ScrollView>
