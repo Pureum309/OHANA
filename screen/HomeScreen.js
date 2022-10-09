@@ -1,8 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 import Header from "../comps/Header";
+
 import Network from "./Network";
 import OhanaCalendar from "./CalendarScreen";
+import Map from "../comps/Map";
 
 const HomeScreen = () => {
     
@@ -17,6 +19,8 @@ const HomeScreen = () => {
                     <Network />
                     <Network />
                     <OhanaCalendar/>
+                    <Text>Testing Map</Text>
+                    <Map />
                     <StatusBar barStyle="dark-content" />
                 </View>
             </ScrollView>
