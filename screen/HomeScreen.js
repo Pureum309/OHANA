@@ -1,18 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
-import Header from "../comps/Header";
 
+import Header from "../comps/Header";
 import Network from "./Network";
 import OhanaCalendar from "./CalendarScreen";
 import Map from "../comps/Map";
+
 
 const HomeScreen = () => {
 
     return (
         <SafeAreaView>
+            <Header label="Home" />
             <ScrollView>
                 <View style={styles.container}>
-                    <Header label="Ohana Logo" />
                     <Text>Hello this is testing</Text>
                     <Network />
                     <OhanaCalendar />
