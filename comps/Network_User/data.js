@@ -4,7 +4,7 @@ export const user_txts = [
         rel: "Family"
     },
     {
-        name: "Kaycee Ngyuen",
+        name: "Kaycee Win",
         rel: "Friend"
     },
     {
