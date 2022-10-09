@@ -7,7 +7,7 @@ import OhanaCalendar from "./CalendarScreen";
 import Map from "../comps/Map";
 
 const HomeScreen = () => {
-    
+
     return (
         <SafeAreaView>
             <ScrollView>
@@ -15,10 +15,7 @@ const HomeScreen = () => {
                     <Header label="Ohana Logo" />
                     <Text>Hello this is testing</Text>
                     <Network />
-                    <Network />
-                    <Network />
-                    <Network />
-                    <OhanaCalendar/>
+                    <OhanaCalendar />
                     <Text>Testing Map</Text>
                     <Map />
                     <StatusBar barStyle="dark-content" />
