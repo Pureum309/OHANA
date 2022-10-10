@@ -1,17 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 
-import OhanaCalendar from "../comps/Calendar";
+import Header from "../comps/Header";
+import Network from "../comps/Network";
+import OhanaCalendar from "./CalendarScreen";
+import Map from "../comps/Map";
 
 
-const HomeScreen = (props) => {
+const NetworkView = (props) => {
 
     return (
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
-                    <Text>This is Home</Text>
-                    <OhanaCalendar />
+                    <Text>This is Network</Text>
+                    <Network />
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -28,4 +31,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+export default NetworkView

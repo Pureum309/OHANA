@@ -4,6 +4,22 @@ export const user_txts = [
         rel: "Family"
     },
     {
+        name: "Kaycee Win",
+        rel: "Friend"
+    },
+    {
+        name: "Jamie Lee",
+        rel: "Caregiver"
+    },
+    {
+        name: "Kaley",
+        rel: "Friend"
+    },
+    {
+        name: "Sarah Sun",
+        rel: "Family"
+    },
+    {
         name: "Kaycee Ngyuen",
         rel: "Friend"
     },
@@ -14,5 +30,5 @@ export const user_txts = [
     {
         name: "Kaley",
         rel: "Friend"
-    }
+    },
 ]
