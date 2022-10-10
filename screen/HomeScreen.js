@@ -16,18 +16,7 @@ const HomeScreen = (props) => {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
-
-                    <Header label="Ohana Logo" />
-                    <Text>Hello this is testing</Text>
-                    <Network />
-                    <Network />
-                    <Network />
-                    <Network />
-                    <OhanaCalendar/>
-                    <StatusBar barStyle="dark-content" />
-
                     <Text>This is Home</Text>
-
                 </View>
             </ScrollView>
         </SafeAreaView>
