@@ -20,25 +20,16 @@ const radius = 20
 
 const styles = StyleSheet.create({
     cardPadding: {
-        padding: 10,
+        padding: 7,
     },
     cardContainer: {
         display: "flex",
         flexDirection: "row",
-        backgroundColor: "#DDF",
+        // backgroundColor: "#DDF",
         width: deviceWidth - 25,
-        height: 100,
-        borderRadius: radius,
+        height: 80,
+        // borderRadius: radius,
         alignItems: 'center',
-
-        // shadowColor: "#000",
-        // shodowOffset: {
-        //     width: 5,
-        //     height: 5,
-        // },
-        // shadowOpacity: 0.75,
-        // shadowRadius: 5,
-        // elevation: 9,
     },
     imageStyle: {
         height: 70,
@@ -51,7 +42,10 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     categoryStyle: {
-        fontWeight: '200',
+        fontSize: 16,
+        paddingTop: 2,
+        fontWeight: '300',
+        color: 'grey'
     },
     infoStyle: {
         marginHorizontal: 20,

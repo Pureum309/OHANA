@@ -7,7 +7,12 @@ const Header = (props) => {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.imageStyle} source={require('../assets/userPlaceholder.png')} />
+            <Image
+                style={styles.imageStyle}
+                source={require('../assets/Logo.png')}
+                onClick={() => {
+                    window.location.href = '../screen/HomeScreen'
+                }} />
             <Text style={styles.lableStyle}>{props.label}</Text>
             <AntDesign name="message1" size={24} color="black" />
         </View>
@@ -29,6 +34,8 @@ const styles = StyleSheet.create({
         //backgound container color
         width: deviceWidth,
         height: deviceHeight * 0.15,
+
+        //need to be delete later
         // backgroundColor: '#DDF',
         // padding: StatusBar.currentHeight,
         paddingTop: 30,
@@ -38,8 +45,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     imageStyle: {
-        height: 70,
-        width: 70,
+        height: 60,
+        width: 60,
         resizeMode: 'contain',
         // marginTop: 15,
     },
