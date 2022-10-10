@@ -3,23 +3,23 @@ import { StyleSheet, View, Text, Button, Platform } from 'react-native';
 import * as Calendar from 'expo-calendar';
 
 const OhanaCalendar = () => {
-    useEffect(() => {
-        (async () => {
-          const { status } = await Calendar.requestCalendarPermissionsAsync();
-          if (status === 'granted') {
-            const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-            console.log('Here are all your calendars:');
-            console.log({ calendars });
-          }
-        })();
-      }, []);
-    
-    return (
-        <View>
-            <Text>Calendar Module Example</Text>
-            <Button title="Create a new calendar" onPress={createCalendar} />
-        </View>
-    )
+  useEffect(() => {
+    (async () => {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === 'granted') {
+        const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+        console.log('Here are all your calendars:');
+        console.log({ calendars });
+      }
+    })();
+  }, []);
+
+  return (
+    <View>
+      <Text>Calendar Module Example</Text>
+      <Button title="Create a new calendar" onPress={createCalendar} />
+    </View>
+  )
 }
 
 async function getDefaultCalendarSource() {
