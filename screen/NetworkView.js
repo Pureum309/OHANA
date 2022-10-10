@@ -7,13 +7,14 @@ import OhanaCalendar from "./CalendarScreen";
 import Map from "../comps/Map";
 
 
-const HomeScreen = (props) => {
+const NetworkView = (props) => {
 
     return (
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
-                    <Text>This is Home</Text>
+                    <Text>This is Network</Text>
+                    <Network />
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -30,4 +31,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+export default NetworkView

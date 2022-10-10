@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text } from 'react-native'
 
-import UserCard from "../comps/Network_User/UserCard";
-import Header from "../comps/Header";
+import UserCard from "./Network_User/UserCard";
+import Header from "./Header";
 
-import { user_txts } from "../comps/Network_User/data"
+import { user_txts } from "./Network_User/data"
+import { ScrollView } from "react-native-gesture-handler";
 
-const Network = () => {
+const Network = (props) => {
     return (
         <View>
             {/* <UserCard name="Sun" rel="dd" /> */}
