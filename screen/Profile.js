@@ -6,7 +6,6 @@ import Header from "../comps/Header";
 const Profile = (props) => {
     return (
         <View>
-            <Header label="Profile" />
             <Text>This is Profile</Text>
         </View>
     )

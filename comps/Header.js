@@ -15,6 +15,7 @@ const Header = (props) => {
 }
 
 const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
     container: {
@@ -27,9 +28,10 @@ const styles = StyleSheet.create({
 
         //backgound container color
         width: deviceWidth,
-        height: 90,
+        height: deviceHeight * 0.15,
         // backgroundColor: '#DDF',
-        padding: StatusBar.currentHeight,
+        // padding: StatusBar.currentHeight,
+        paddingTop: 30,
     },
     lableStyle: {
         fontSize: 24,

@@ -6,7 +6,6 @@ import Header from "../comps/Header";
 const Post = (props) => {
     return (
         <View>
-            <Header label="Post" />
             <Text>This is Profile</Text>
         </View>
     )

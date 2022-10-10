@@ -18,6 +18,7 @@ import Post from "../screen/Post";
 import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
 import { DayOfTheWeek } from "expo-calendar";
+import Header from "../comps/Header"
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -26,7 +27,7 @@ const Stack = createStackNavigator()
 function HomeStackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
         </Stack.Navigator>
     );
 }
@@ -34,7 +35,7 @@ function HomeStackScreen() {
 function NetworkStackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Network" component={NetworkView} />
+            <Stack.Screen name="Network" options={{ headerShown: false }} component={NetworkView} />
         </Stack.Navigator>
     );
 }
@@ -42,7 +43,7 @@ function NetworkStackScreen() {
 function PostStackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Post" component={Post} />
+            <Stack.Screen name="Post" options={{ headerShown: false }} component={Post} />
         </Stack.Navigator>
     );
 }
@@ -50,7 +51,7 @@ function PostStackScreen() {
 function MapStackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Map" component={MapView} />
+            <Stack.Screen name="Map" options={{ headerShown: false }} component={MapView} />
         </Stack.Navigator>
     );
 }
@@ -58,7 +59,7 @@ function MapStackScreen() {
 function ProfileStackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
         </Stack.Navigator>
     );
 }
@@ -70,7 +71,8 @@ export default function Navigation(props) {
         <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
-                    headerTitle: () => <Text>Header</Text>,
+                    // headerTitle: () => <Text>Header</Text>,
+                    header: (props) => <Header label={route.name} />,
                     tabBarIcon: ({ focused, color, size, padding }) => {
                         let iconName;
                         if (route.name == 'Home') {
