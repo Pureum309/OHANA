@@ -1,13 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 
-import Header from "../comps/Header";
-
-import Network from "./Network";
 import OhanaCalendar from "../comps/Calendar";
-import Network from "../comps/Network";
-import OhanaCalendar from "./CalendarScreen";
-import Map from "../comps/Map";
 
 
 const HomeScreen = (props) => {
@@ -17,6 +11,7 @@ const HomeScreen = (props) => {
             <ScrollView>
                 <View style={styles.container}>
                     <Text>This is Home</Text>
+                    <OhanaCalendar />
                 </View>
             </ScrollView>
         </SafeAreaView>
