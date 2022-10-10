@@ -9,10 +9,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "components": "^0.1.0",
     "expo": "~46.0.13",
+    "expo-calendar": "~10.3.0",
     "expo-status-bar": "~1.4.0",
+    "moment": "^2.29.4",
     "react": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-calendar-picker": "^7.1.2",
+    "styled": "^1.0.0",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

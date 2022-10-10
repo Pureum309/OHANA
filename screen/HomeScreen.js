@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'rea
 
 import Header from "../comps/Header";
 import Network from "./Network";
-
+import OhanaCalendar from "../comps/Calendar";
 
 const HomeScreen = () => {
     return (
@@ -16,6 +16,7 @@ const HomeScreen = () => {
                     <Network />
                     <Network />
                     <Network />
+                    <OhanaCalendar/>
                     <StatusBar barStyle="dark-content" />
                 </View>
             </ScrollView>
