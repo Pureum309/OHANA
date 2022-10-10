@@ -2,6 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 
 import Header from "../comps/Header";
+
+import Network from "./Network";
+import OhanaCalendar from "../comps/Calendar";
 import Network from "../comps/Network";
 import OhanaCalendar from "./CalendarScreen";
 import Map from "../comps/Map";
@@ -13,7 +16,18 @@ const HomeScreen = (props) => {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
+
+                    <Header label="Ohana Logo" />
+                    <Text>Hello this is testing</Text>
+                    <Network />
+                    <Network />
+                    <Network />
+                    <Network />
+                    <OhanaCalendar/>
+                    <StatusBar barStyle="dark-content" />
+
                     <Text>This is Home</Text>
+
                 </View>
             </ScrollView>
         </SafeAreaView>
