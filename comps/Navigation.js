@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
+import * as Icons from "react-native-heroicons/solid";
 
 import { Text, Dimensions } from 'react-native'
 
@@ -90,7 +91,7 @@ export default function Navigation(props) {
                         return (
                             <IonicIcon
                                 name={iconName}
-                                size={size}
+                                size={40}
                                 color={color}
                                 style={{ paddingBottom: padding }}
                             />
@@ -101,7 +102,7 @@ export default function Navigation(props) {
                     activeTintColor: 'Black',
                     inactiveTintColor: 'grey',
                     lableStyle: { fontSize: 16 },
-                    style: { width: fullScreenWidth }
+                    style: { width: fullScreenWidth },
                 }}>
                 <Tab.Screen name="Home" component={HomeStackScreen} />
                 <Tab.Screen name="Network" component={NetworkStackScreen} />
