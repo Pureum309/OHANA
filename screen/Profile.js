@@ -6,11 +6,13 @@ import Header from "../comps/Header";
 
 const Profile = (props) => {
     return (
-        <View>
-            <Text>This is Profile</Text>
+        // <View>
+        //     <Text>This is Profile</Text>
+        // </View>
+        <div>
             <UserLower />
-        </View>
-    )
+        </div>
+    );
 }
 
 export default Profile
