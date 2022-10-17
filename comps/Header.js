@@ -10,7 +10,7 @@ const Header = (props) => {
             <View style={styles.container}>
                 <Image
                     style={styles.imageStyle}
-                    source={require('../assets/Logo.png')}
+                    source={require('../assets/logoicon.png')}
                     onClick={() => {
                         window.location.href = '../screen/HomeScreen'
                     }} />
