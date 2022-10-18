@@ -1,21 +1,23 @@
 import { FlexStyleProps } from "@ui-kitten/components/devsupport";
 import React from "react";
-import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView } from 'react-native'
+import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView, ImageBackground } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 const Header = (props) => {
 
     return (
-        <View style={styles.container}>
-            <Image
-                style={styles.imageStyle}
-                source={require('../assets/Logo.png')}
-                onClick={() => {
-                    window.location.href = '../screen/HomeScreen'
-                }} />
-            <Text style={styles.lableStyle}>{props.label}</Text>
-            <AntDesign name="message1" size={24} color="black" />
-        </View>
+        <ImageBackground source={require('../assets/headerbg.png')} resizeMode='cover' style={styles.bgImgStyle} >
+            <View style={styles.container}>
+                <Image
+                    style={styles.imageStyle}
+                    source={require('../assets/logoicon.png')}
+                    onClick={() => {
+                        window.location.href = '../screen/HomeScreen'
+                    }} />
+                <Text style={styles.lableStyle}>{props.label}</Text>
+                <AntDesign name="message1" size={24} color="black" />
+            </View>
+        </ImageBackground>
     )
 }
 
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
 
         //backgound container color
         width: deviceWidth,
-        height: deviceHeight * 0.15,
+        height: deviceHeight * 0.20,
 
         //need to be delete later
         // backgroundColor: '#DDF',
@@ -50,6 +52,10 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         // marginTop: 15,
     },
+    bgImgStyle: {
+        width: deviceWidth,
+        height: deviceHeight * 0.20,
+    }
 })
 
 export default Header
