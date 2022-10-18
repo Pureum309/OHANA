@@ -10,8 +10,18 @@ const Post = (props) => {
     return (
         <View>
             <Text>This is Profile</Text>
-            <DropdownComponent label_txt="Category" data={category_data} />
-            <DropdownComponent label_txt="Location" data={location_data} />
+            <DropdownComponent
+                label_txt="Category"
+                data={category_data}
+                icon_name="filter"
+                ph_txt="Select Category"
+            />
+            <DropdownComponent
+                label_txt="Location"
+                data={location_data}
+                icon_name="md-location-outline"
+                ph_txt="Pick Location"
+            />
 
         </View>
     )

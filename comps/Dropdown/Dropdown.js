@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+
+import IonicIcon from 'react-native-vector-icons/Ionicons'
 
 const DropdownComponent = ({
     data,
     label_txt = "Label",
-    ph_txt = "Select",
+    icon_name = "heart",
+    ph_txt = "Test Select",
 
 }) => {
     const [value, setValue] = useState(null);
@@ -37,7 +39,7 @@ const DropdownComponent = ({
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={!isFocus ? 'Select ' : '...'}
+                placeholder={!isFocus ? `${ph_txt}` : '...'}
                 searchPlaceholder="Search..."
                 value={value}
                 onFocus={() => setIsFocus(true)}
@@ -47,10 +49,10 @@ const DropdownComponent = ({
                     setIsFocus(false);
                 }}
                 renderLeftIcon={() => (
-                    <AntDesign
+                    <IonicIcon
                         style={styles.icon}
                         color={isFocus ? 'blue' : 'black'}
-                        name="Safety"
+                        name={icon_name}
                         size={20}
                     />
                 )}

@@ -12,5 +12,10 @@ export const category_data = [
 export const location_data = [
     { label: 'Vancouver', value: '1' },
     { label: 'New Westminster', value: '2' },
-
+    { label: 'Burnaby', value: '3' },
+    { label: 'Coquitlam', value: '4' },
+    { label: 'Surrey', value: '5' },
+    { label: 'Richmond', value: '6' },
+    { label: 'North Vancouver', value: '7' },
+    { label: 'Langley', value: '8' },
 ]
