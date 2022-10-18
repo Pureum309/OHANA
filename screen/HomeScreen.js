@@ -3,18 +3,22 @@ import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'rea
 
 import OhanaCalendar from "../comps/Calendar";
 
+import { Provider as PaperProvider } from 'react-native-paper';
+
 
 const HomeScreen = (props) => {
 
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <View style={styles.container}>
-                    <Text>This is Home</Text>
-                    <OhanaCalendar />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+        <PaperProvider>
+            <SafeAreaView>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <Text>This is Home</Text>
+                        <OhanaCalendar />
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        </PaperProvider>
     )
 }
 
