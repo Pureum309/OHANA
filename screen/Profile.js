@@ -6,12 +6,13 @@ import UserLower from "../comps/User_Profile_Lower/user_lower";
 
 const Profile = (props) => {
     return (
+
         <View>
             <Text>This is Profile</Text>
-
-
             <UserLower />
         </View>
+
+
     );
 }
 
