@@ -78,11 +78,11 @@ export default function Navigation(props) {
                         if (route.name == 'Home') {
                             iconName = focused ? 'home' : 'md-home-outline'
                         } else if (route.name == 'Network') {
-                            iconName = focused ? 'ios-magnet' : 'ios-magnet-outline'
+                            iconName = focused ? 'people' : 'people-outline'
                         } else if (route.name == 'Post') {
                             iconName = focused ? 'add-circle' : 'add-circle-outline'
                         } else if (route.name == 'Map') {
-                            iconName = focused ? 'map' : 'map-outline'
+                            iconName = focused ? 'location' : 'location-outline'
                         } else if (route.name == 'Profile') {
                             iconName = focused ? 'person' : 'person-outline'
                         }
@@ -98,8 +98,8 @@ export default function Navigation(props) {
                     },
                 })}
                 tabBarOptions={{
-                    activeTintColor: 'Black',
-                    inactiveTintColor: 'grey',
+                    activeTintColor: '#126B8A',
+                    inactiveTintColor: '#126B8A',
                     lableStyle: { fontSize: 16 },
                     style: { width: fullScreenWidth }
                 }}>
