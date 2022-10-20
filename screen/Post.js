@@ -1,29 +1,19 @@
 import React from "react";
-import { View, Text } from 'react-native'
-import DropdownComponent from "../comps/Dropdown/Dropdown";
+import { View, Text, SafeAreaView, ScrollView } from 'react-native'
 
-import Header from "../comps/Header";
-
-import { category_data, location_data } from '../comps/Dropdown/data';
+import DropMenuComp from "../comps/DropMenuComp";
 
 const Post = (props) => {
     return (
-        <View>
-            <Text>This is Profile</Text>
-            <DropdownComponent
-                label_txt="Category"
-                data={category_data}
-                icon_name="filter"
-                ph_txt="Select Category"
-            />
-            <DropdownComponent
-                label_txt="Location"
-                data={location_data}
-                icon_name="md-location-outline"
-                ph_txt="Pick Location"
-            />
+        <SafeAreaView>
+            <ScrollView>
+                <View>
+                    <Text>This is Profile</Text>
+                    <DropMenuComp />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
 
-        </View>
     )
 }
 
