@@ -71,7 +71,7 @@ const CustomDatePicker = (props) => {
                                     onPress={() => console.log('datepicker clicked')}
                                 >
                                     <View style={{
-                                        backgroundColor: '#ffffff',
+                                        backgroundColor: 'white',
                                         height: 254,
                                         overflow: 'hidden'
                                     }}>

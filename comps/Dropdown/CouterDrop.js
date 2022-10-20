@@ -20,7 +20,7 @@ const CouterDrop = () => {
                 <View style={styles.textCont}>
                     <IonicIcon name="person-add-outline" onPress={onPress} size="18" style={show ? styles.focusIconExpand : styles.focusIcon} />
                     <Text style={[styles.selectedTextStyle, { paddingRight: 105 }]} >Add Number of Caregivers</Text>
-                    <IonicIcon name="chevron-down-outline" onPress={onPress} size="16" color="#2D2D2A" />
+                    <IonicIcon name="add-outline" onPress={onPress} size="16" />
                 </View>
                 {show &&
                     <CounterView />
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     },
 
     focusIcon: {
-        paddingHorizontal: 4
+        paddingHorizontal: 4,
+        color: '#00A0C3',
     },
 
     focusIconExpand: {

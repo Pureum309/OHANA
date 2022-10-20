@@ -80,13 +80,14 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         height: 50,
-        borderColor: 'gray',
+        borderColor: '#0A0908',
         borderWidth: 1,
         borderRadius: 8,
         paddingHorizontal: 8,
     },
     icon: {
         marginRight: 5,
+        color: '#00A0C3',
     },
     label: {
         position: 'absolute',
