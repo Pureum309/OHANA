@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
-
 import DropMenuComp from "../comps/DropMenuComp";
 
-const Post = (props) => {
+const Post = () => {
+
     return (
         <SafeAreaView>
             <ScrollView>
@@ -13,7 +13,6 @@ const Post = (props) => {
                 </View>
             </ScrollView>
         </SafeAreaView>
-
     )
 }
 

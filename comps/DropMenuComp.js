@@ -6,6 +6,7 @@ import DropdownComponent from "./Dropdown/Dropdown";
 import DTPicker from "./DateTimePicker/index";
 import CouterDrop from "./Dropdown/CouterDrop";
 import DateTimeDrop from "./Dropdown/DatetimeDrop";
+import DropButton from "./Dropdown/DropButton";
 
 var chosenDatetime = "";
 var chosenCategory = "";
@@ -52,6 +53,7 @@ const DropMenuComp = (props) => {
             <CouterDrop />
 
             <Button onPress={onClick} title="test" />
+            <DropButton onPress={onClick} />
         </View>
     )
 }
