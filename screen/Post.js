@@ -11,7 +11,8 @@ const Post = (props) => {
     return (
         <View>
             <Text>This is Profile</Text>
-            <PostInput></PostInput>
+            {/* User input field */}
+            <PostInput />
             <DropdownComponent
                 label_txt="Category"
                 data={category_data}
