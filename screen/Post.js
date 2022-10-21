@@ -1,13 +1,18 @@
 import React from "react";
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import DropMenuComp from "../comps/DropMenuComp";
 
-import Header from "../comps/Header";
+const Post = () => {
 
-const Post = (props) => {
     return (
-        <View>
-            <Text>This is Profile</Text>
-        </View>
+        <SafeAreaView>
+            <ScrollView>
+                <View>
+                    <Text>This is Profile</Text>
+                    <DropMenuComp />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

@@ -1,6 +1,6 @@
 import { FlexStyleProps } from "@ui-kitten/components/devsupport";
 import React from "react";
-import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView } from 'react-native'
+import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView, ImageBackground } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 const Header = (props) => {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
         //backgound container color
         width: deviceWidth,
-        height: deviceHeight * 0.15,
+        height: deviceHeight * 0.20,
 
         //need to be delete later
         // backgroundColor: '#DDF',
@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         // marginTop: 15,
     },
+    bgImgStyle: {
+        width: deviceWidth,
+        height: deviceHeight * 0.20,
+    }
 })
 
 export default Header
