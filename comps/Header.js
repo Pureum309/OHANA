@@ -14,7 +14,7 @@ const Header = (props) => {
                     window.location.href = '../screen/HomeScreen'
                 }} />
             <Text style={styles.lableStyle}>{props.label}</Text>
-            <AntDesign name="message1" size={24} color="black" />
+            <AntDesign name="message1" size={24} color="#126B8A" />
         </View>
     )
 }
