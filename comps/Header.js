@@ -6,18 +6,16 @@ import { AntDesign } from '@expo/vector-icons';
 const Header = (props) => {
 
     return (
-        <ImageBackground source={require('../assets/headerbg.png')} resizeMode='cover' style={styles.bgImgStyle} >
-            <View style={styles.container}>
-                <Image
-                    style={styles.imageStyle}
-                    source={require('../assets/logoicon.png')}
-                    onClick={() => {
-                        window.location.href = '../screen/HomeScreen'
-                    }} />
-                <Text style={styles.lableStyle}>{props.label}</Text>
-                <AntDesign name="message1" size={24} color="black" />
-            </View>
-        </ImageBackground>
+        <View style={styles.container}>
+            <Image
+                style={styles.imageStyle}
+                source={require('../assets/Logo.png')}
+                onClick={() => {
+                    window.location.href = '../screen/HomeScreen'
+                }} />
+            <Text style={styles.lableStyle}>{props.label}</Text>
+            <AntDesign name="message1" size={24} color="#126B8A" />
+        </View>
     )
 }
 
