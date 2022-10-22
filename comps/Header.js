@@ -1,4 +1,4 @@
-import { FlexStyleProps } from "@ui-kitten/components/devsupport";
+
 import React from "react";
 import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView, ImageBackground } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
@@ -6,16 +6,18 @@ import { AntDesign } from '@expo/vector-icons';
 const Header = (props) => {
 
     return (
-        <View style={styles.container}>
-            <Image
-                style={styles.imageStyle}
-                source={require('../assets/logoicon.png')}
-                onClick={() => {
-                    window.location.href = '../screen/HomeScreen'
-                }} />
-            <Text style={styles.lableStyle}>{props.label}</Text>
-            <AntDesign name="message1" size={24} color="#126B8A" />
-        </View>
+        <ImageBackground source={require('../assets/headerbg.png')} resizeMode='cover' style={styles.bgImgStyle} >
+            <View style={styles.container}>
+                <Image
+                    style={styles.imageStyle}
+                    source={require('../assets/logoicon.png')}
+                    onClick={() => {
+                        window.location.href = '../screen/HomeScreen'
+                    }} />
+                <Text style={styles.lableStyle}>{props.label}</Text>
+                <AntDesign name="message1" size={24} color="black" />
+            </View>
+        </ImageBackground>
     )
 }
 
