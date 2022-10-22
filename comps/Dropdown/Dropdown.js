@@ -4,6 +4,8 @@ import { Dropdown } from 'react-native-element-dropdown';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
+import { setChosenCategory, setChosenLocation } from '../DropMenuComp';
+
 const DropdownComponent = ({
     data,
     label_txt = "Label",
@@ -17,7 +19,7 @@ const DropdownComponent = ({
     const renderLabel = () => {
         if (value || isFocus) {
             return (
-                <Text style={[styles.label, isFocus && { color: 'blue' }]}>
+                <Text style={[styles.label, isFocus && { color: '#00A0C3' }]}>
                     {label_txt}
                 </Text>
             );
@@ -29,7 +31,7 @@ const DropdownComponent = ({
         <View style={styles.container}>
             {renderLabel()}
             <Dropdown
-                style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                style={[styles.dropdown, isFocus && { borderColor: '#00A0C3' }]}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
@@ -47,11 +49,16 @@ const DropdownComponent = ({
                 onChange={item => {
                     setValue(item.value);
                     setIsFocus(false);
+
+                    if (label_txt == "Category")
+                        setChosenCategory(item.label);
+                    else if (label_txt == "Location")
+                        setChosenLocation(item.label);
                 }}
                 renderLeftIcon={() => (
                     <IonicIcon
                         style={styles.icon}
-                        color={isFocus ? 'blue' : 'black'}
+                        color={isFocus ? '#00A0C3' : '#0A0908'}
                         name={icon_name}
                         size={20}
                     />
@@ -67,17 +74,20 @@ export default DropdownComponent;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        padding: 16,
+        paddingTop: 15,
+        paddingRight: 15,
+        paddingLeft: 15,
     },
     dropdown: {
         height: 50,
-        borderColor: 'gray',
-        borderWidth: 0.5,
+        borderColor: '#0A0908',
+        borderWidth: 1,
         borderRadius: 8,
         paddingHorizontal: 8,
     },
     icon: {
         marginRight: 5,
+        color: '#00A0C3',
     },
     label: {
         position: 'absolute',
