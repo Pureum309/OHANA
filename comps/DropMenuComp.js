@@ -7,6 +7,9 @@ import DTPicker from "./DateTimePicker/index";
 import CouterDrop from "./Dropdown/CouterDrop";
 import DateTimeDrop from "./Dropdown/DatetimeDrop";
 import DropButton from "./Dropdown/DropButton";
+import PostInput from "./PostTextInput";
+import TextCard from "./Dropdown/TextCard";
+import PostTask from "./Dropdown/PostTask";
 
 var chosenDatetime = "";
 var chosenCategory = "";
@@ -37,6 +40,7 @@ const DropMenuComp = (props) => {
 
     return (
         <View>
+            <PostTask />
             <DropdownComponent
                 label_txt="Category"
                 data={category_data}

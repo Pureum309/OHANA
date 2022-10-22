@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, StyleSheet } from 'react-native'
 import DropMenuComp from "../comps/DropMenuComp";
 
 const Post = () => {
@@ -7,8 +7,7 @@ const Post = () => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <View>
-                    <Text>This is Profile</Text>
+                <View style={styles.container}>
                     <DropMenuComp />
                 </View>
             </ScrollView>
@@ -17,3 +16,13 @@ const Post = () => {
 }
 
 export default Post
+
+const styles = StyleSheet.create({
+    container: {
+        // flex: 1,
+        backgroundColor: '#fff',
+        // alignItems: 'center',
+        // paddingTop: StatusBar.currentHeight,
+        // justifyContent: 'center',
+    },
+});
