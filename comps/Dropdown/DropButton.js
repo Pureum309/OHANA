@@ -3,8 +3,14 @@ import { useState } from "react";
 import { Alert, Modal, Pressable, Text, View, StyleSheet, } from 'react-native'
 import PostButton from "../PostButton";
 
-const DropButton = () => {
+const DropButton = ({ onPress }) => {
+
     const [modalVisible, setModalVisible] = useState(false);
+
+    const pressOk = () => {
+        setModalVisible(!modalVisible);
+        { onPress() };
+    }
 
     return (
         <View>
@@ -25,7 +31,7 @@ const DropButton = () => {
                             <Pressable onPress={() => setModalVisible(!modalVisible)} style={styles.nopeButton}>
                                 <Text style={styles.nopeButtonText}>Nope.</Text>
                             </Pressable>
-                            <Pressable style={styles.yupButton}>
+                            <Pressable style={styles.yupButton} onPress={pressOk}>
                                 <Text style={styles.yupButtonText}>Yup!</Text>
                             </Pressable>
                         </View>

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, TextInputComponent } from 'react-native'
 
 import { category_data, location_data } from './Dropdown/data';
 import DropdownComponent from "./Dropdown/Dropdown";
@@ -11,10 +11,29 @@ import PostInput from "./PostTextInput";
 import TextCard from "./Dropdown/TextCard";
 import PostTask from "./Dropdown/PostTask";
 
+//do it at Homepage
+// postCards.map(item => {
+//     return (
+//         <Postcard category={item.category} />
+//     )
+
+// });
+
+//do it at Post activit card
+// const Postcard = ({category}) => {
+//     <Text value={category} />
+// }
+//
+
+
+export const postCards = [];
+var curId = 0;
+
 var chosenDatetime = "";
 var chosenCategory = "";
 var chosenLocation = "";
 var chosenCounter = "";
+var chosenText = [];
 
 export const setChosenDatetime = (date) => {
     chosenDatetime = date;
@@ -30,12 +49,36 @@ export const setChosenCounter = (counter) => {
     chosenCounter = counter;
 }
 
+export const setChosenText = (text) => {
+    chosenText.push(text);
+}
 
-const DropMenuComp = (props) => {
+export const removeChosenText = (index) => {
+    chosenText.splice(index, 1);
+}
+
+export const removePostcard = (id) => {
+    postCards = postCards.filter(card => {
+        return card.id !== id;
+    });
+}
+
+const DropMenuComp = () => {
 
     const onClick = () => {
         console.log("btn clicked! date/time:" + chosenDatetime
-            + "; category: " + chosenCategory + "; lacation: " + chosenLocation + "; number:" + chosenCounter);
+            + "; category: " + chosenCategory + "; lacation: " + chosenLocation + "; number:" + chosenCounter + "; text:" + chosenText);
+
+        postCards.push({
+            id: curId++,
+            datetime: chosenDatetime,
+            category: chosenCategory,
+            location: chosenLocation,
+            counter: chosenCounter,
+            tasks: chosenText
+        });
+
+        console.log(postCards);
     }
 
     return (

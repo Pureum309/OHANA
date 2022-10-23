@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 const PostActivityCard = () => {
     return (
         <View>
-
+            <Text></Text>
         </View>
     )
 }
