@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
 
 import { postCards } from "../comps/DropMenuComp";
 import PostActivityCard from "../comps/PostActivityCard";
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const HomeScreen = ({ navigation }) => {
-
     const [key, setKey] = useState(0);
 
     React.useEffect(() => {
@@ -15,12 +17,27 @@ const HomeScreen = ({ navigation }) => {
         });
         return focusHandler;
     }, [navigation])
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
         <PaperProvider key={key}>
             <SafeAreaView>
                 <ScrollView>
-                    <View style={styles.container}>
+                    <View style={styles.container} onLayout={onLayoutRootView}>
                         <Text style={styles.textStyle}>Morning Zo,</Text>
                         <Text style={styles.textStyle}>What are you up to today?</Text>
                         {
@@ -57,6 +74,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontWeight: '600',
         paddingLeft: 20,
+        fontFamily: 'Rubik',
     }
 });
 

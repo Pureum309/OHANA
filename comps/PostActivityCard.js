@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import moment from "moment";
+
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const iconSize = 20
 const iconFirColor = "#126B8A"
@@ -15,8 +18,26 @@ const PostActivityCard = ({
     counter = 0,
     tasks = [],
 }) => {
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-bold': require('../assets/fonts/Nunito-Bold.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+
     return (
-        <View style={styles.cardPadding}>
+        <View style={styles.cardPadding} onLayout={onLayoutRootView}>
             <View style={styles.container}>
                 <Text style={styles.categoryStyle}>{category}</Text>
                 <View style={styles.datetimeCont}>
@@ -77,7 +98,7 @@ const styles = StyleSheet.create({
     },
     categoryStyle: {
         fontSize: 25,
-        fontWeight: '700',
+        fontFamily: 'Nunito-bold',
     },
     datetimeCont: {
         display: "flex",
@@ -87,6 +108,7 @@ const styles = StyleSheet.create({
     datetimeStyle: {
         fontSize: 18,
         paddingRight: 10,
+        fontFamily: 'Nunito'
     },
     locationCont: {
         display: "flex",
@@ -96,9 +118,11 @@ const styles = StyleSheet.create({
     },
     locationStyle: {
         color: '#126B8A',
+        fontFamily: 'Nunito',
     },
     taskStyle: {
-        paddingVertical: 20,
+        paddingVertical: 13,
+        fontFamily: 'Nunito',
     },
     bottomCont: {
         display: "flex",
@@ -115,6 +139,7 @@ const styles = StyleSheet.create({
     },
     commnetStyle: {
         paddingHorizontal: 5,
+        fontFamily: 'Nunito',
     },
     editCont: {
         display: "flex",
@@ -124,6 +149,7 @@ const styles = StyleSheet.create({
     editStyle: {
         paddingHorizontal: 5,
         marginTop: 2,
+        fontFamily: 'Nunito',
     }
 
 
