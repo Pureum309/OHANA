@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         // marginRight: 15,
     },
     itemText: {
-        maxWidth: '80%',
+        // maxWidth: '80%',
     },
     circular: {
         color: '#00A0C3',

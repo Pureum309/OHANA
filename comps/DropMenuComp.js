@@ -1,23 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, Button, TextInputComponent } from 'react-native'
+import { View, Text, Button, TextInputComponent, StyleSheet, Dimensions } from 'react-native'
 
 import { category_data, location_data } from './Dropdown/data';
 import DropdownComponent from "./Dropdown/Dropdown";
 import DTPicker from "./DateTimePicker/index";
 import CouterDrop from "./Dropdown/CouterDrop";
-import DateTimeDrop from "./Dropdown/DatetimeDrop";
 import DropButton from "./Dropdown/DropButton";
-import PostInput from "./PostTextInput";
-import TextCard from "./Dropdown/TextCard";
 import PostTask from "./Dropdown/PostTask";
 
-//do it at Homepage
-// postCards.map(item => {
-//     return (
-//         <Postcard category={item.category} />
-//     )
-
-// });
 
 export const postCards = [];
 
@@ -87,7 +77,7 @@ const DropMenuComp = () => {
     }
 
     return (
-        <View key={curId}>
+        <View key={curId} style={styles.container}>
             <PostTask />
             <DropdownComponent
                 label_txt="Category"
@@ -101,13 +91,24 @@ const DropMenuComp = () => {
                 icon_name="md-location-outline"
                 ph_txt="Pick Location"
             />
-            <DTPicker />
+            <DTPicker style={styles.couterStyle} />
             <CouterDrop />
-
-            <Button onPress={onClick} title="test" />
             <DropButton onPress={onClick} />
         </View>
     )
 }
 
 export default DropMenuComp
+
+const deviceHeight = Dimensions.get('window').height;
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#fff',
+        // height: deviceHeight,
+        paddingVertical: 50,
+    },
+    //     couterStyle: {
+    //         position: 'absolute',
+    //     }
+});

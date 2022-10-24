@@ -34,7 +34,8 @@ export default CouterDrop;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        padding: 15,
+        paddingHorizontal: 15,
+        paddingTop: 5,
     },
     dropdown: {
         height: 50,

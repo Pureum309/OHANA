@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet } from 'react-native';
 
 import CustomDatePicker from './datepicker';
+import moment from "moment";
 
 const DTPicker = ({ chosenDatetime }) => {
     return (
@@ -16,7 +17,7 @@ const DTPicker = ({ chosenDatetime }) => {
                         borderWidth: 1,
                         borderRadius: 8,
                     }}
-                    defaultDate="2022-10-01"
+                    defaultDate={moment()}
                     onDateChnage={(value) => console.log('Date changed: ' + value)}
                 />
                 {/* <CustomDatePicker /> */}

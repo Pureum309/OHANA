@@ -7,7 +7,6 @@ import Map from "../comps/Map";
 const MapView = (props) => {
     return (
         <View>
-            <Text>This is MapView</Text>
             <Map />
         </View>
     )

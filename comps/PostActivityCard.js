@@ -28,7 +28,12 @@ const PostActivityCard = ({
                     <IonicIcon name="location-outline" size={iconSize} color={iconFirColor} />
                     <Text style={styles.locationStyle}>{location}</Text>
                 </View>
-                <Text style={styles.taskStyle}>{tasks}</Text>
+                <Text style={styles.taskStyle}>{tasks.map((item, index) => {
+                    if (index == 0)
+                        return item;
+                    else
+                        return "\n" + item;
+                })}</Text>
                 <View style={styles.bottomCont}>
                     <View style={styles.commentCont}>
                         <IonicIcon name="chatbox-ellipses-outline" size={iconSize} color={iconSecColor} />
