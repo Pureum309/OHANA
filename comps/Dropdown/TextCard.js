@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+import IonicIcon from 'react-native-vector-icons/Ionicons'
+
+
 const TextCard = (props) => {
 
     return (
@@ -9,7 +12,7 @@ const TextCard = (props) => {
                 <View style={styles.square}></View>
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <View style={styles.circular}></View>
+            <IonicIcon name="trash-outline" style={styles.circular} size="24" />
         </View>
     )
 }
@@ -37,22 +40,19 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     square: {
-        width: 24,
-        height: 24,
-        backgroundColor: '#55BCF6',
-        opacity: 0.4,
-        borderRadius: 5,
-        marginRight: 15,
+        // width: 24,
+        // height: 24,
+        // backgroundColor: '#00A0C3',
+        // opacity: 0.4,
+        // borderRadius: 5,
+        // marginRight: 15,
     },
     itemText: {
         maxWidth: '80%',
     },
     circular: {
-        width: 12,
-        height: 12,
-        borderColor: '#55BCF6',
-        borderWidth: 2,
-        borderRadius: 5,
+        color: '#00A0C3',
+        size: 20,
     },
 });
 

@@ -25,7 +25,7 @@ const CustomDatePicker = (props) => {
         setDateText(moment(date).format(dateTimeFormat));
         onDateChange(date);
         setShow(false);
-        setChosenDatetime(moment(date).format(dateTimeFormat));
+        setChosenDatetime(date);
     }
 
     const onDateChange = (date) => {
