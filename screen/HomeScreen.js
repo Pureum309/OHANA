@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import OhanaCalendar from "../comps/Calendar";
 import { postCards } from "../comps/DropMenuComp";
 import PostActivityCard from "../comps/PostActivityCard";
 
 const HomeScreen = ({ navigation }) => {
+
     const [key, setKey] = useState(0);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
-            setKey(key + 1);
+            setKey(Math.random() + key + 1);
         });
         return focusHandler;
     }, [navigation])
@@ -21,7 +21,8 @@ const HomeScreen = ({ navigation }) => {
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.container}>
-                        <Text>This is Home</Text>
+                        <Text style={styles.textStyle}>Morning Zo,</Text>
+                        <Text style={styles.textStyle}>What are you up to today?</Text>
                         {
                             postCards.map((item) => {
                                 return (
@@ -43,14 +44,20 @@ const HomeScreen = ({ navigation }) => {
     )
 }
 
+const deviceHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
         // flex: 1,
         backgroundColor: '#fff',
-        // alignItems: 'center',
-        // paddingTop: StatusBar.currentHeight,
-        // justifyContent: 'center',
+        height: deviceHeight,
+        // alignItems: 'center'
     },
+    textStyle: {
+        fontSize: 35,
+        fontWeight: '600',
+        paddingLeft: 20,
+    }
 });
 
 export default HomeScreen

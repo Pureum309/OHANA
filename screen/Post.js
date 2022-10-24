@@ -19,10 +19,7 @@ export default Post
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
         backgroundColor: '#fff',
-        // alignItems: 'center',
-        // paddingTop: StatusBar.currentHeight,
-        // justifyContent: 'center',
+
     },
 });

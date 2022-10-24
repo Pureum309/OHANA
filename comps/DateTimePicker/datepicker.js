@@ -10,7 +10,9 @@ const CustomDatePicker = (props) => {
     const [date, setDate] = useState(moment(defaultDate));
     const [show, setShow] = useState(false);
     const dateTimeFormat = "MMMM Do, YYYY hh:mm A";
-    const [dateText, setDateText] = useState(moment().format(dateTimeFormat))
+    const [dateText, setDateText] = useState(moment().format(dateTimeFormat));
+
+    setChosenDatetime(date);
 
     const onChange = (e, selectedDate) => {
         setDate(moment(selectedDate));

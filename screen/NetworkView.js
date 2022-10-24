@@ -1,11 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native'
 
-import Header from "../comps/Header";
 import Network from "../comps/Network";
-import OhanaCalendar from "./CalendarScreen";
-import Map from "../comps/Map";
-
 
 const NetworkView = (props) => {
 
@@ -13,7 +9,6 @@ const NetworkView = (props) => {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
-                    <Text>This is Network</Text>
                     <Network />
                 </View>
             </ScrollView>
@@ -21,14 +16,14 @@ const NetworkView = (props) => {
     )
 }
 
+const deviceHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // backgroundColor: '#fff',
-        // alignItems: 'center',
-        // paddingTop: StatusBar.currentHeight,
-        // justifyContent: 'center',
+        backgroundColor: '#fff',
+        height: deviceHeight,
     },
 });
 
 export default NetworkView
+
