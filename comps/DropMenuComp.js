@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Button, TextInputComponent } from 'react-native'
 
 import { category_data, location_data } from './Dropdown/data';
@@ -19,15 +19,7 @@ import PostTask from "./Dropdown/PostTask";
 
 // });
 
-//do it at Post activit card
-// const Postcard = ({category}) => {
-//     <Text value={category} />
-// }
-//
-
-
 export const postCards = [];
-var curId = 0;
 
 var chosenDatetime = "";
 var chosenCategory = "";
@@ -63,14 +55,23 @@ export const removePostcard = (id) => {
     });
 }
 
+const init = () => {
+    chosenDatetime = "";
+    chosenCategory = "";
+    chosenLocation = "";
+    chosenCounter = "";
+    chosenText = [];
+}
+
 const DropMenuComp = () => {
+    const [curId, setCurrentId] = useState(0);
 
     const onClick = () => {
         console.log("btn clicked! date/time:" + chosenDatetime
             + "; category: " + chosenCategory + "; lacation: " + chosenLocation + "; number:" + chosenCounter + "; text:" + chosenText);
 
         postCards.push({
-            id: curId++,
+            id: curId,
             datetime: chosenDatetime,
             category: chosenCategory,
             location: chosenLocation,
@@ -78,11 +79,15 @@ const DropMenuComp = () => {
             tasks: chosenText
         });
 
+        init();
+
+        setCurrentId(curId + 1);
+
         console.log(postCards);
     }
 
     return (
-        <View>
+        <View key={curId}>
             <PostTask />
             <DropdownComponent
                 label_txt="Category"
