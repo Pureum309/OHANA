@@ -35,6 +35,5 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 3,
-    }
-
+    },
 });

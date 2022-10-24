@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
 import { setChosenCategory, setChosenLocation } from '../DropMenuComp';
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const DropdownComponent = ({
     data,
@@ -27,8 +30,24 @@ const DropdownComponent = ({
         return null;
     };
 
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
             {renderLabel()}
             <Dropdown
                 style={[styles.dropdown, isFocus && { borderColor: '#00A0C3' }]}
@@ -38,6 +57,7 @@ const DropdownComponent = ({
                 iconStyle={styles.iconStyle}
                 data={data}
                 search
+                fontFamily="Nunito"
                 maxHeight={300}
                 labelField="label"
                 valueField="value"

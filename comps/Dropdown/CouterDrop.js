@@ -3,9 +3,13 @@ import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import CounterView from './Counter';
 import { Button } from 'react-native-paper';
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
+
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const CouterDrop = () => {
     const [show, setShow] = useState(false);
@@ -13,9 +17,24 @@ const CouterDrop = () => {
     const onPress = () => {
         setShow(!show);
     }
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
             <View style={show ? styles.dropdownExpand : styles.dropdown}>
                 <View style={styles.textCont}>
                     <IonicIcon name="person-add-outline" onPress={onPress} size="18" style={show ? styles.focusIconExpand : styles.focusIcon} />
@@ -72,6 +91,7 @@ const styles = StyleSheet.create({
     },
     selectedTextStyle: {
         fontSize: 16,
+        fontFamily: 'Nunito'
     },
 
     focusIcon: {

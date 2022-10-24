@@ -1,7 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Alert, Modal, Pressable, Text, View, StyleSheet, } from 'react-native'
 import PostButton from "../PostButton";
+
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const DropButton = ({ onPress }) => {
 
@@ -11,9 +15,24 @@ const DropButton = ({ onPress }) => {
         setModalVisible(!modalVisible);
         { onPress() };
     }
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
-        <View>
+        <View onLayout={onLayoutRootView}>
             <Modal
                 animationType="none"
                 transparent={true}
@@ -76,10 +95,12 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: "900",
         margin: 10,
+        fontFamily: 'Nunito',
     },
     regularText: {
         margin: 10,
         fontSize: 20,
+        fontFamily: 'Nunito',
     },
     containerForButtons: {
         display: "flex",
@@ -96,6 +117,7 @@ const styles = StyleSheet.create({
     nopeButtonText: {
         margin: 10,
         fontSize: 25,
+        fontFamily: 'Nunito'
     },
     yupButton: {
         elevation: 8,
@@ -110,5 +132,6 @@ const styles = StyleSheet.create({
         margin: 10,
         color: "white",
         fontSize: 25,
+        fontFamily: 'Nunito'
     },
 });
