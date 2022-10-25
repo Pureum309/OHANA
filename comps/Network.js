@@ -11,7 +11,7 @@ const Network = (props) => {
     return (
         <View>
             {/* <UserCard name="Sun" rel="dd" /> */}
-            {user_txts.map(users => { return <UserCard name={users.name} rel={users.rel} /> })}
+            {user_txts.map(users => { return <UserCard name={users.name} rel={users.rel} pic={users.pic} /> })}
         </View>
     )
 }

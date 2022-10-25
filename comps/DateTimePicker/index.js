@@ -8,7 +8,7 @@ const DTPicker = ({ chosenDatetime }) => {
     return (
         <View style={styles.container}>
             <View style={{ marginHorizontal: 15 }}>
-                <Text>Add Date/Time</Text>
+                {/*<Text>Add Date/Time</Text>*/}
                 <CustomDatePicker
                     textStyle={{
                         paddingVertical: 16,
