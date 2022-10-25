@@ -1,34 +1,37 @@
 export const user_txts = [
     {
         name: "Sarah Sun",
-        rel: "Family"
+        rel: "FAMILY",
+        pic: "../assets/user1.jpg",
+
     },
     {
         name: "Kaycee Win",
-        rel: "Friend"
+        rel: "FRIEND",
+
     },
     {
-        name: "Jamie Lee",
-        rel: "Caregiver"
+        name: "Soleil Dagneau",
+        rel: "CAREGIVER"
     },
     {
-        name: "Kaley",
-        rel: "Friend"
+        name: "Marisa Lenarduzzi",
+        rel: "FRIEND"
     },
     {
-        name: "Sarah Sun",
-        rel: "Family"
+        name: "Desmand King",
+        rel: "FAMILY"
     },
     {
-        name: "Kaycee Ngyuen",
-        rel: "Friend"
+        name: "Blen Haile",
+        rel: "FRIEND"
     },
     {
-        name: "Jamie Lee",
-        rel: "Caregiver"
+        name: "Megan Syukur",
+        rel: "CAREGIVER"
     },
     {
-        name: "Kaley",
-        rel: "Friend"
+        name: "Sean Lam",
+        rel: "FRIEND"
     },
 ]

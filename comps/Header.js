@@ -1,12 +1,29 @@
 
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView, ImageBackground } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const Header = (props) => {
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+    });
 
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
     return (
-        <ImageBackground source={require('../assets/headerbg.png')} resizeMode='cover' style={styles.bgImgStyle} >
+        <ImageBackground source={require('../assets/Header.png')} resizeMode='cover' style={styles.bgImgStyle} >
             <View style={styles.container}>
                 <Image
                     style={styles.imageStyle}
@@ -14,7 +31,7 @@ const Header = (props) => {
                     onClick={() => {
                         window.location.href = '../screen/HomeScreen'
                     }} />
-                <Text style={styles.lableStyle}>{props.label}</Text>
+                <Text style={styles.textStyle} >{props.label}</Text>
                 <AntDesign name="message1" size={24} color="black" />
             </View>
         </ImageBackground>
@@ -42,15 +59,17 @@ const styles = StyleSheet.create({
         // padding: StatusBar.currentHeight,
         paddingTop: 30,
     },
-    lableStyle: {
-        fontSize: 24,
-        fontWeight: '700',
-    },
     imageStyle: {
         height: 60,
         width: 60,
         resizeMode: 'contain',
         // marginTop: 15,
+    },
+    textStyle: {
+        fontSize: 24,
+        fontWeight: '700',
+        paddingLeft: 20,
+        fontFamily: 'Rubik',
     },
     bgImgStyle: {
         width: deviceWidth,

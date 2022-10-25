@@ -10,7 +10,6 @@ import UserProfile from '../comps/UserProfile/user_profile'
 const Profile = () => {
     return (
         <View style={styles.container}>
-            <Text>This is Profile</Text>
             <UserProfile
                 name={user_info.name}
                 location={user_info.location}
