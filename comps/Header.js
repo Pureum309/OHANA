@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 const Header = (props) => {
 
     return (
-        <ImageBackground source={require('../assets/headerbg.png')} resizeMode='cover' style={styles.bgImgStyle} >
+        <ImageBackground source={require('../assets/Header.png')} resizeMode='cover' style={styles.bgImgStyle} >
             <View style={styles.container}>
                 <Image
                     style={styles.imageStyle}
