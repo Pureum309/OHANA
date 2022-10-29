@@ -9,6 +9,8 @@ import {
     Dimensions
 } from "react-native";
 
+import TutorialScreen from "../screen/TutorialScreen";
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -37,6 +39,14 @@ const TutorialSlide = ({ item }) => {
     return (
         <View style={{ alignItems: 'center' }}>
             <Image
+                source={require('../assets/logo2.png')}
+                style={{
+                    height: '25%',
+                    width,
+                    resizeMode: 'contain'
+                }}
+            />
+            <Image
                 source={item.image}
                 style={{
                     height: '75%',
@@ -50,20 +60,49 @@ const TutorialSlide = ({ item }) => {
     );
 };
 
-export default function TutorialComp() {
+const TutorialComp = ({ navigation }) => {
+    const [currentTutorialIndex, setCurrentTutorial] = React.useState(0);
+
+    const Footer = () => {
+        return <View
+            style={{
+                height: height * 0.15,
+                justifyContent: 'space-between',
+                paddingHorizontal: 20,
+                alignItems: 'center'
+            }}>
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginTop: 20
+            }}>
+                {activeTutorial.map((_, index) => (
+                    <View
+                        key={index}
+                        style={[styles.indicator,
+                        currentTutorialIndex == index && {
+                            width: 25
+                        }]} />
+                ))}
+
+            </View>
+            <Text style={styles.subtitle}>Tap on the numbers to see more</Text>
+        </View>
+    }
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <FlatList
                 pagingEnabled
                 data={activeTutorial}
-                contentContainerStyle={{ height: height * 0.75 }}
+                contentContainerStyle={{ height: height * 0.50 }}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => <TutorialSlide item={item} />}
             />
+            <Footer />
         </SafeAreaView>
     );
-}
+};
 
 // ******** Test Styling, can be changed later! **********
 const styles = StyleSheet.create({
@@ -77,7 +116,15 @@ const styles = StyleSheet.create({
         marginTop: 10,
         maxWidth: '70%',
         textAlign: 'center',
-        lineHeight: 23
-    }
-
+        lineHeight: 23,
+    },
+    indicator: {
+        height: 2.5,
+        width: 10,
+        backgroundColor: 'grey',
+        marginHorizontal: 3,
+        borderRadius: 2,
+    },
 });
+
+export default TutorialComp;
