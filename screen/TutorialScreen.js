@@ -4,9 +4,7 @@ import { View } from "react-native";
 
 const TutorialScreen = () => {
     return (
-        <View>
-            <TutorialComp />
-        </View>
+        <TutorialComp />
     )
 }
 
