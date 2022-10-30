@@ -1,18 +1,34 @@
-import React from "react";
-import {
-    Text,
-    View,
-    SafeAreaView,
-    FlatList,
-    Image,
-    StyleSheet,
-    Dimensions,
-    TouchableOpacity
-} from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image } from "react-native";
+import AppIntroSlider from "react-native-app-intro-slider";
 
-const { width, height } = Dimensions.get('window');
+import { Dimensions } from "react-native";
 
-const activeTutorial = [
+const { width, height } = Dimensions.get('screen');
+
+export const COLORS = {
+    primary: '#f52d56',
+    title: '#072F4A',
+    white: '#FFFFFF',
+    lightGrey: '#D3D6D6',
+    grey: '#C1C0C9',
+    blue: '#087BB6',
+    yellow: '#F4D03F',
+};
+
+export const SIZES = {
+    h1: 22,
+    h2: 20,
+    h3: 18,
+    h4: 16,
+    h5: 14,
+    h6: 12,
+
+    width,
+    height,
+}
+
+const slides = [
     {
         id: '1',
         image: require('../assets/tutorial1.png'),
@@ -31,125 +47,76 @@ const activeTutorial = [
         title: 'Get Help With Your Tasks',
         subtitle: 'Your network can accept your tasks and help you get the difficult ones done easier.',
     },
-];
+]
 
-const TutorialSlide = ({ item }) => {
-    return (
-        <View style={{ alignItems: 'center' }}>
-            <Image
-                source={require('../assets/logo2.png')}
-                style={{
-                    height: '25%',
-                    width,
-                    resizeMode: 'contain'
-                }}
-            />
-            <Image
-                source={item.image}
-                style={{
-                    height: '75%',
-                    width,
-                    resizeMode: 'contain'
-                }}
-            />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.subtitle}>{item.subtitle}</Text>
-        </View>
-    );
-};
+export default function TutorialComp() {
+    const [showTutorialPage, setShowTutorialPage] = useState(false);
 
-const TutorialComp = ({ navigation }) => {
-
-    const [currentTutorialIndex, setCurrentTutorial] = React.useState(0);
-
-    const Footer = () => {
-        return <View
-            style={{
-                height: height * 0.15,
-                justifyContent: 'space-between',
-                paddingHorizontal: 20,
-                alignItems: 'center'
-            }}>
+    const buttonLabel = (label) => {
+        return (
             <View style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginTop: 20
+                padding: 12
             }}>
-                {activeTutorial.map((_, index) => (
-                    <View
-                        key={index}
-                        style={[styles.indicator,
-                        currentTutorialIndex == index && {
-                            width: 25
-                        }]} />
-                ))}
-
+                <Text style={{
+                    color: COLORS.title,
+                    fontWeight: '600',
+                    fontSize: SIZES.h4,
+                }}>
+                    {label}
+                </Text>
             </View>
-            <View>
-                <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity style={styles.button}>
-                        <Text>Skip</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
-                        <Text>Next</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <Text style={styles.subtitle}>Tap on the numbers to see more</Text>
-        </View>
+        )
     }
 
-    const updateCurrentTutorialIndex = e => {
-        const contentOffsetX = e.nativeEvent.contentOffsetX.x;
-        const currentIndex = Math.round(contentOffsetX / width);
-        setCurrentTutorial(currentIndex);
-    }
-
-    return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <FlatList
-                onMomentumScrollEnd={updateCurrentTutorialIndex}
-                pagingEnabled
-                data={activeTutorial}
-                contentContainerStyle={{ height: height * 0.50 }}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => <TutorialSlide item={item} />}
+    if (!showTutorialPage) {
+        return (
+            <AppIntroSlider
+                data={slides}
+                renderItem={({ item }) => {
+                    return (
+                        <View style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            padding: 15,
+                            paddingTop: 100,
+                        }}>
+                            <Image
+                                source={item.image}
+                                style={{
+                                    width: SIZES.width - 80,
+                                    height: 400,
+                                }}
+                                resizeMode="contain"
+                            />
+                            <Text style={{
+                                fontWeight: 'bold',
+                                color: COLORS.title,
+                                fontSize: SIZES.h1,
+                            }}>
+                                {item.title}
+                            </Text>
+                            <Text style={{
+                                textAlign: 'center',
+                                paddingTop: 5,
+                                color: COLORS.title
+                            }}>
+                                {item.subtitle}
+                            </Text>
+                        </View>
+                    )
+                }}
+                activeDotStyle={{
+                    backgroundColor: COLORS.primary,
+                    width: 30,
+                }}
+                showSkipButton
+                renderNextButton={() => buttonLabel("Next")}
+                renderSkipButton={() => buttonLabel("Skip")}
+                renderDoneButton={() => buttonLabel("Done")}
+                onDone={() => {
+                    setShowTutorialPage(true);
+                }}
             />
-            <Footer />
-        </SafeAreaView>
-    );
-};
-
-// ******** Test Styling, can be changed later! **********
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginTop: 20,
-    },
-    subtitle: {
-        fontSize: 16,
-        marginTop: 10,
-        maxWidth: '70%',
-        textAlign: 'center',
-        lineHeight: 23,
-    },
-    indicator: {
-        height: 2.5,
-        width: 10,
-        backgroundColor: 'grey',
-        marginHorizontal: 3,
-        borderRadius: 2,
-    },
-    button: {
-        justifyContent: 'center',
-        height: 50,
-        borderRadius: 5,
-        backgroundColor: 'grey',
-        paddingHorizontal: 50,
-        marginHorizontal: 15,
-    },
-});
-
-export default TutorialComp;
+        )
+    }
+}
