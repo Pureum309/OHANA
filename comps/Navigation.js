@@ -19,6 +19,7 @@ import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
 import { DayOfTheWeek } from "expo-calendar";
 import Header from "../comps/Header"
+import LogInScreen from "../screen/LogInScreen";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -64,6 +65,14 @@ function ProfileStackScreen() {
     );
 }
 
+function LogInStackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Login" options={{ headerShown: false }} component={LogInScreen} />
+        </Stack.Navigator>
+    );
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function Navigation(props) {
@@ -85,6 +94,8 @@ export default function Navigation(props) {
                             iconName = focused ? 'location' : 'location-outline'
                         } else if (route.name == 'Profile') {
                             iconName = focused ? 'person' : 'person-outline'
+                        } else if (route.name == 'Login') {
+                            iconName = focused ? 'person' : 'person-outline'
                         }
 
                         return (
@@ -103,6 +114,7 @@ export default function Navigation(props) {
                     lableStyle: { fontSize: 16 },
                     style: { width: fullScreenWidth }
                 }}>
+                <Tab.Screen name="Login" component={LogInStackScreen} />   
                 <Tab.Screen name="Home" component={HomeStackScreen} />
                 <Tab.Screen name="Network" component={NetworkStackScreen} />
                 <Tab.Screen name="Post" component={PostStackScreen} />
