@@ -6,11 +6,9 @@ import {
     FlatList,
     Image,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    TouchableOpacity
 } from "react-native";
-
-import TutorialScreen from "../screen/TutorialScreen";
-
 
 const { width, height } = Dimensions.get('window');
 
@@ -61,6 +59,7 @@ const TutorialSlide = ({ item }) => {
 };
 
 const TutorialComp = ({ navigation }) => {
+
     const [currentTutorialIndex, setCurrentTutorial] = React.useState(0);
 
     const Footer = () => {
@@ -86,12 +85,30 @@ const TutorialComp = ({ navigation }) => {
                 ))}
 
             </View>
+            <View>
+                <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity style={styles.button}>
+                        <Text>Skip</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button}>
+                        <Text>Next</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
             <Text style={styles.subtitle}>Tap on the numbers to see more</Text>
         </View>
     }
+
+    const updateCurrentTutorialIndex = e => {
+        const contentOffsetX = e.nativeEvent.contentOffsetX.x;
+        const currentIndex = Math.round(contentOffsetX / width);
+        setCurrentTutorial(currentIndex);
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <FlatList
+                onMomentumScrollEnd={updateCurrentTutorialIndex}
                 pagingEnabled
                 data={activeTutorial}
                 contentContainerStyle={{ height: height * 0.50 }}
@@ -124,6 +141,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         marginHorizontal: 3,
         borderRadius: 2,
+    },
+    button: {
+        justifyContent: 'center',
+        height: 50,
+        borderRadius: 5,
+        backgroundColor: 'grey',
+        paddingHorizontal: 50,
+        marginHorizontal: 15,
     },
 });
 
