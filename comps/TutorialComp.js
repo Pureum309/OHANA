@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
+
+//Needed for Back button
+import CustomButton from "./Login/CustomButton";
+import { useNavigation } from '@react-navigation/native';
+import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 import { Dimensions } from "react-native";
 
@@ -49,7 +54,13 @@ const slides = [
     },
 ]
 
-export default function TutorialComp() {
+export default function TutorialComp({ navigation }) {
+
+    //Needed for Back button
+    const handleBack = () => {
+        navigation.navigate('Intro')
+    }
+
     const [showTutorialPage, setShowTutorialPage] = useState(false);
 
     const buttonLabel = (label) => {
@@ -80,6 +91,10 @@ export default function TutorialComp() {
                             padding: 15,
                             paddingTop: 100,
                         }}>
+                            <View style={styles.back_button}>
+                                <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3"></IonicIcon>
+                                <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
+                            </View>
                             <Image
                                 source={item.image}
                                 style={{
@@ -120,3 +135,11 @@ export default function TutorialComp() {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    back_button: {
+        flexDirection: 'row',
+        alignSelf: "flex-start",
+        margin: 5,
+    },
+});

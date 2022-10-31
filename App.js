@@ -12,7 +12,8 @@ import TutorialScreen from './screen/TutorialScreen';
 export default function App() {
   return (
     <UserContext.Provider>
-      <Navigation />
+      {/* <Navigation /> */}
+      <TutorialScreen />
     </UserContext.Provider>
   );
 }
