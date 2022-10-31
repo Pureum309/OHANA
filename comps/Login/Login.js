@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, Button, ScrollView, ImageBackground, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Dimensions } from 'react-native';
 import logo2 from '../../assets/logo2.png';
 import CustomInput from '../../comps/Login/CustomInput';
 import introbackground from '../../assets/introbackground.png'
 //Needed for Back button
 import CustomButton from '../../comps/Login/CustomButton';
-import { useNavigation } from '@react-navigation/native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 const isValidObjField = (obj) => {
@@ -78,15 +77,14 @@ export default function LoginScreen({ navigation }) {
 
     return (
         <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover'>
-            <View style={styles.back_button}>
-                <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3" />
-                {/* <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" /> */}
-                <Button title="Test" onPress={handleBack} />
-            </View>
             <View style={styles.container}>
+                <View style={styles.back_button}>
+                    <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3" />
+                    <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
+                </View>
                 <Image
                     source={logo2}
-                    style={[styles.logoImg,]}
+                    style={styles.logoImg}
                     resizeMode="contain"
                 />
 
@@ -122,6 +120,7 @@ export default function LoginScreen({ navigation }) {
                 <CustomButton text="Continue with Facebook" type="SECONDARY" />
 
                 <CustomButton text="New to OHANA? Create an Account" type="TERTIARY" />
+
             </View>
         </ImageBackground>
     )

@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, Dimensions, ImageBackground, Image } from 'reac
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
 import PostButton from "../comps/PostButton";
-import { Autocomplete } from "@ui-kitten/components";
 
 const IntroScreen = ({ navigation }) => {
 
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     },
     introTxt: {
         fontSize: 16,
+        fontFamily: 'Nunito',
     },
     btnContainer: {
         margin: 20
@@ -89,10 +90,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#12688A',
         borderColor: "#126B8A",
         borderWidth: 2,
-        borderRadius: 15,
+        borderRadius: 8,
         paddingVertical: 10,
-        paddingHorizontal: 12,
-        margin: 5,
+        paddingHorizontal: 51,
+        margin: 8,
         color: '#FFFFFF'
     },
     introBtnTxt: {
