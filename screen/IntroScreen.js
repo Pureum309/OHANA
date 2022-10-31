@@ -15,6 +15,10 @@ const IntroScreen = ({ navigation }) => {
     const onPressExploring = () => {
         navigation.navigate('Login');
     }
+
+    const onPressTutorial = () => {
+        navigation.navigate('Tutorial');
+    }
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
         'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
@@ -43,7 +47,7 @@ const IntroScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.btnContainer}>
                     <PostButton title="START EXPLORING" onPress={onPressExploring} style={styles.introBtn} txtStyle={styles.introBtnTxt} />
-                    <PostButton title="VIEW TUTORIALS" style={styles.introBtn} txtStyle={styles.introBtnTxt} />
+                    <PostButton title="VIEW TUTORIALS" onPress={onPressTutorial} style={styles.introBtn} txtStyle={styles.introBtnTxt} />
                 </View>
             </View>
         </ImageBackground>

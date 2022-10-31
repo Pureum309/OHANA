@@ -1,15 +1,15 @@
 import React from 'react';
-import {Text, StyleSheet, Pressable } from 'react-native';
+import { Text, StyleSheet, Pressable } from 'react-native';
 
-export default function CustomButton ({
-    onPress, 
-    text, 
-    type="PRIMARY",
-}){
-    return(
-        <Pressable 
-        onPress={onPress} 
-        style={[styles.container, styles[`container_${type}`]]}>
+export default function CustomButton({
+    onPress,
+    text,
+    type = "PRIMARY",
+}) {
+    return (
+        <Pressable
+            onPress={onPress}
+            style={[styles.container, styles[`container_${type}`]]}>
             <Text style={[styles.text, styles[`text_${type}`]]}>{text}</Text>
         </Pressable>
     )
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15
     },
-  
+
     text_SECONDARY: {
         color: '#00ADC3z'
     },
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 18
     }
-  });
+});

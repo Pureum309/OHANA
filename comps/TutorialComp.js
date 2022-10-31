@@ -137,7 +137,10 @@ export default function TutorialComp({ navigation }) {
                     renderDoneButton={() => buttonLabel("Done")}
                     onDone={() => {
                         setShowTutorialPage(true);
+                        console.log("Test")
+                        navigation.navigate('Login')
                     }}
+
                 />
             </ImageBackground>
         )
@@ -147,8 +150,11 @@ export default function TutorialComp({ navigation }) {
 const styles = StyleSheet.create({
     back_button: {
         flexDirection: 'row',
-        alignSelf: "flex-start",
-        margin: 5,
+        position: 'absolute',
+        top: 45,
+        left: 10,
+        alignItems: 'center',
+        paddingTop: 10,
     },
     bgimage: {
         flex: 1,
