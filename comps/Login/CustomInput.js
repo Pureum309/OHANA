@@ -13,7 +13,7 @@ export default function CustomInput ({
             placeholder={placeholder}
             secureTextEntry={secureTextEntry}
             autoCapitalize={autoCapitalize}
-            onChangeText= {onChangeText}
+            onChangeText={onChangeText}
             />
         </View>
     )
@@ -22,7 +22,7 @@ export default function CustomInput ({
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        width: '100%',
+        width: '85%',
         borderColor: '#e8e8e8',
         borderWidth: 1,
         borderRadius: 5,
