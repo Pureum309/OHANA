@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-const UserCard = ({ name, rel }) => {
+const UserCard = ({ name, rel, pic }) => {
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
         'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
@@ -21,9 +21,9 @@ const UserCard = ({ name, rel }) => {
         return null;
     }
     return (
-        <View style={styles.cardPadding} style={styles.cardMargin}>
+        <View style={styles.cardPadding} style={styles.cardMargin} onLayout={onLayoutRootView}>
             <View style={styles.cardContainer}>
-                <Image style={styles.imageStyle} source={require('../../assets/user2.jpg')} />
+                <Image style={styles.imageStyle} source={pic} />
                 <View style={styles.infoStyle}>
                     <Text style={styles.titleStyle}>{name}</Text>
                     <Text style={styles.categoryStyle}>{rel}</Text>

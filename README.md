@@ -37,4 +37,6 @@ Oct 30:
 Oct 31:
 - Improving CSS on Login.js
 - Take tutorial screen from Desmand and link to intropage
+- Implemented font on Tutorial/Login screen
+- Set up different imgs on Newtwork screen
 
