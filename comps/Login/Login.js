@@ -24,10 +24,10 @@ const isValidEmail = (value) => {
     return regx.test(value);
 }
 
-export default function LoginScreen() {
+const LoginScreen = ({ navigation }) => {
     const { height } = useWindowDimensions();
     //Needed for Back button
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
 
     const [userInfo, setUserInfo] = useState({
         //Userinfo object with empty email and password strings
@@ -63,10 +63,10 @@ export default function LoginScreen() {
             console.log(userInfo)
             console.log('Entered information is valid')
         }
-        if (userInfo.email == "zo_adisa123@gmail.com" && userInfo.password == "password") {
+        if (userInfo.email == "test@gmail.com" && userInfo.password == "password") {
             console.log('Welcome Zo Adisa');
             setUserInfo('');
-            navigation.navigate('Home');
+            navigation.navigate('Main');
         }
     }
 
@@ -150,3 +150,5 @@ const styles = StyleSheet.create({
         paddingBottom: 15
     },
 });
+
+export default LoginScreen
