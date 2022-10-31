@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import introbackground from '../assets/introbackground.png'
 
 //Needed for Back button
 import CustomButton from "./Login/CustomButton";
-import { useNavigation } from '@react-navigation/native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 import { Dimensions } from "react-native";
@@ -81,57 +81,65 @@ export default function TutorialComp({ navigation }) {
 
     if (!showTutorialPage) {
         return (
-            <AppIntroSlider
-                data={slides}
-                renderItem={({ item }) => {
-                    return (
-                        <View style={{
-                            flex: 1,
-                            alignItems: 'center',
-                            padding: 15,
-                            paddingTop: 100,
-                        }}>
-                            <View style={styles.back_button}>
-                                <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3"></IonicIcon>
-                                <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
+            <ImageBackground
+                source={introbackground}
+                style={styles.bgimage}
+                resizeMode='cover'
+            >
+                <AppIntroSlider
+                    data={slides}
+                    renderItem={({ item }) => {
+                        return (
+                            <View style={{
+                                flex: 1,
+                                alignItems: 'center',
+                                padding: 15,
+                                paddingTop: 100,
+                            }}>
+
+                                <View style={styles.back_button}>
+                                    <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3"></IonicIcon>
+                                    <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
+                                </View>
+                                <Image
+                                    source={item.image}
+                                    style={{
+                                        width: SIZES.width - 80,
+                                        height: 400,
+                                    }}
+                                    resizeMode="contain"
+                                />
+                                <Text style={{
+                                    fontWeight: 'bold',
+                                    color: COLORS.title,
+                                    fontSize: SIZES.h1,
+                                }}>
+                                    {item.title}
+                                </Text>
+                                <Text style={{
+                                    textAlign: 'center',
+                                    paddingTop: 5,
+                                    color: COLORS.title
+                                }}>
+                                    {item.subtitle}
+                                </Text>
+
                             </View>
-                            <Image
-                                source={item.image}
-                                style={{
-                                    width: SIZES.width - 80,
-                                    height: 400,
-                                }}
-                                resizeMode="contain"
-                            />
-                            <Text style={{
-                                fontWeight: 'bold',
-                                color: COLORS.title,
-                                fontSize: SIZES.h1,
-                            }}>
-                                {item.title}
-                            </Text>
-                            <Text style={{
-                                textAlign: 'center',
-                                paddingTop: 5,
-                                color: COLORS.title
-                            }}>
-                                {item.subtitle}
-                            </Text>
-                        </View>
-                    )
-                }}
-                activeDotStyle={{
-                    backgroundColor: COLORS.primary,
-                    width: 30,
-                }}
-                showSkipButton
-                renderNextButton={() => buttonLabel("Next")}
-                renderSkipButton={() => buttonLabel("Skip")}
-                renderDoneButton={() => buttonLabel("Done")}
-                onDone={() => {
-                    setShowTutorialPage(true);
-                }}
-            />
+                        )
+                    }}
+                    activeDotStyle={{
+                        backgroundColor: COLORS.primary,
+                        width: 30,
+                    }}
+                    showSkipButton
+                    renderNextButton={() => buttonLabel("Next")}
+                    renderSkipButton={() => buttonLabel("Skip")}
+                    renderDoneButton={() => buttonLabel("Done")}
+                    onDone={() => {
+                        setShowTutorialPage(true);
+                    }}
+                />
+            </ImageBackground>
         )
     }
 }
@@ -141,5 +149,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: "flex-start",
         margin: 5,
+    },
+    bgimage: {
+        flex: 1,
     },
 });
