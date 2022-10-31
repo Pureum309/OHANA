@@ -17,9 +17,10 @@ import NetworkView from "../screen/NetworkView";
 import Post from "../screen/Post";
 import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
-import Header from "../comps/Header"
+import Header from "../comps/Header";
 
 import IntroScreen from "../screen/IntroScreen";
+import LoginScreen from "../screen/LogInScreen";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -120,6 +121,7 @@ export default function Navigation(props) {
                 {/* All screens should be placed here to be navigated. */}
                 <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '' }} />
+                <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >

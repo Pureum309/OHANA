@@ -13,7 +13,7 @@ const IntroScreen = ({ navigation }) => {
     const logo = require('../assets/logo2.png')
 
     const onPressExploring = () => {
-        navigation.navigate('Main');
+        navigation.navigate('Login');
     }
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
