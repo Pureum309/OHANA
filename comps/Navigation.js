@@ -118,7 +118,7 @@ export default function Navigation(props) {
         <NavigationContainer>
             <Stack.Navigator>
                 {/* All screens should be placed here to be navigated. */}
-                <Stack.Screen name="Intro" component={IntroScreen} />
+                <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '' }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>

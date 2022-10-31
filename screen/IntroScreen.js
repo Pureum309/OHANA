@@ -1,14 +1,16 @@
 import React, { useState, useCallback } from "react";
-import { StyleSheet, Text, View, Dimensions, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ImageBackground, Image } from 'react-native'
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import PostButton from "../comps/PostButton";
+import { Autocomplete } from "@ui-kitten/components";
 
 const IntroScreen = ({ navigation }) => {
 
     const image = require('../assets/introbackground.png');
+    const logo = require('../assets/logo2.png')
 
     const onPressExploring = () => {
         navigation.navigate('Main');
@@ -32,27 +34,70 @@ const IntroScreen = ({ navigation }) => {
 
     return (
 
-        <View style={styles.container} onLayout={onLayoutRootView}>
-            <ImageBackground source={image} resizeMode='cover' style={styles.image}>
-                <Text>This is Intro page</Text>
-                <PostButton title="START EXPLORING" onPress={onPressExploring} />
-                <PostButton title="VIEW TUTORIALS" />
-            </ImageBackground>
-        </View>
+        <ImageBackground source={image} resizeMode='cover' style={styles.bgImg}>
+            <View style={styles.container} onLayout={onLayoutRootView}>
+                <Image source={logo} style={styles.logoImg} />
+                <View style={styles.txtContainers}>
+                    <Text style={styles.introTxt}>Connect With Your Community.</Text>
+                    <Text style={styles.introTxt}>Feel Free, Feel Accomplished</Text>
+                </View>
+                <View style={styles.btnContainer}>
+                    <PostButton title="START EXPLORING" onPress={onPressExploring} style={styles.introBtn} txtStyle={styles.introBtnTxt} />
+                    <PostButton title="VIEW TUTORIALS" style={styles.introBtn} txtStyle={styles.introBtnTxt} />
+                </View>
+            </View>
+        </ImageBackground>
 
 
     )
 }
 
+const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'center'
     },
-    image: {
+    bgImg: {
         flex: 1,
         justifyContent: 'center',
+    },
+    logoImg: {
+        width: deviceWidth * 0.5,
+        height: deviceHeight * 0.3,
+        resizeMode: 'center'
+    },
+    txtContainers: {
+        PddingBottom: 0
+    },
+    introTxt: {
+        fontSize: 16,
+    },
+    btnContainer: {
+        margin: 20
+    },
+    introBtn: {
+        elevation: 8,
+        backgroundColor: '#12688A',
+        borderColor: "#126B8A",
+        borderWidth: 2,
+        borderRadius: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        margin: 5,
+        color: '#FFFFFF'
+    },
+    introBtnTxt: {
+        fontSize: 18,
+        color: "#FFFFFF",
+        fontWeight: "bold",
+        alignSelf: "center",
+        textTransform: "uppercase",
+        fontFamily: 'Nunito-bold',
     }
 });
 
