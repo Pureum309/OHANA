@@ -8,7 +8,9 @@ import * as SplashScreen from 'expo-splash-screen';
 
 export default function PostButton({
     onPress,
-    title
+    title,
+    style = null,
+    txtStyle = null,
 }) {
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -28,8 +30,8 @@ export default function PostButton({
 
     return (
         <View onLayout={onLayoutRootView}>
-            <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-                <Text style={styles.buttonText}>{title}</Text>
+            <TouchableOpacity onPress={onPress} style={style ? style : styles.buttonContainer}>
+                <Text style={txtStyle ? txtStyle : styles.buttonText}>{title}</Text>
             </TouchableOpacity>
         </View>
     )

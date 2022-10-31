@@ -4,8 +4,7 @@ import React from "react";
 
 import Navigation from './comps/Navigation';
 import UserContext from './UserContext';
-import HomeScreen from "./screen/HomeScreen";
-import { PropsService } from '@ui-kitten/components/devsupport';
+import IntroScreen from './screen/IntroScreen';
 
 //************ testing tutorial  ***************
 import TutorialScreen from './screen/TutorialScreen';
@@ -13,7 +12,7 @@ import TutorialScreen from './screen/TutorialScreen';
 export default function App() {
   return (
     <UserContext.Provider>
-      <TutorialScreen />
+      <Navigation />
     </UserContext.Provider>
   );
 }
