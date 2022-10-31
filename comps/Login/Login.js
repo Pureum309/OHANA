@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
-import logo2 from '../../assets/logo2.png'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, ImageBackground } from 'react-native';
+import logo2 from '../../assets/logo2.png';
 import CustomInput from '../../comps/Login/CustomInput';
+import introbackground from '../../assets/introbackground.png'
+//Needed for Back button
 import CustomButton from '../../comps/Login/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
@@ -21,9 +24,9 @@ const isValidEmail = (value) => {
     return regx.test(value);
 } 
 
-export default function LoginScreen({}){
-    //keeps user from scrolling past screen limits
+export default function LoginScreen(){
     const {height} = useWindowDimensions();
+    //Needed for Back button
     const navigation = useNavigation();
 
     const [userInfo, setUserInfo] = useState({
@@ -63,21 +66,30 @@ export default function LoginScreen({}){
         if(userInfo.email == "zo_adisa123@gmail.com" && userInfo.password == "password"){
             console.log('Welcome Zo Adisa');
             setUserInfo('');
-            navigation.navigate('Home');
-            
+            navigation.navigate('Home');          
         }
+    }
+
+    //Needed for Back button
+    const handleBack = () => {
+        navigation.navigate('')
     }
 
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
+            <ImageBackground source={introbackground} style={styles.image}>
+            <View style={styles.back_button}>
+                <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3"></IonicIcon>
+                <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY"/>
+            </View>
+
             <Image 
             source={logo2} 
             style={[styles.logo, {height: height * 0.3}]} 
             resizeMode="contain"
             />
 
-            <Text style={styles.text}>LOG IN</Text>
+            <Text style={styles.login_text}>LOG IN</Text>
 
             {error ? 
                 <Text style={{color: 'red', fontSize: 16, testAlign: 'center' }}>
@@ -101,7 +113,7 @@ export default function LoginScreen({}){
 
             <CustomButton text="Forgot Password?"  type="TERTIARY"/>
         
-            <CustomButton text="LOG IN" onPress={submitForm}/>
+            <CustomButton text="LOG IN" onPress={submitForm} />
             
             <Text>Or log In With</Text>
 
@@ -109,24 +121,32 @@ export default function LoginScreen({}){
             <CustomButton text="Continue with Facebook"  type="SECONDARY"/>
              
             <CustomButton text="New to OHANA? Create an Account" type="TERTIARY"/>   
-        </View>
+            
+                
+            </ImageBackground>
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#fff',
+    image: {
+        flex: 1,
         alignItems: 'center',
-        padding: 20
+        justifyContent: 'center',
+        padding: 10
+      },
+    back_button: {
+        flexDirection: 'row',
+        alignSelf: "flex-start",
+        margin: 5,
     },
     logo: {
         width: '50%',
         maxWidth: 300,
         maxHeight: 200
     },
-    text: {
+    login_text: {
         fontSize: 20,
         paddingBottom: 15
-    }
+    },
   });
