@@ -12,6 +12,10 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Implementing map components
 - Implementing text Input components
 - Implementing tab view components
+###After the midterm
+- Implimented tutorial page and components
+- Implimented back button
+- Implimented gradient background image
 
 ##Sarah
 ###Until the midterm

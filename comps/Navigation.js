@@ -21,6 +21,7 @@ import Header from "../comps/Header";
 
 import IntroScreen from "../screen/IntroScreen";
 import LoginScreen from "./Login/Login";
+import TutorialComp from "./TutorialComp";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -122,6 +123,7 @@ export default function Navigation(props) {
                 <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '', headerShown: false }} />
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >

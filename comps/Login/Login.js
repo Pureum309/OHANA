@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, ImageBackground } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Dimensions } from 'react-native';
 import logo2 from '../../assets/logo2.png';
 import CustomInput from '../../comps/Login/CustomInput';
 import introbackground from '../../assets/introbackground.png'
 //Needed for Back button
 import CustomButton from '../../comps/Login/CustomButton';
-import { useNavigation } from '@react-navigation/native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 const isValidObjField = (obj) => {
@@ -24,7 +23,7 @@ const isValidEmail = (value) => {
     return regx.test(value);
 }
 
-const LoginScreen = ({ navigation }) => {
+export default function LoginScreen({ navigation }) {
     const { height } = useWindowDimensions();
     //Needed for Back button
     // const navigation = useNavigation();
@@ -72,20 +71,20 @@ const LoginScreen = ({ navigation }) => {
 
     //Needed for Back button
     const handleBack = () => {
+        console.log("test")
         navigation.navigate('Intro')
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            <ImageBackground source={introbackground} style={styles.image}>
+        <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover'>
+            <View style={styles.container}>
                 <View style={styles.back_button}>
-                    <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3"></IonicIcon>
+                    <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3" />
                     <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
                 </View>
-
                 <Image
                     source={logo2}
-                    style={[styles.logo, { height: height * 0.3 }]}
+                    style={styles.logoImg}
                     resizeMode="contain"
                 />
 
@@ -122,33 +121,53 @@ const LoginScreen = ({ navigation }) => {
 
                 <CustomButton text="New to OHANA? Create an Account" type="TERTIARY" />
 
-
-            </ImageBackground>
-        </ScrollView>
+            </View>
+        </ImageBackground>
     )
 }
 
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
-    image: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10
-    },
+    // image: {
+    //     flex: 1,
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     padding: 10
+    // },
     back_button: {
         flexDirection: 'row',
-        alignSelf: "flex-start",
-        margin: 5,
+        position: 'absolute',
+        top: 45,
+        left: 10,
+        alignItems: 'center',
+        paddingTop: 10,
     },
-    logo: {
-        width: '50%',
-        maxWidth: 300,
-        maxHeight: 200
+    // logo: {
+    //     width: '50%',
+    //     maxWidth: 300,
+    //     maxHeight: 200
+    // },
+    // login_text: {
+    //     fontSize: 20,
+    //     paddingBottom: 15
+    // },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'center',
+        paddingTop: 40,
     },
-    login_text: {
-        fontSize: 20,
-        paddingBottom: 15
+    bgImg: {
+        flex: 1,
+        justifyContent: 'center',
+        height: deviceHeight
+    },
+    logoImg: {
+        width: deviceWidth * 0.5,
+        height: deviceHeight * 0.3,
+        resizeMode: 'center'
     },
 });
-
-export default LoginScreen
