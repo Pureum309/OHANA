@@ -34,4 +34,7 @@ Oct 30:
 - Finished creating UI on intro page
 - Styling intro page
 - Take a look at the login screen (Blen's work) and link with intro page
+Oct 31:
+- Improving CSS on Login.js
+- Take tutorial screen from Desmand and link to intropage
 
