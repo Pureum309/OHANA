@@ -4,7 +4,7 @@ import {Text, StyleSheet, Pressable } from 'react-native';
 export default function CustomButton ({
     onPress, 
     text, 
-    type = "PRIMARY",
+    type="PRIMARY",
 }){
     return(
         <Pressable 
@@ -17,7 +17,7 @@ export default function CustomButton ({
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
+        width: '85%',
         padding: 15,
         margin: 10,
         alignItems: 'center',
@@ -40,15 +40,28 @@ const styles = StyleSheet.create({
 
     container_TERTIARY: {},
 
-    text: {
-        color: 'white'
+    container_QUATERNARY: {
+        padding: 1,
+        margin: 1,
+        width: 80,
+        height: 25
     },
-    
+
+    text: {
+        color: 'white',
+        fontSize: 15
+    },
+  
     text_SECONDARY: {
         color: '#00ADC3z'
     },
 
     text_TERTIARY: {
         color: '#00ADC3'
+    },
+
+    text_QUATERNARY: {
+        color: 'black',
+        fontSize: 18
     }
   });
