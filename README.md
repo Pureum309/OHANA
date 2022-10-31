@@ -23,3 +23,11 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Handling all data to create a post activity card
 - Implementing post activity card componenets to show on home screen
 - Applying font on Home screen and Post page
+Oct 28:
+- Creating basic intro page (implementing button)
+- Implementing Intro page to Navigation.js file
+Oct 30:
+- Finished creating UI on intro page
+- Styling intro page
+- Take a look at the login screen (Blen's work) and link with intro page
+
