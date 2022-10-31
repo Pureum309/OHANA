@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
+
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function CustomButton({
     onPress,
     text,
     type = "PRIMARY",
 }) {
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    //until here FONT USAGE
+
     return (
         <Pressable
             onPress={onPress}
@@ -18,7 +39,7 @@ export default function CustomButton({
 const styles = StyleSheet.create({
     container: {
         width: '85%',
-        padding: 15,
+        padding: 10,
         margin: 10,
         alignItems: 'center',
         borderRadius: 5,
@@ -27,7 +48,7 @@ const styles = StyleSheet.create({
     container_PRIMARY: {
         backgroundColor: '#00ADC3',
         elevation: 5,
-        marginBottom: 30
+        marginBottom: 20
     },
 
     container_SECONDARY: {
@@ -49,7 +70,8 @@ const styles = StyleSheet.create({
 
     text: {
         color: 'white',
-        fontSize: 15
+        fontSize: 15,
+        fontFamily: 'Nunito',
     },
 
     text_SECONDARY: {

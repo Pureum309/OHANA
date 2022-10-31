@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Dimensions } from 'react-native';
 import logo2 from '../../assets/logo2.png';
 import CustomInput from '../../comps/Login/CustomInput';
@@ -6,6 +6,9 @@ import introbackground from '../../assets/introbackground.png'
 //Needed for Back button
 import CustomButton from '../../comps/Login/CustomButton';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
@@ -75,6 +78,23 @@ export default function LoginScreen({ navigation }) {
         navigation.navigate('Intro')
     }
 
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    //until here FONT USAGE
+
     return (
         <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover'>
             <View style={styles.container}>
@@ -91,7 +111,7 @@ export default function LoginScreen({ navigation }) {
                 <Text style={styles.login_text}>LOG IN</Text>
 
                 {error ?
-                    <Text style={{ color: 'red', fontSize: 16, testAlign: 'center' }}>
+                    <Text style={{ color: 'red', fontSize: 16, testAlign: 'center', fontFamily: 'Nunito' }}>
                         {error}
                     </Text>
                     : null}
@@ -114,7 +134,7 @@ export default function LoginScreen({ navigation }) {
 
                 <CustomButton text="LOG IN" onPress={submitForm} />
 
-                <Text>Or log In With</Text>
+                <Text style={{ fontFamily: 'Nunito' }}>Or log In With</Text>
 
                 <CustomButton text="Continue with Google" type="SECONDARY" />
                 <CustomButton text="Continue with Facebook" type="SECONDARY" />
@@ -149,10 +169,10 @@ const styles = StyleSheet.create({
     //     maxWidth: 300,
     //     maxHeight: 200
     // },
-    // login_text: {
-    //     fontSize: 20,
-    //     paddingBottom: 15
-    // },
+    login_text: {
+        fontSize: 20,
+        fontFamily: 'Nunito',
+    },
     container: {
         flex: 1,
         justifyContent: 'center',

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import introbackground from '../assets/introbackground.png'
@@ -8,6 +8,10 @@ import CustomButton from "./Login/CustomButton";
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 import { Dimensions } from "react-native";
+
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -37,19 +41,19 @@ const slides = [
     {
         id: '1',
         image: require('../assets/tutorial1.png'),
-        title: 'Build a Community',
+        title: 'BUILD A COMMUNITY',
         subtitle: 'Add friends, family, and neighbours to your network with ease by sending them a link.',
     },
     {
         id: '2',
         image: require('../assets/tutorial2.png'),
-        title: 'Plan Your Daily Tasks and Errands',
+        title: 'PLAN YOUR DAILY TASKS AND ERRANDS',
         subtitle: 'Add tasks and errands to your calendar by posting them to your profile.',
     },
     {
         id: '3',
         image: require('../assets/tutorial3.png'),
-        title: 'Get Help With Your Tasks',
+        title: 'GET HELP WITH YOUR TASKS',
         subtitle: 'Your network can accept your tasks and help you get the difficult ones done easier.',
     },
 ]
@@ -63,6 +67,25 @@ export default function TutorialComp({ navigation }) {
 
     const [showTutorialPage, setShowTutorialPage] = useState(false);
 
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-bold': require('../assets/fonts/Nunito-Bold.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    //until here FONT USAGE
+
+
     const buttonLabel = (label) => {
         return (
             <View style={{
@@ -71,7 +94,8 @@ export default function TutorialComp({ navigation }) {
                 <Text style={{
                     color: COLORS.title,
                     fontWeight: '600',
-                    fontSize: SIZES.h4,
+                    fontSize: SIZES.h3,
+                    fontFamily: 'Nunito'
                 }}>
                     {label}
                 </Text>
@@ -110,16 +134,20 @@ export default function TutorialComp({ navigation }) {
                                     resizeMode="contain"
                                 />
                                 <Text style={{
+                                    textAlign: 'center',
                                     fontWeight: 'bold',
                                     color: COLORS.title,
                                     fontSize: SIZES.h1,
+                                    fontFamily: 'Nunito-bold'
                                 }}>
                                     {item.title}
                                 </Text>
                                 <Text style={{
                                     textAlign: 'center',
                                     paddingTop: 5,
-                                    color: COLORS.title
+                                    color: COLORS.title,
+                                    fontSize: SIZES.h3,
+                                    fontFamily: 'Nunito'
                                 }}>
                                     {item.subtitle}
                                 </Text>
