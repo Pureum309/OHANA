@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
-import introbackground from '../assets/introbackground.png'
+import introbackground from '../assets/introbackground.png';
+import logo from '../assets/logo2.png';
 
 //Needed for Back button
 import CustomButton from "./Login/CustomButton";
@@ -35,7 +36,7 @@ export const SIZES = {
 
     width,
     height,
-}
+};
 
 const slides = [
     {
@@ -117,46 +118,44 @@ export default function TutorialComp({ navigation }) {
                             <View style={{
                                 flex: 1,
                                 alignItems: 'center',
-                                padding: 15,
-                                paddingTop: 100,
+                                padding: 100,
+                                paddingTop: 125,
                             }}>
-
                                 <View style={styles.back_button}>
                                     <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3"></IonicIcon>
                                     <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
                                 </View>
-                                <Image
-                                    source={item.image}
-                                    style={{
-                                        width: SIZES.width - 80,
-                                        height: 400,
-                                    }}
-                                    resizeMode="contain"
-                                />
-                                <Text style={{
-                                    textAlign: 'center',
-                                    fontWeight: 'bold',
-                                    color: COLORS.title,
-                                    fontSize: SIZES.h1,
-                                    fontFamily: 'Nunito-bold'
-                                }}>
-                                    {item.title}
-                                </Text>
-                                <Text style={{
-                                    textAlign: 'center',
-                                    paddingTop: 5,
-                                    color: COLORS.title,
-                                    fontSize: SIZES.h3,
-                                    fontFamily: 'Nunito'
-                                }}>
-                                    {item.subtitle}
-                                </Text>
-
+                                <View>
+                                    <Image source={logo} style={styles.logoImg} />
+                                    <Image
+                                        source={item.image}
+                                        style={{
+                                            width: width,
+                                            height: 300,
+                                        }}
+                                        resizeMode="contain"
+                                    />
+                                    <Text style={{
+                                        textAlign: 'center',
+                                        fontWeight: 'bold',
+                                        fontSize: 20,
+                                        fontFamily: 'Nunito-bold'
+                                    }}>
+                                        {item.title}
+                                    </Text>
+                                    <Text style={{
+                                        textAlign: 'center',
+                                        fontSize: 16,
+                                        fontFamily: 'Nunito'
+                                    }}>
+                                        {item.subtitle}
+                                    </Text>
+                                </View>
                             </View>
                         )
                     }}
                     activeDotStyle={{
-                        backgroundColor: COLORS.primary,
+                        backgroundColor: '#12688A',
                         width: 30,
                     }}
                     showSkipButton
@@ -165,7 +164,6 @@ export default function TutorialComp({ navigation }) {
                     renderDoneButton={() => buttonLabel("Done")}
                     onDone={() => {
                         setShowTutorialPage(true);
-                        console.log("Test")
                         navigation.navigate('Login')
                     }}
 
@@ -186,5 +184,12 @@ const styles = StyleSheet.create({
     },
     bgimage: {
         flex: 1,
+    },
+    logoImg: {
+        width: width,
+        height: 150,
+        padding: 60,
+        resizeMode: "contain",
+        alignItems: 'center',
     },
 });
