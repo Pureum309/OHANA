@@ -10,6 +10,8 @@ import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+import { loginUsers } from './LoginUser';
+
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
 }
@@ -65,11 +67,29 @@ export default function LoginScreen({ navigation }) {
             console.log(userInfo)
             console.log('Entered information is valid')
         }
-        if (userInfo.email == "test@gmail.com" && userInfo.password == "password") {
-            console.log('Welcome Zo Adisa');
-            setUserInfo('');
-            navigation.navigate('Main');
+        {
+            loginUsers.map(user => {
+                if (user.id == userInfo.email && user.password == userInfo.password) {
+                    console.log('Welcome Zo Adisa');
+                    setUserInfo('');
+                    if (user.role == 1) {
+                        // Go to screen for users.
+                        navigation.navigate('Main');
+                    }
+                    else if (user.role == 2) {
+                        // Go to screen for caregivers.
+                        navigation.navigate('CaregiverMain');
+                    }
+
+                    return;
+                }
+            })
         }
+        // if (userInfo.email == "test@gmail.com" && userInfo.password == "password") {
+        //     console.log('Welcome Zo Adisa');
+        //     setUserInfo('');
+        //     navigation.navigate('Main');
+        // }
     }
 
     //Needed for Back button

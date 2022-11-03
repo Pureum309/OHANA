@@ -112,6 +112,48 @@ function TabNavigationScreen() {
     )
 }
 
+function TabCaregiverNavigationScreen() {
+    return (
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+                // headerTitle: () => <Text>Header</Text>,
+                header: (props) => <Header label={route.name} />,
+                tabBarIcon: ({ focused, color, size, padding }) => {
+                    let iconName;
+                    if (route.name == 'Home') {
+                        iconName = focused ? 'home' : 'md-home-outline'
+                    } else if (route.name == 'Network') {
+                        iconName = focused ? 'people' : 'people-outline'
+                    } else if (route.name == 'Alerts') {
+                        iconName = focused ? 'add-circle' : 'add-circle-outline'
+                    } else if (route.name == 'Profile') {
+                        iconName = focused ? 'person' : 'person-outline'
+                    }
+
+                    return (
+                        <IonicIcon
+                            name={iconName}
+                            size={size}
+                            color={color}
+                            style={{ paddingBottom: padding }}
+                        />
+                    );
+                },
+            })}
+            tabBarOptions={{
+                activeTintColor: '#126B8A',
+                inactiveTintColor: '#126B8A',
+                lableStyle: { fontSize: 16 },
+                style: { width: fullScreenWidth }
+            }}>
+            <Tab.Screen name="Home" component={HomeStackScreen} />
+            <Tab.Screen name="Network" component={NetworkStackScreen} />
+            <Tab.Screen name="Alerts" component={MapStackScreen} />
+            <Tab.Screen name="Profile" component={ProfileStackScreen} />
+        </Tab.Navigator>
+    )
+}
+
 
 const Tab = createBottomTabNavigator();
 
@@ -124,6 +166,7 @@ export default function Navigation(props) {
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '', headerShown: false }} />
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
+                <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >
