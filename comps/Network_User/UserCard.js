@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
         height: 80,
         // borderRadius: radius,
         alignItems: 'center',
-        dropShadow: '10px #00ADC3'
+        borderColor: '#00ADC3',
+        borderBottomWidth: 0.5
     },
     imageStyle: {
         height: 70,
@@ -73,9 +74,9 @@ const styles = StyleSheet.create({
         color: 'grey'
     },
     infoStyle: {
-        marginHorizontal: 20,
+        marginHorizontal: 10,
         // paddingTop: 30,
-        marginVertical: 30,
+        marginVertical: 10,
     }
 
 
