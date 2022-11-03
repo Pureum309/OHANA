@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native'
-
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native';
+import SearchBar from "../comps/SearchBar";
 import Network from "../comps/Network";
+
 
 const NetworkView = (props) => {
 
@@ -13,6 +14,7 @@ const NetworkView = (props) => {
                 </View>
             </ScrollView>
         </SafeAreaView>
+
     )
 }
 
@@ -26,4 +28,3 @@ const styles = StyleSheet.create({
 });
 
 export default NetworkView
-
