@@ -11,8 +11,6 @@ import * as SplashScreen from 'expo-splash-screen';
 const HomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
 
-    console.log("current role" + role + "!!!!!!!!!!!!!!!!!!!!!!!!!");
-
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
             setKey(Math.random() + key + 1);

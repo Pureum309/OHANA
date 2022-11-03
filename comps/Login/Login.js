@@ -78,7 +78,7 @@ export default function LoginScreen({ navigation }) {
                     }
                     else if (user.role == 2) {
                         // Go to screen for caregivers.
-                        navigation.navigate('Tutorial');
+                        navigation.navigate('CaregiverMain');
                     }
 
                     return;
