@@ -12,6 +12,10 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { loginUsers } from './LoginUser';
 
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set, onValue } from "firebase/database";
+
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
 }
@@ -55,36 +59,52 @@ export default function LoginScreen({ navigation }) {
         if (!isValidEmail(email))
             return updateError('Invalid email!', setError);
         //password must have 8 or more characters
-        if (!password.trim() || password.length < 8)
+        if (!password.trim() || password.length < 6)
             return updateError('Password is less than 8 characters!', setError);
 
         return true;
     }
 
-    const submitForm = () => {
+    const submitForm = async () => {
         if (isValidForm()) {
             // submit form
-            console.log(userInfo)
-            console.log('Entered information is valid')
-        }
-        {
-            loginUsers.map(user => {
-                if (user.id == userInfo.email && user.password == userInfo.password) {
-                    console.log('Welcome Zo Adisa');
-                    setUserInfo('');
-                    if (user.role == 1) {
-                        // Go to screen for users.
-                        navigation.navigate('Main');
-                    }
-                    else if (user.role == 2) {
-                        // Go to screen for caregivers.
-                        navigation.navigate('CaregiverMain');
-                    }
+            console.log(userInfo);
+            console.log('Entered information is valid');
 
-                    return;
+            const user = await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password);
+
+            const db = getDatabase();
+            const roleRef = ref(db, 'user/' + user.user.uid);
+            onValue(roleRef, (snapshot) => {
+                const data = snapshot.val();
+
+                console.log(data);
+
+                if (data.role == 1) {
+                    navigation.navigate('Main');
+                } else if (data.role == 2) {
+                    navigation.navigate('CaregiverMain');
                 }
             })
         }
+        // {
+        //     loginUsers.map(user => {
+        //         if (user.id == userInfo.email && user.password == userInfo.password) {
+        //             console.log('Welcome Zo Adisa');
+        //             setUserInfo('');
+        //             if (user.role == 1) {
+        //                 // Go to screen for users.
+        //                 navigation.navigate('Main');
+        //             }
+        //             else if (user.role == 2) {
+        //                 // Go to screen for caregivers.
+        //                 navigation.navigate('CaregiverMain');
+        //             }
+
+        //             return;
+        //         }
+        //     })
+        // }
         // if (userInfo.email == "test@gmail.com" && userInfo.password == "password") {
         //     console.log('Welcome Zo Adisa');
         //     setUserInfo('');
@@ -97,6 +117,21 @@ export default function LoginScreen({ navigation }) {
         console.log("test")
         navigation.navigate('Intro')
     }
+    /////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////Firebase User sign up////////////////////////////////
+    const handleSignUP = async () => {
+        const user = await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password);
+        console.log(user.user.uid);
+
+        // const db = getDatabase();
+        // set(ref(db, 'user/' + user.user.uid), {
+        //     first: "test man",
+        //     role: 3
+        // });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -153,6 +188,7 @@ export default function LoginScreen({ navigation }) {
                 <CustomButton text="Forgot Password?" type="TERTIARY" />
 
                 <CustomButton text="LOG IN" onPress={submitForm} />
+                <CustomButton text="SIGN UP" onPress={handleSignUP} />
 
                 <Text style={{ fontFamily: 'Nunito' }}>Or log In With</Text>
 
