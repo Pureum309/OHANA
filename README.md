@@ -43,4 +43,6 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Setting up caregiver side email and lead to different navigation bar
 ###Nov 3:
 - Using firebase to storing users
+- Using firebase to designate different users for different UI
+- Storing database on firebase and called out on Homescreen (name), Profile (name, location, bio) for now
 

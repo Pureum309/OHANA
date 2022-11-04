@@ -10,11 +10,12 @@ import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { loginUsers } from './LoginUser';
+import { auth, db } from '../../firebase/firebase';
+import { ref, set, onValue } from "firebase/database";
 
-import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+
+export var loginUser;
 
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
@@ -72,8 +73,8 @@ export default function LoginScreen({ navigation }) {
             console.log('Entered information is valid');
 
             const user = await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password);
-
-            const db = getDatabase();
+            loginUser = user;
+            //Read data from firebase database
             const roleRef = ref(db, 'user/' + user.user.uid);
             onValue(roleRef, (snapshot) => {
                 const data = snapshot.val();
@@ -123,6 +124,7 @@ export default function LoginScreen({ navigation }) {
         const user = await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password);
         console.log(user.user.uid);
 
+        /* When pass and write the users add below */
         // const db = getDatabase();
         // set(ref(db, 'user/' + user.user.uid), {
         //     first: "test man",

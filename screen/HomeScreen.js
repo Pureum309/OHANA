@@ -4,9 +4,20 @@ import { Provider as PaperProvider } from 'react-native-paper';
 
 import { postCards } from "../comps/DropMenuComp";
 import PostActivityCard from "../comps/PostActivityCard";
+
+import moment from "moment";
+
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
+//DATABASE for FIRBASE
+import { loginUser } from "../comps/Login/Login";
+import { db } from '../firebase/firebase';
+import { ref, set, onValue } from "firebase/database";
+
+
+
 
 const HomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
@@ -17,6 +28,8 @@ const HomeScreen = ({ navigation }) => {
         });
         return focusHandler;
     }, [navigation])
+
+
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
         'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
@@ -32,13 +45,37 @@ const HomeScreen = ({ navigation }) => {
     if (!fontsLoaded) {
         return null;
     }
+    ///End FONT USAGE
+
+    //Read DATA from FIREBASE
+    let firstName = "";
+    const userRef = ref(db, 'user/' + loginUser.user.uid);
+    onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+
+        console.log(data);
+        firstName = data.first;
+
+    });
+
+    //Using moment to greeting
+    const getGreeting = () => {
+        const hour = moment().hour();
+        if (hour > 16) {
+            return "Good evening";
+        }
+        if (hour > 11) {
+            return "Good afternoon";
+        }
+        return 'Morning';
+    }
 
     return (
         <PaperProvider key={key}>
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.container} onLayout={onLayoutRootView}>
-                        <Text style={styles.textStyle}>Morning Zo,</Text>
+                        <Text style={styles.textStyle}>{getGreeting()}, {firstName}</Text>
                         <Text style={styles.textStyle}>What are you up to today?</Text>
                         {
                             postCards.map((item) => {
