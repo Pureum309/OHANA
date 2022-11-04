@@ -163,11 +163,11 @@ export default function Navigation(props) {
         <NavigationContainer>
             <Stack.Navigator>
                 {/* All screens should be placed here to be navigated. */}
-                <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '', headerShown: false }} />
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
+                <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >
