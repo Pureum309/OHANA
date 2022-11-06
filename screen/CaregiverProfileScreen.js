@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
 import { caregiver_info } from '../comps/CareGiverUser/careGiverInfo'
+import ProfileLowerTabs from "../comps/ProfileTabs";
 
 
 import Header from "../comps/Header";
@@ -15,6 +16,7 @@ const CareGiverProfileScreen = () => {
                 location={caregiver_info.location}
                 bio={caregiver_info.bio}
             />
+            <ProfileLowerTabs />
         </View>
     )
 }
