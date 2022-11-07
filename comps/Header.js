@@ -32,7 +32,11 @@ const Header = (props) => {
                         window.location.href = '../screen/HomeScreen'
                     }} />
                 <Text style={styles.textStyle} >{props.label}</Text>
-                <AntDesign name="message1" size={24} color="black" />
+                <AntDesign name="message1" size={24} color="black"
+                    onClick={() => {
+                        window.location.href = '../screen/ChatScreen'
+                    }}
+                />
             </View>
         </ImageBackground>
     )
