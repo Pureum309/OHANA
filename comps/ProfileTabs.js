@@ -104,20 +104,28 @@
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from "react";
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+
+import PostActivityCard from "../comps/PostActivityCard";
 
 function HomeScreen() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Home!</Text>
+        <View>
+            <ScrollView>
+                <Text>Things go here! Needs Styling</Text>
+                <PostActivityCard />
+                <PostActivityCard />
+                <PostActivityCard />
+            </ScrollView>
         </View>
     );
 }
 
 function SettingsScreen() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Settings!</Text>
+        <View>
+            <Text>Even more things go here!</Text>
+
         </View>
     );
 }
@@ -127,7 +135,7 @@ const Tab = createMaterialTopTabNavigator();
 function ProfileLowerTabs() {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Summary" component={HomeScreen} />
             <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>
     );

@@ -18,6 +18,7 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Implimented gradient background image
 - Created CaregiverProfile Screen
 - Implimented CareGiverUser component
+- Implimented Lower Tabs section for profile screens 
 
 ##Sarah
 ###Until the midterm
