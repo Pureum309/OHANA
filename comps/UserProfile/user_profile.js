@@ -7,9 +7,10 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRBASE
 import { loginUser } from "../Login/Login";
 import { db } from '../../firebase/firebase';
-import { ref, onValue } from "firebase/database";
+import { doc, onSnapshot } from "firebase/firestore";
 
 export default function UserProfile() {
+    const [user, setUser] = useState({});
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
         'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
@@ -25,30 +26,16 @@ export default function UserProfile() {
         return null;
     }
 
-    //////////////////////Read DATA from FIREBASE///////////////////////
-    let firstName = "";
-    let lastName = "";
-    let location = "";
-    let bio = ""
+    const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+        setUser(doc.data());
+    });
 
-    const userRef = ref(db, 'user/' + loginUser.user.uid);
-    onValue(userRef, (snapshot) => {
-        const data = snapshot.val();
-
-        console.log(data);
-        firstName = data.first;
-        lastName = data.last;
-        location = data.location;
-        bio = data.bio;
-
-    })
-    ////////////////////////////////////////////////////////////////////
     return (
         <View style={styles.container} onLayout={onLayoutRootView}>
             <Image style={styles.imageStyle} source={require("../../assets/userPhoto.png")} />
-            <Text style={styles.nameStyle}>{firstName} {lastName}</Text>
-            <Text style={styles.locationStyle}>{location}</Text>
-            <Text style={styles.bioStyle}>{bio}</Text>
+            <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
+            <Text style={styles.locationStyle}>{user.location}</Text>
+            <Text style={styles.bioStyle}>{user.bio}</Text>
         </View>
     );
 }

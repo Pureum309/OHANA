@@ -11,16 +11,17 @@ import moment from "moment";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-//DATABASE for FIRBASE
+//DATABASE for FIRESTORE
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
-import { ref, set, onValue } from "firebase/database";
+import { doc, onSnapshot } from "firebase/firestore";
 
 
 
 
 const HomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
+    const [firstName, setFirstname] = useState("");
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -28,7 +29,6 @@ const HomeScreen = ({ navigation }) => {
         });
         return focusHandler;
     }, [navigation])
-
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -47,15 +47,10 @@ const HomeScreen = ({ navigation }) => {
     }
     ///End FONT USAGE
 
-    //Read DATA from FIREBASE
-    let firstName = "";
-    const userRef = ref(db, 'user/' + loginUser.user.uid);
-    onValue(userRef, (snapshot) => {
-        const data = snapshot.val();
+    //Read DATA from FIRESTORE
 
-        console.log(data);
-        firstName = data.first;
-
+    const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+        setFirstname(doc.data().first);
     });
 
     //Using moment to greeting

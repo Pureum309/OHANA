@@ -10,10 +10,10 @@ import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+//DATABASE for FIRESTORE AND AUTH
 import { auth, db } from '../../firebase/firebase';
-import { ref, set, onValue } from "firebase/database";
-
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export var loginUser;
 
@@ -74,19 +74,15 @@ export default function LoginScreen({ navigation }) {
 
             const user = await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password);
             loginUser = user;
-            //Read data from firebase database
-            const roleRef = ref(db, 'user/' + user.user.uid);
-            onValue(roleRef, (snapshot) => {
-                const data = snapshot.val();
 
-                console.log(data);
-
-                if (data.role == 1) {
-                    navigation.navigate('Main');
-                } else if (data.role == 2) {
-                    navigation.navigate('CaregiverMain');
-                }
-            })
+            const docRef = doc(db, 'users', user.user.uid);
+            const docSnap = await getDoc(docRef);
+            const data = docSnap.data();
+            if (data.role == 1) {
+                navigation.navigate('Main');
+            } else if (data.role == 2) {
+                navigation.navigate('CaregiverMain');
+            }
         }
         // {
         //     loginUsers.map(user => {
@@ -125,11 +121,21 @@ export default function LoginScreen({ navigation }) {
         console.log(user.user.uid);
 
         /* When pass and write the users add below */
-        // const db = getDatabase();
-        // set(ref(db, 'user/' + user.user.uid), {
-        //     first: "test man",
-        //     role: 3
-        // });
+        // const docRef = doc(db, 'users', user.user.uid);
+        // await setDoc(docRef, { first: "Sarah", last: "Sun", location: "New West", bio: "", role: 1 });
+
+        /* To add a sub-collection to a user. */
+        // let uid = "tlInEAjNVRaUGz3V9x414rvMmwh1";
+        // let docSnap = await getDoc(doc(db, 'users', uid));
+        // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "family" });
+
+        // uid = "ou26qC5hBMVSwWmqCv9veGOgjBQ2";
+        // docSnap = await getDoc(doc(db, 'users', uid));
+        // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "family" });
+
+        // uid = "NZgfJaTz0cOJhVaOtfczy2DisZm2";
+        // docSnap = await getDoc(doc(db, 'users', uid));
+        // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "friend" });
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
