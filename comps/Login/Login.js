@@ -75,6 +75,31 @@ export default function LoginScreen({ navigation }) {
             const user = await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password);
             loginUser = user;
 
+            /* To add a sub-collection to a user. */
+            // let uid = "QybGzVthlvYghF6waWpyh4aePWW2";
+            // let userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "CO-WORKER" });
+
+            // uid = "cUHRWgwFQJZbrfB6oY4EGEiWYbB3";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "CAREGIVER" });
+
+            // uid = "hH16a6Z7bgPwiNnOFvieAbKcYOm2";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "FAMILY" });
+
+            // uid = "q28volkElHcfdxD0zYevmeJpDZC3";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "CO-WORKER" });
+
+            // uid = "jlkANgtZdQOoSCwKEfq4b74MuKv1";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "FRIEND" });
+
+            // uid = "eMSSquaNvLdumvfNHz7iZqjUSbs2";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "NEIGHBOUR" });
+
             const docRef = doc(db, 'users', user.user.uid);
             const docSnap = await getDoc(docRef);
             const data = docSnap.data();
@@ -123,19 +148,6 @@ export default function LoginScreen({ navigation }) {
         /* When pass and write the users add below */
         // const docRef = doc(db, 'users', user.user.uid);
         // await setDoc(docRef, { first: "Sarah", last: "Sun", location: "New West", bio: "", role: 1 });
-
-        /* To add a sub-collection to a user. */
-        // let uid = "tlInEAjNVRaUGz3V9x414rvMmwh1";
-        // let docSnap = await getDoc(doc(db, 'users', uid));
-        // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "family" });
-
-        // uid = "ou26qC5hBMVSwWmqCv9veGOgjBQ2";
-        // docSnap = await getDoc(doc(db, 'users', uid));
-        // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "family" });
-
-        // uid = "NZgfJaTz0cOJhVaOtfczy2DisZm2";
-        // docSnap = await getDoc(doc(db, 'users', uid));
-        // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "friend" });
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -159,7 +171,7 @@ export default function LoginScreen({ navigation }) {
     //until here FONT USAGE
 
     return (
-        <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover'>
+        <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover' onLayout={onLayoutRootView}>
             <View style={styles.container}>
                 <View style={styles.back_button}>
                     <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3" />

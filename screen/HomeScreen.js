@@ -14,14 +14,13 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRESTORE
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
-import { doc, onSnapshot } from "firebase/firestore";
-
-
+import { doc, onSnapshot, collection } from "firebase/firestore";
 
 
 const HomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
     const [firstName, setFirstname] = useState("");
+    const [posts, setPosts] = useState([]);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -48,8 +47,8 @@ const HomeScreen = ({ navigation }) => {
     ///End FONT USAGE
 
     //Read DATA from FIRESTORE
-
-    const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+    //Can unsubscribe the real-time data change later.
+    const unsubscribe = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
         setFirstname(doc.data().first);
     });
 
@@ -65,6 +64,19 @@ const HomeScreen = ({ navigation }) => {
         return 'Morning';
     }
 
+    if (posts.length == 0) {
+        const postsRef = collection(db, `users/${loginUser.user.uid}/posts`);
+        const unsubscribe = onSnapshot(postsRef, (snapshot) => {
+            const tempPosts = [];
+            snapshot.forEach((doc) => {
+                tempPosts.push(doc.data());
+            });
+            setPosts(tempPosts);
+        });
+    }
+
+    let index = 0;
+
     return (
         <PaperProvider key={key}>
             <SafeAreaView>
@@ -73,15 +85,22 @@ const HomeScreen = ({ navigation }) => {
                         <Text style={styles.textStyle}>{getGreeting()}, {firstName}</Text>
                         <Text style={styles.textStyle}>What are you up to today?</Text>
                         {
-                            postCards.map((item) => {
+                            posts.map((post) => {
                                 return (
                                     <TouchableOpacity >
                                         <PostActivityCard
-                                            category={item.category}
-                                            datetime={item.datetime}
-                                            location={item.location}
-                                            counter={item.counter}
-                                            tasks={item.tasks} />
+                                            // category={item.category}
+                                            // datetime={item.datetime}
+                                            // location={item.location}
+                                            // counter={item.counter}
+                                            // tasks={item.tasks} 
+                                            category={post.category}
+                                            datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
+                                            location={post.location}
+                                            counter={post.counter}
+                                            tasks={post.tasks}
+                                            id={post.id}
+                                        />
                                     </TouchableOpacity>
                                 )
                             })

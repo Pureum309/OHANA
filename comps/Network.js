@@ -15,7 +15,7 @@ const Network = (props) => {
 
     if (relationships.length == 0) {
         const relRef = collection(db, `users/${loginUser.user.uid}/relationships`);
-        const unsub = onSnapshot(relRef, (snapshot) => {
+        const unsubscribe = onSnapshot(relRef, (snapshot) => {
             const tempRels = [];
             snapshot.forEach((doc) => {
                 tempRels.push(doc.data());

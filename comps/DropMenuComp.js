@@ -8,6 +8,11 @@ import CouterDrop from "./Dropdown/CouterDrop";
 import DropButton from "./Dropdown/DropButton";
 import PostTask from "./Dropdown/PostTask";
 
+//DATABASE for FIRBASE
+import { loginUser } from "./Login/Login";
+import { db } from '../firebase/firebase';
+import { doc, collection, onSnapshot, setDoc } from "firebase/firestore";
+
 
 export const postCards = [];
 
@@ -56,18 +61,24 @@ const init = () => {
 const DropMenuComp = () => {
     const [curId, setCurrentId] = useState(0);
 
-    const onClick = () => {
+    const onClick = async () => {
         console.log("btn clicked! date/time:" + chosenDatetime
             + "; category: " + chosenCategory + "; lacation: " + chosenLocation + "; number:" + chosenCounter + "; text:" + chosenText);
 
-        postCards.push({
+        let post = {
             id: curId,
-            datetime: chosenDatetime,
+            datetime: chosenDatetime.format("MMMM Do, YYYY hh:mm A"),
             category: chosenCategory,
             location: chosenLocation,
             counter: chosenCounter,
             tasks: chosenText
-        });
+        };
+
+        postCards.push(post);
+
+        const postRef = doc(collection(db, 'posts'));
+        await setDoc(postRef, { ...post, userId: loginUser.user.uid });
+        await setDoc(doc(db, "users", loginUser.user.uid, "posts", postRef.id), post);
 
         init();
 

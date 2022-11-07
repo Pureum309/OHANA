@@ -7,24 +7,13 @@ import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCtNXO-OGt_E2daJkMno1iicaqxDcd5Rjs",
-//     authDomain: "ohana-firebase.firebaseapp.com",
-//     projectId: "ohana-firebase",
-//     storageBucket: "ohana-firebase.appspot.com",
-//     messagingSenderId: "210341462463",
-//     appId: "1:210341462463:web:352a449ed012aa2d47210a"
-// };
-
 const firebaseConfig = {
-    apiKey: "AIzaSyCmcC141YHPliG8zhq_eBRvOicVvvMyB1o",
-    authDomain: "test-636a1.firebaseapp.com",
-    databaseURL: "https://test-636a1-default-rtdb.firebaseio.com",
-    projectId: "test-636a1",
-    storageBucket: "test-636a1.appspot.com",
-    messagingSenderId: "249603180142",
-    appId: "1:249603180142:web:d86d829143b04c425a887f"
+    apiKey: "AIzaSyBaYPIz2lHsLa7ES82bMSLPMdO7vRPezmI",
+    authDomain: "ohana-db-18be1.firebaseapp.com",
+    projectId: "ohana-db-18be1",
+    storageBucket: "ohana-db-18be1.appspot.com",
+    messagingSenderId: "432962378011",
+    appId: "1:432962378011:web:aac5d9d1d4841160131bbe"
 };
 
 // Initialize Firebase
