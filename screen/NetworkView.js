@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native';
 import SearchBar from "../comps/SearchBar";
 import Network from "../comps/Network";
+import Search from "../comps/SearchBar";
 
 
 const NetworkView = (props) => {
@@ -10,6 +11,7 @@ const NetworkView = (props) => {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
+                    <Search />
                     <Network />
                 </View>
             </ScrollView>
