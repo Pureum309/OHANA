@@ -143,7 +143,7 @@ function TabCaregiverNavigationScreen() {
             tabBarOptions={{
                 activeTintColor: '#FFF',
                 inactiveTintColor: '#FFF',
-                tabStyle: {backgroundColor: '#126B8A'},
+                tabStyle: { backgroundColor: '#126B8A' },
                 lableStyle: { fontSize: 16 },
                 style: { width: fullScreenWidth }
             }}>
