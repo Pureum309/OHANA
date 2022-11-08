@@ -23,7 +23,7 @@ const Header = (props) => {
         return null;
     }
     return (
-        <ImageBackground source={require('../assets/Header.png')} resizeMode='cover' style={styles.bgImgStyle} >
+        <ImageBackground source={require('../assets/Header.png')} resizeMode='cover' style={styles.bgImgStyle} onLayout={onLayoutRootView} >
             <View style={styles.container}>
                 <Image
                     style={styles.imageStyle}

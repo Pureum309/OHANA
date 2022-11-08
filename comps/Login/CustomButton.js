@@ -30,7 +30,8 @@ export default function CustomButton({
     return (
         <Pressable
             onPress={onPress}
-            style={[styles.container, styles[`container_${type}`]]}>
+            style={[styles.container, styles[`container_${type}`]]}
+            onLayout={onLayoutRootView} >
             <Text style={[styles.text, styles[`text_${type}`]]}>{text}</Text>
         </Pressable>
     )

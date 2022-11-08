@@ -4,12 +4,13 @@ import React, { useState, useCallback } from "react";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+//DATABASE for FIRBASE
+import { loginUser } from "../Login/Login";
+import { db } from '../../firebase/firebase';
+import { doc, onSnapshot } from "firebase/firestore";
 
-export default function UserProfile({
-    name,
-    location,
-    bio
-}) {
+export default function UserProfile() {
+    const [user, setUser] = useState({});
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
         'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
@@ -24,12 +25,17 @@ export default function UserProfile({
     if (!fontsLoaded) {
         return null;
     }
+
+    const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+        setUser(doc.data());
+    });
+
     return (
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
             <Image style={styles.imageStyle} source={require("../../assets/userPhoto.png")} />
-            <Text style={styles.nameStyle}>{name}</Text>
-            <Text style={styles.locationStyle}>{location}</Text>
-            <Text style={styles.bioStyle}>{bio}</Text>
+            <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
+            <Text style={styles.locationStyle}>{user.location}</Text>
+            <Text style={styles.bioStyle}>{user.bio}</Text>
         </View>
     );
 }
