@@ -40,18 +40,25 @@ export const SIZES = {
 const slides = [
     {
         id: '1',
+        image: require('../assets/tutorial4.png'),
+        title: 'ACKNOWLEDGEMENT',
+        subtitle: 'The Ohana app acknowledges that our app name and message, Ohana, is based off of the traditional indigenous Hawaiian way of life that is the extension of care and devotion to all members of the human family. Ohana is the concept of ensuring that your community has what they need to survive and live with joy. This is the core value and mission of the Ohana app.',
+
+    },
+    {
+        id: '2',
         image: require('../assets/tutorial1.png'),
         title: 'BUILD A COMMUNITY',
         subtitle: 'Add friends, family, and neighbours to your network with ease by sending them a link.',
     },
     {
-        id: '2',
+        id: '3',
         image: require('../assets/tutorial2.png'),
         title: 'PLAN YOUR DAILY TASKS AND ERRANDS',
         subtitle: 'Add tasks and errands to your calendar by posting them to your profile.',
     },
     {
-        id: '3',
+        id: '4',
         image: require('../assets/tutorial3.png'),
         title: 'GET HELP WITH YOUR TASKS',
         subtitle: 'Your network can accept your tasks and help you get the difficult ones done easier.',
@@ -145,6 +152,7 @@ export default function TutorialComp({ navigation }) {
                                 <Text style={{
                                     textAlign: 'center',
                                     paddingTop: 5,
+                                    margin: 20,
                                     color: COLORS.title,
                                     fontSize: SIZES.h3,
                                     fontFamily: 'Nunito'
