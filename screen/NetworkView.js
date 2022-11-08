@@ -1,7 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native'
-
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native';
+import SearchBar from "../comps/SearchBar";
 import Network from "../comps/Network";
+import Search from "../comps/SearchBar";
+import { FlexStyleProps } from "@ui-kitten/components/devsupport";
+
 
 const NetworkView = (props) => {
 
@@ -13,6 +16,7 @@ const NetworkView = (props) => {
                 </View>
             </ScrollView>
         </SafeAreaView>
+
     )
 }
 
@@ -26,4 +30,3 @@ const styles = StyleSheet.create({
 });
 
 export default NetworkView
-
