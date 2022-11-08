@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet } from 'react-native'
+import { View, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
 import { caregiver_info } from '../comps/CareGiverUser/careGiverInfo'
 import ProfileLowerTabs from "../comps/ProfileTabs";
 
@@ -10,14 +10,16 @@ import CareGiverProfile from '../comps/CareGiverUser/careGiverProfile'
 
 const CareGiverProfileScreen = () => {
     return (
-        <View style={styles.container}>
-            <CareGiverProfile
-                name={caregiver_info.name}
-                location={caregiver_info.location}
-                bio={caregiver_info.bio}
-            />
-            <ProfileLowerTabs />
-        </View>
+        <ScrollView>
+            <View style={styles.container}>
+                <CareGiverProfile
+                    name={caregiver_info.name}
+                    location={caregiver_info.location}
+                    bio={caregiver_info.bio}
+                />
+                <ProfileLowerTabs />
+            </View>
+        </ScrollView>
     )
 }
 
