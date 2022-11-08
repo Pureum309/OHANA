@@ -71,7 +71,8 @@ const HomeScreen = ({ navigation }) => {
             snapshot.forEach((doc) => {
                 tempPosts.push(doc.data());
             });
-            setPosts(tempPosts);
+            if (tempPosts.length != 0)
+                setPosts(tempPosts);
         });
     }
 
