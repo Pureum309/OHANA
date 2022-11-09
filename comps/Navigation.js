@@ -22,6 +22,7 @@ import Header from "../comps/Header";
 import IntroScreen from "../screen/IntroScreen";
 import LoginScreen from "./Login/Login";
 import TutorialComp from "./TutorialComp";
+import ChatScreen from "../screen/ChatScreen";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -72,7 +73,7 @@ function TabNavigationScreen() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 // headerTitle: () => <Text>Header</Text>,
-                header: (props) => <Header label={route.name} />,
+                header: (props) => <Header label={route.name} navigation={props.navigation} />,
                 tabBarIcon: ({ focused, color, size, padding }) => {
                     let iconName;
                     if (route.name == 'Home') {
@@ -167,6 +168,7 @@ export default function Navigation(props) {
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: true }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >

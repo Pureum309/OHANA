@@ -1,10 +1,11 @@
 
 import React, { useState, useCallback } from "react";
-import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView, ImageBackground } from 'react-native'
+import { View, StyleSheet, Text, Dimensions, Image, StatusBar, ScrollView, ImageBackground, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer } from "@react-navigation/native";
 
 const Header = (props) => {
     //For FONT USAGE
@@ -22,21 +23,31 @@ const Header = (props) => {
     if (!fontsLoaded) {
         return null;
     }
+    //FONT USAGE END
+
+    const imageClick = () => {
+        console.log("!!!");
+        props.navigation.navigate('Home');
+    }
+
+    const chatClick = () => {
+        console.log("test");
+        props.navigation.navigate('Chat');
+    }
+
     return (
         <ImageBackground source={require('../assets/Header.png')} resizeMode='cover' style={styles.bgImgStyle} >
             <View style={styles.container}>
-                <Image
-                    style={styles.imageStyle}
-                    source={require('../assets/logoicon.png')}
-                    onClick={() => {
-                        window.location.href = '../screen/HomeScreen'
-                    }} />
+                <TouchableOpacity onPress={imageClick}>
+                    <Image
+                        style={styles.imageStyle}
+                        source={require('../assets/logoicon.png')} />
+                </TouchableOpacity>
                 <Text style={styles.textStyle} >{props.label}</Text>
-                <AntDesign name="message1" size={24} color="black"
-                    onClick={() => {
-                        window.location.href = '../screen/ChatScreen'
-                    }}
-                />
+                <TouchableOpacity onPress={chatClick}>
+                    <AntDesign name="message1" size={24} color="black"
+                    />
+                </TouchableOpacity>
             </View>
         </ImageBackground>
     )

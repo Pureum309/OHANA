@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions } from 'react-native'
-import CustomButton from '../../comps/Login/CustomButton';
+import CustomButton from "../comps/Login/CustomButton";
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
-import Chat from "../comps/Chat";
+import Chat from "../comps/Chat"
 
 
 
