@@ -27,16 +27,22 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Handling all data to create a post activity card
 - Implementing post activity card componenets to show on home screen
 - Applying font on Home screen and Post page
-Oct 28:
+###Oct 28:
 - Creating basic intro page (implementing button)
 - Implementing Intro page to Navigation.js file
-Oct 30:
+###Oct 30:
 - Finished creating UI on intro page
 - Styling intro page
 - Take a look at the login screen (Blen's work) and link with intro page
-Oct 31:
+###Oct 31:
 - Improving CSS on Login.js
 - Take tutorial screen from Desmand and link to intropage
 - Implemented font on Tutorial/Login screen
 - Set up different imgs on Newtwork screen
+###Nov 2:
+- Setting up caregiver side email and lead to different navigation bar
+###Nov 3:
+- Using firebase to storing users
+- Using firebase to designate different users for different UI
+- Storing database on firebase and called out on Homescreen (name), Profile (name, location, bio) for now
 

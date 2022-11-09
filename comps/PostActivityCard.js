@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         paddingLeft: 15,
         paddingTop: 15,
-
+        borderColor: '#6AC278',
+        borderWidth: 3,
         shadowColor: '#171717',
         shadowOffset: { width: 3, height: 4 },
         shadowOpacity: 0.2,

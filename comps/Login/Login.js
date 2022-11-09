@@ -10,7 +10,12 @@ import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { loginUsers } from './LoginUser';
+//DATABASE for FIRESTORE AND AUTH
+import { auth, db } from '../../firebase/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+
+export var loginUser;
 
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
@@ -55,36 +60,73 @@ export default function LoginScreen({ navigation }) {
         if (!isValidEmail(email))
             return updateError('Invalid email!', setError);
         //password must have 8 or more characters
-        if (!password.trim() || password.length < 8)
+        if (!password.trim() || password.length < 6)
             return updateError('Password is less than 8 characters!', setError);
 
         return true;
     }
 
-    const submitForm = () => {
+    const submitForm = async () => {
         if (isValidForm()) {
             // submit form
-            console.log(userInfo)
-            console.log('Entered information is valid')
-        }
-        {
-            loginUsers.map(user => {
-                if (user.id == userInfo.email && user.password == userInfo.password) {
-                    console.log('Welcome Zo Adisa');
-                    setUserInfo('');
-                    if (user.role == 1) {
-                        // Go to screen for users.
-                        navigation.navigate('Main');
-                    }
-                    else if (user.role == 2) {
-                        // Go to screen for caregivers.
-                        navigation.navigate('CaregiverMain');
-                    }
+            console.log(userInfo);
+            console.log('Entered information is valid');
 
-                    return;
-                }
-            })
+            const user = await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password);
+            loginUser = user;
+
+            /* To add a sub-collection to a user. */
+            // let uid = "QybGzVthlvYghF6waWpyh4aePWW2";
+            // let userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "CO-WORKER" });
+
+            // uid = "cUHRWgwFQJZbrfB6oY4EGEiWYbB3";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "CAREGIVER" });
+
+            // uid = "hH16a6Z7bgPwiNnOFvieAbKcYOm2";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "FAMILY" });
+
+            // uid = "q28volkElHcfdxD0zYevmeJpDZC3";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "CO-WORKER" });
+
+            // uid = "jlkANgtZdQOoSCwKEfq4b74MuKv1";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "FRIEND" });
+
+            // uid = "eMSSquaNvLdumvfNHz7iZqjUSbs2";
+            // userDocSnap = await getDoc(doc(db, 'users', uid));
+            // await setDoc(doc(db, "users", user.user.uid, "relationships", uid), { ...docSnap.data(), relationship: "NEIGHBOUR" });
+
+            const docRef = doc(db, 'users', user.user.uid);
+            const docSnap = await getDoc(docRef);
+            const data = docSnap.data();
+            if (data.role == 1) {
+                navigation.navigate('Main');
+            } else if (data.role == 2) {
+                navigation.navigate('CaregiverMain');
+            }
         }
+        // {
+        //     loginUsers.map(user => {
+        //         if (user.id == userInfo.email && user.password == userInfo.password) {
+        //             console.log('Welcome Zo Adisa');
+        //             setUserInfo('');
+        //             if (user.role == 1) {
+        //                 // Go to screen for users.
+        //                 navigation.navigate('Main');
+        //             }
+        //             else if (user.role == 2) {
+        //                 // Go to screen for caregivers.
+        //                 navigation.navigate('CaregiverMain');
+        //             }
+
+        //             return;
+        //         }
+        //     })
+        // }
         // if (userInfo.email == "test@gmail.com" && userInfo.password == "password") {
         //     console.log('Welcome Zo Adisa');
         //     setUserInfo('');
@@ -97,6 +139,19 @@ export default function LoginScreen({ navigation }) {
         console.log("test")
         navigation.navigate('Intro')
     }
+    /////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////Firebase User sign up////////////////////////////////
+    const handleSignUP = async () => {
+        const user = await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password);
+        console.log(user.user.uid);
+
+        /* When pass and write the users add below */
+        // const docRef = doc(db, 'users', user.user.uid);
+        // await setDoc(docRef, { first: "Sarah", last: "Sun", location: "New West", bio: "", role: 1 });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -116,7 +171,7 @@ export default function LoginScreen({ navigation }) {
     //until here FONT USAGE
 
     return (
-        <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover'>
+        <ImageBackground source={introbackground} style={styles.bgImg} resizeMode='cover' onLayout={onLayoutRootView}>
             <View style={styles.container}>
                 <View style={styles.back_button}>
                     <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3" />
@@ -153,6 +208,7 @@ export default function LoginScreen({ navigation }) {
                 <CustomButton text="Forgot Password?" type="TERTIARY" />
 
                 <CustomButton text="LOG IN" onPress={submitForm} />
+                <CustomButton text="SIGN UP" onPress={handleSignUP} />
 
                 <Text style={{ fontFamily: 'Nunito' }}>Or log In With</Text>
 
