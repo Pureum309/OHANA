@@ -6,6 +6,11 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Implementing profile components
 - Implementing post button components
 - Implementing calendar components
+###After the midterm
+- Created login page 
+- Created Backbutton component
+###Nov 10:
+- Created Alert page
 
 ##Desmand
 ###Until the midterm
@@ -54,6 +59,7 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Add Header functionalities(click logo navigate Home, click chat icon navigate Chat)
 ###Nov 11:
 - Fixed minor issues on ChatPage navigation
-- merged cg_user on database section
+- Merged cg_user on database branch
 - Modified caregiver profile to database setup
+- Merged cg_alert_page on database branch
 

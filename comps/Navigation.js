@@ -19,6 +19,7 @@ import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
 import CareGiverProfileScreen from "../screen/CaregiverProfileScreen";
 import Header from "../comps/Header";
+import AlertScreen from "../screen/AlertScreen";
 
 import IntroScreen from "../screen/IntroScreen";
 import LoginScreen from "./Login/Login";
@@ -65,6 +66,14 @@ function ProfileStackScreen() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
+        </Stack.Navigator>
+    );
+}
+
+function AlertStackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Alert" options={{ headerShown: false }} component={AlertScreen} />
         </Stack.Navigator>
     );
 }
@@ -136,7 +145,7 @@ function TabCaregiverNavigationScreen() {
                     } else if (route.name == 'Network') {
                         iconName = focused ? 'people' : 'people-outline'
                     } else if (route.name == 'Alerts') {
-                        iconName = focused ? 'add-circle' : 'add-circle-outline'
+                        iconName = focused ? 'notifications' : 'notifications-outline'
                     } else if (route.name == 'Profile') {
                         iconName = focused ? 'person' : 'person-outline'
                     }
@@ -160,9 +169,9 @@ function TabCaregiverNavigationScreen() {
             }}>
             <Tab.Screen name="Home" component={HomeStackScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
-            <Tab.Screen name="Alerts" component={MapStackScreen} />
+            <Tab.Screen name="Alerts" component={AlertStackScreen} />
             <Tab.Screen name="Profile" component={CaregiverProfileStackScreen} />
-        </Tab.Navigator>
+        </Tab.Navigator >
     )
 }
 
