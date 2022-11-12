@@ -1,18 +1,21 @@
 import React from "react";
 import { View, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { user_info } from '../comps/UserProfile/user_info'
-
-import UserProfile from '../comps/UserProfile/user_profile'
+import { caregiver_info } from '../comps/CareGiverUser/careGiverInfo'
 import ProfileLowerTabs from "../comps/ProfileTabs";
 
-const Profile = () => {
+
+import Header from "../comps/Header";
+import CareGiverProfile from '../comps/CareGiverUser/careGiverProfile'
+
+
+const CareGiverProfileScreen = () => {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <UserProfile
-                    name={user_info.name}
-                    location={user_info.location}
-                    bio={user_info.bio}
+                <CareGiverProfile
+                    name={caregiver_info.name}
+                    location={caregiver_info.location}
+                    bio={caregiver_info.bio}
                 />
                 <ProfileLowerTabs />
             </View>
@@ -20,7 +23,7 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default CareGiverProfileScreen
 
 const deviceHeight = Dimensions.get('window').height;
 

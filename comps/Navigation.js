@@ -17,11 +17,14 @@ import NetworkView from "../screen/NetworkView";
 import Post from "../screen/Post";
 import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
+import CareGiverProfileScreen from "../screen/CaregiverProfileScreen";
 import Header from "../comps/Header";
+import AlertScreen from "../screen/AlertScreen";
 
 import IntroScreen from "../screen/IntroScreen";
 import LoginScreen from "./Login/Login";
 import TutorialComp from "./TutorialComp";
+import ChatScreen from "../screen/ChatScreen";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -67,12 +70,29 @@ function ProfileStackScreen() {
     );
 }
 
+function AlertStackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Alert" options={{ headerShown: false }} component={AlertScreen} />
+        </Stack.Navigator>
+    );
+}
+
+// ********** display caregiver profile ***********
+function CaregiverProfileStackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Caregiver Profile" options={{ headerShown: false }} component={CareGiverProfileScreen} />
+        </Stack.Navigator>
+    );
+}
+
 function TabNavigationScreen() {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 // headerTitle: () => <Text>Header</Text>,
-                header: (props) => <Header label={route.name} />,
+                header: (props) => <Header label={route.name} navigation={props.navigation} />,
                 tabBarIcon: ({ focused, color, size, padding }) => {
                     let iconName;
                     if (route.name == 'Home') {
@@ -125,7 +145,7 @@ function TabCaregiverNavigationScreen() {
                     } else if (route.name == 'Network') {
                         iconName = focused ? 'people' : 'people-outline'
                     } else if (route.name == 'Alerts') {
-                        iconName = focused ? 'add-circle' : 'add-circle-outline'
+                        iconName = focused ? 'notifications' : 'notifications-outline'
                     } else if (route.name == 'Profile') {
                         iconName = focused ? 'person' : 'person-outline'
                     }
@@ -149,9 +169,9 @@ function TabCaregiverNavigationScreen() {
             }}>
             <Tab.Screen name="Home" component={HomeStackScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
-            <Tab.Screen name="Alerts" component={MapStackScreen} />
-            <Tab.Screen name="Profile" component={ProfileStackScreen} />
-        </Tab.Navigator>
+            <Tab.Screen name="Alerts" component={AlertStackScreen} />
+            <Tab.Screen name="Profile" component={CaregiverProfileStackScreen} />
+        </Tab.Navigator >
     )
 }
 
@@ -168,6 +188,7 @@ export default function Navigation(props) {
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >
