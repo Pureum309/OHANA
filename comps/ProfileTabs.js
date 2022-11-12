@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from "react";
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View } from 'react-native';
 
 import PostActivityCard from "../comps/PostActivityCard";
 

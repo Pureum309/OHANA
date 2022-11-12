@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
+import HomeLowerTabs from "../comps/HomeTabs";
 
 import { postCards } from "../comps/DropMenuComp";
 import PostActivityCard from "../comps/PostActivityCard";
@@ -85,6 +86,7 @@ const HomeScreen = ({ navigation }) => {
                     <View style={styles.container} onLayout={onLayoutRootView}>
                         <Text style={styles.textStyle}>{getGreeting()}, {firstName}</Text>
                         <Text style={styles.textStyle}>What are you up to today?</Text>
+                        <HomeLowerTabs />
                         {
                             posts.map((post) => {
                                 return (
