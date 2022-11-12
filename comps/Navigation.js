@@ -169,7 +169,7 @@ export default function Navigation(props) {
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: true }} />
+                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >

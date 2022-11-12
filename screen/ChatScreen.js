@@ -4,28 +4,28 @@ import CustomButton from "../comps/Login/CustomButton";
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
 import Chat from "../comps/Chat"
+import Header from "../comps/Header";
+import { PropsService } from "@ui-kitten/components/devsupport";
 
 
 
-const ChatScreen = (props) => {
+const ChatScreen = ({ navigation }) => {
 
     const handleBack = () => {
         console.log("test")
-        navigation.navigate('Home')
+        // props.navigation.goBack();
     }
     return (
-
-        <SafeAreaView>
-            <ScrollView>
-                <View style={styles.back_button}>
-                    <IonicIcon name="arrow-back-outline" size={30} color="#00ADC3" />
-                    <CustomButton text="Go Back" onPress={handleBack} type="QUATERNARY" />
-                </View>
-                <View style={styles.container}>
-                    <Chat />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+        <>
+            <Header label="Chat" navigation={navigation} />
+            <SafeAreaView>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <Chat />
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        </>
     )
 }
 
