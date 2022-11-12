@@ -38,7 +38,7 @@
     "react-native-ionicons": "^4.x",
     "react-native-maps": "0.31.1",
     "react-native-modal-datetime-picker": "^14.0.0",
-    "react-native-pager-view": "5.4.24",
+    "react-native-pager-view": "^6.1.0-rc.2",
     "react-native-paper": "5.0.0-rc.6",
     "react-native-paper-dates": "^0.9.2",
     "react-native-paper-dropdown": "^1.0.7",
