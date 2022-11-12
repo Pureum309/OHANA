@@ -18,6 +18,7 @@ import Post from "../screen/Post";
 import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
 import Header from "../comps/Header";
+import AlertScreen from "../screen/AlertScreen";
 
 import IntroScreen from "../screen/IntroScreen";
 import LoginScreen from "./Login/Login";
@@ -63,6 +64,14 @@ function ProfileStackScreen() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
+        </Stack.Navigator>
+    );
+}
+
+function AlertStackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Alert" options={{ headerShown: false }} component={AlertScreen} />
         </Stack.Navigator>
     );
 }
@@ -149,7 +158,7 @@ function TabCaregiverNavigationScreen() {
             }}>
             <Tab.Screen name="Home" component={HomeStackScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
-            <Tab.Screen name="Alerts" component={MapStackScreen} />
+            <Tab.Screen name="Alerts" component={AlertStackScreen} />
             <Tab.Screen name="Profile" component={ProfileStackScreen} />
         </Tab.Navigator>
     )
@@ -163,10 +172,10 @@ export default function Navigation(props) {
         <NavigationContainer>
             <Stack.Navigator>
                 {/* All screens should be placed here to be navigated. */}
-                <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} /> 
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '', headerShown: false }} />
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
+                <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} /> 
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
