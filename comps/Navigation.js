@@ -17,6 +17,7 @@ import NetworkView from "../screen/NetworkView";
 import Post from "../screen/Post";
 import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
+import CareGiverProfileScreen from "../screen/CaregiverProfileScreen";
 import Header from "../comps/Header";
 
 import IntroScreen from "../screen/IntroScreen";
@@ -64,6 +65,15 @@ function ProfileStackScreen() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
+        </Stack.Navigator>
+    );
+}
+
+// ********** display caregiver profile ***********
+function CaregiverProfileStackScreen() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Caregiver Profile" options={{ headerShown: false }} component={CareGiverProfileScreen} />
         </Stack.Navigator>
     );
 }
@@ -151,7 +161,7 @@ function TabCaregiverNavigationScreen() {
             <Tab.Screen name="Home" component={HomeStackScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
             <Tab.Screen name="Alerts" component={MapStackScreen} />
-            <Tab.Screen name="Profile" component={ProfileStackScreen} />
+            <Tab.Screen name="Profile" component={CaregiverProfileStackScreen} />
         </Tab.Navigator>
     )
 }
