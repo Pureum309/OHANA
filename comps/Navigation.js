@@ -26,6 +26,8 @@ import LoginScreen from "./Login/Login";
 import TutorialComp from "./TutorialComp";
 import ChatScreen from "../screen/ChatScreen";
 
+import CGHomeScreen from "../screen/CGHomeScreen";
+
 const fullScreenWidth = Dimensions.get('window').width;
 
 const Stack = createStackNavigator()
@@ -167,7 +169,7 @@ function TabCaregiverNavigationScreen() {
                 lableStyle: { fontSize: 16 },
                 style: { width: fullScreenWidth }
             }}>
-            <Tab.Screen name="Home" component={HomeStackScreen} />
+            <Tab.Screen name="Home" component={CGHomeScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
             <Tab.Screen name="Alerts" component={AlertStackScreen} />
             <Tab.Screen name="Profile" component={CaregiverProfileStackScreen} />
