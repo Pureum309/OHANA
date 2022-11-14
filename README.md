@@ -64,7 +64,7 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Modified caregiver profile to database setup
 - Merged cg_alert_page on database branch
 ###Nov 13:
-- Seperated HomeTabs and Caregiver HomeTab component
-- Seperated Homscreens (user side and caregiver side)
-- Created caregiver side post card UI
-- Linked when user post activity, it shows on caregiver side
+- Separated HomeTabs and Caregiver HomeTab component
+- Separated Homscreens (user side and caregiver side)
+- Created caregiver-side postcard UI
+- Linked when user post activity, it shows on the caregiver side
