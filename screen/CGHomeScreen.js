@@ -5,6 +5,7 @@ import HomeLowerTabs from "../comps/HomeTabs";
 
 import { postCards } from "../comps/DropMenuComp";
 import PostActivityCard from "../comps/PostActivityCard";
+import CGHomeLowerTabs from "../comps/CGHomeTabs";
 
 import moment from "moment";
 
@@ -18,7 +19,7 @@ import { db } from '../firebase/firebase';
 import { doc, onSnapshot, collection } from "firebase/firestore";
 
 
-const HomeScreen = ({ navigation }) => {
+const CGHomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
     const [firstName, setFirstname] = useState("");
     const [posts, setPosts] = useState([]);
@@ -86,28 +87,7 @@ const HomeScreen = ({ navigation }) => {
                     <View style={styles.container} onLayout={onLayoutRootView}>
                         <Text style={styles.textStyle}>{getGreeting()}, {firstName}</Text>
                         <Text style={styles.textStyle}>What are you up to today?</Text>
-                        <HomeLowerTabs />
-                        {/* {
-                            posts.map((post) => {
-                                return (
-                                    <TouchableOpacity >
-                                        <PostActivityCard
-                                            // category={item.category}
-                                            // datetime={item.datetime}
-                                            // location={item.location}
-                                            // counter={item.counter}
-                                            // tasks={item.tasks} 
-                                            category={post.category}
-                                            datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
-                                            location={post.location}
-                                            counter={post.counter}
-                                            tasks={post.tasks}
-                                            id={post.id}
-                                        />
-                                    </TouchableOpacity>
-                                )
-                            })
-                        } */}
+                        <CGHomeLowerTabs />
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -132,4 +112,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeScreen
+export default CGHomeScreen

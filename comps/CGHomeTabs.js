@@ -16,11 +16,11 @@ import * as SplashScreen from 'expo-splash-screen';
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
 import { doc, onSnapshot, collection } from "firebase/firestore";
+import CGPostCard from './CGPostCard';
 
 function NewTab({ navigation }) {
     const [key, setKey] = useState(0);
     const [posts, setPosts] = useState([]);
-
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -50,7 +50,7 @@ function NewTab({ navigation }) {
     //Read DATA from FIRESTORE
 
     if (posts.length == 0) {
-        const postsRef = collection(db, `users/${loginUser.user.uid}/posts`);
+        const postsRef = collection(db, `posts`);
         const unsubscribe = onSnapshot(postsRef, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
@@ -70,18 +70,10 @@ function NewTab({ navigation }) {
                     posts.map((post) => {
                         return (
                             <TouchableOpacity >
-                                <PostActivityCard
-                                    // category={item.category}
-                                    // datetime={item.datetime}
-                                    // location={item.location}
-                                    // counter={item.counter}
-                                    // tasks={item.tasks} 
+                                <CGPostCard
                                     category={post.category}
-                                    datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
-                                    location={post.location}
-                                    counter={post.counter}
                                     tasks={post.tasks}
-                                    id={post.id}
+                                    userName={post.userName}
                                 />
                             </TouchableOpacity>
                         )
@@ -95,9 +87,7 @@ function NewTab({ navigation }) {
 function InProgressTab() {
     return (
         <View>
-            <PostActivityCard />
-            <PostActivityCard />
-            <PostActivityCard />
+            <Text>Inpregess come here</Text>
         </View>
     );
 }
@@ -112,25 +102,27 @@ function AcceptedTab() {
 
 const Tab = createMaterialTopTabNavigator();
 
-function HomeLowerTabs() {
+function CGHomeLowerTabs() {
     return (
-        <Tab.Navigator
-            sceneContainerStyle={{ backgroundColor: '#fff' }}
-            style={styles.container}
-        >
-            <Tab.Screen
-                name="New"
-                component={NewTab}
-            />
-            <Tab.Screen
-                name="In Progress"
-                component={InProgressTab}
-            />
-            <Tab.Screen
-                name="Accepted"
-                component={AcceptedTab}
-            />
-        </Tab.Navigator>
+        <ScrollView>
+            <Tab.Navigator
+                sceneContainerStyle={{ backgroundColor: '#fff' }}
+                style={styles.container}
+            >
+                <Tab.Screen
+                    name="New"
+                    component={NewTab}
+                />
+                <Tab.Screen
+                    name="In Progress"
+                    component={InProgressTab}
+                />
+                <Tab.Screen
+                    name="Accepted"
+                    component={AcceptedTab}
+                />
+            </Tab.Navigator>
+        </ScrollView>
     );
 }
 
@@ -151,4 +143,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default HomeLowerTabs;
+export default CGHomeLowerTabs;

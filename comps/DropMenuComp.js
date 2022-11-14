@@ -7,11 +7,12 @@ import DTPicker from "./DateTimePicker/index";
 import CouterDrop from "./Dropdown/CouterDrop";
 import DropButton from "./Dropdown/DropButton";
 import PostTask from "./Dropdown/PostTask";
+import moment from 'moment';
 
 //DATABASE for FIRBASE
 import { loginUser } from "./Login/Login";
 import { db } from '../firebase/firebase';
-import { doc, collection, onSnapshot, setDoc } from "firebase/firestore";
+import { doc, collection, onSnapshot, setDoc, getDoc } from "firebase/firestore";
 
 
 export const postCards = [];
@@ -65,13 +66,18 @@ const DropMenuComp = () => {
         console.log("btn clicked! date/time:" + chosenDatetime
             + "; category: " + chosenCategory + "; lacation: " + chosenLocation + "; number:" + chosenCounter + "; text:" + chosenText);
 
+        const docRef = doc(db, 'users', loginUser.user.uid);
+        const docSnap = await getDoc(docRef);
+        const data = docSnap.data();
+
         let post = {
             id: curId,
-            datetime: chosenDatetime.format("MMMM Do, YYYY hh:mm A"),
+            datetime: moment(chosenDatetime).format("MMMM Do, YYYY hh:mm A"),
             category: chosenCategory,
             location: chosenLocation,
             counter: chosenCounter,
-            tasks: chosenText
+            tasks: chosenText,
+            userName: data.first + " " + data.last
         };
 
         postCards.push(post);
