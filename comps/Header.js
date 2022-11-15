@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 25,
+        paddingHorizontal: 30,
 
         //backgound container color
         width: deviceWidth,
@@ -75,15 +75,15 @@ const styles = StyleSheet.create({
         paddingTop: 30,
     },
     imageStyle: {
-        height: 60,
-        width: 60,
+        height: 40,
+        width: 40,
         resizeMode: 'contain',
         // marginTop: 15,
     },
     textStyle: {
-        fontSize: 24,
+        fontSize: 36,
         fontWeight: '700',
-        paddingLeft: 20,
+        paddingRight: 14,
         fontFamily: 'Rubik',
     },
     bgImgStyle: {
