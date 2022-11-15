@@ -4,9 +4,9 @@ import AlertList from '../comps/Alerts/AlertList.js'
 
 const AlertScreen = () => {
     return (
-            <View style={styles.container}>
-                <AlertList/>
-            </View>
+        <View style={styles.container}>
+            <AlertList />
+        </View>
     )
 }
 
