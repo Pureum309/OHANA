@@ -163,11 +163,12 @@ function TabCaregiverNavigationScreen() {
                 },
             })}
             tabBarOptions={{
-                activeTintColor: '#FFF',
-                inactiveTintColor: '#FFF',
-                tabStyle: { backgroundColor: '#126B8A' },
-                lableStyle: { fontSize: 16 },
-                style: { width: fullScreenWidth }
+                activeTintColor: '#126B8A',
+                inactiveTintColor: '#126B8A',
+                lableStyle: { fontSize: 18 },
+                style: {
+                    width: fullScreenWidth,
+                }
             }}>
             <Tab.Screen name="Home" component={CGHomeScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
