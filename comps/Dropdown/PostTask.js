@@ -50,7 +50,7 @@ export default function PostTask() {
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 style={styles.writeTaskWrapper}
             >
-                <TextInput style={styles.input} placeholder={'Tab to share what are you up to?'} value={task} onChangeText={text => setTask(text)} />
+                <TextInput style={styles.input} placeholder={'Tap to share what are you up to?'} value={task} onChangeText={text => setTask(text)} />
                 <TouchableOpacity onPress={() => handleAddTask()}>
                     <View style={styles.addWrapper}>
                         {/* <Text style={styles.addText}>+</Text> */}
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         borderColor: '#2D2D2A',
         borderWidth: 1,
-        width: 300,
+        width: 340,
         height: 150,
     },
     addWrapper: {
