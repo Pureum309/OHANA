@@ -1,5 +1,5 @@
-import React,{useState, useCallback} from "react";
-import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet} from "react-native";
+import React, { useState, useCallback } from "react";
+import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet } from "react-native";
 import UserCard from "../Network_User/UserCard";
 import PostActivityCard from "../PostActivityCard";
 
@@ -7,8 +7,8 @@ import PostActivityCard from "../PostActivityCard";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-const UserCardTask = () =>{ 
-    
+const UserCardTask = () => {
+
     const [modalVisible, setModalVisible] = useState(false);
 
     //For FONT USAGE
@@ -26,8 +26,8 @@ const UserCardTask = () =>{
     if (!fontsLoaded) {
         return null;
     }
-    
-    return(     
+
+    return (
         <View onLayout={onLayoutRootView}>
             <Modal
                 animationType="fade"
@@ -40,10 +40,10 @@ const UserCardTask = () =>{
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <PostActivityCard 
-                        category = "Clothes Return"
-                        datetime = "Sept 12, 2022"
-                        location = "1538 King George Blv, Surrey, BC V3R 5H1"
+                        <PostActivityCard
+                            category="Replace another card"
+                            datetime="!!!!!!!"
+                            location="!!!!!"
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
@@ -52,11 +52,11 @@ const UserCardTask = () =>{
                         </View>
                     </View>
                 </View>
-            </Modal>       
-               <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-                    <UserCard name="Zo Adisa" task="Just posted a new task." pic={require("../../assets/userPhoto.png")} />
-               </TouchableOpacity>
-                 
+            </Modal>
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                <UserCard name="Zo Adisa" task="Just posted a new task." pic={require("../../assets/userPhoto.png")} />
+            </TouchableOpacity>
+
         </View>
     )
 }
