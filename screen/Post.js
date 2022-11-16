@@ -20,6 +20,7 @@ export default Post
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
+        height: 1000,
 
     },
 });
