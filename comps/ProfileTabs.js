@@ -5,6 +5,12 @@ import { List } from 'react-native-paper';
 
 import PostActivityCard from "../comps/PostActivityCard";
 
+//Needed for Back button
+const handleBack = ({ navigation }) => {
+    console.log("test")
+    navigation.navigate('Intro')
+}
+
 function HomeScreen() {
     return (
         <View>
@@ -46,6 +52,14 @@ function SettingsScreen() {
                     left={props => <List.Icon {...props} icon="help-circle-outline" />}>
                     <List.Item title="First item" />
                     <List.Item title="Second item" />
+                </List.Accordion>
+                <List.Accordion
+                    title="Sign out"
+                    left={props => <List.Icon {...props} icon="logout" />}>
+                    <List.Item
+                        title="Sign out"
+                        onPress={handleBack}
+                    />
                 </List.Accordion>
             </List.Section>
 
