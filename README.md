@@ -68,3 +68,6 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Separated Homscreens (user side and caregiver side)
 - Created caregiver-side postcard UI
 - Linked when user post activity, it shows on the caregiver side
+###Nov 14-20
+- When user post new post, get notification on alert page
+- Order by post activity card 
