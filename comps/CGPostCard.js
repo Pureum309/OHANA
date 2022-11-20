@@ -12,6 +12,7 @@ const iconFirColor = "#126B8A"
 const iconSecColor = "#00A0C3"
 
 const CGPostCard = ({
+    id = "",
     userName = "AAA",
     category = "Sample",
     tasks = "Lorem ipsum"

@@ -15,7 +15,7 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRESTORE
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
-import { doc, onSnapshot, collection } from "firebase/firestore";
+import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
 
 function NewTab({ navigation }) {
     const [key, setKey] = useState(0);
@@ -51,7 +51,8 @@ function NewTab({ navigation }) {
 
     if (posts.length == 0) {
         const postsRef = collection(db, `users/${loginUser.user.uid}/posts`);
-        const unsubscribe = onSnapshot(postsRef, (snapshot) => {
+        const q = query(postsRef, orderBy("datetime", "desc"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
                 tempPosts.push(doc.data());

@@ -103,11 +103,11 @@ export default function LoginScreen({ navigation }) {
             const docRef = doc(db, 'users', user.user.uid);
             const docSnap = await getDoc(docRef);
             const data = docSnap.data();
-            if (data.role == 1) {
-                navigation.navigate('Main');
-            } else if (data.role == 2) {
-                navigation.navigate('CaregiverMain');
-            }
+            // if (data.role == 1) {
+            //     navigation.navigate('Main');
+            // } else if (data.role == 2) {
+            navigation.navigate('CaregiverMain');
+            // }
         }
         // {
         //     loginUsers.map(user => {

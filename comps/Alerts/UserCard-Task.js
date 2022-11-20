@@ -2,14 +2,26 @@ import React, { useState, useCallback } from "react";
 import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet } from "react-native";
 import UserCard from "../Network_User/UserCard";
 import PostActivityCard from "../PostActivityCard";
+import moment from "moment";
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+//DATABASE for FIRESTORE
+import { loginUser } from "../Login/Login";
+import { db } from '../../firebase/firebase';
+import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
+
+let lastLength = 0;
+let lastPost = { id: "", category: "", datetime: "", location: "" };
+let curPost = { id: "", category: "", datetime: "", location: "" };
+
 const UserCardTask = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [cardModalVisible, setCardModalVisible] = useState(false);
+    const [posts, setPosts] = useState([]);
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -27,6 +39,38 @@ const UserCardTask = () => {
         return null;
     }
 
+    if (posts.length == 0) {
+        const postsRef = collection(db, `posts`);
+        const q = query(postsRef, orderBy("datetime", "desc"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const tempPosts = [];
+            snapshot.forEach((doc) => {
+                tempPosts.push(doc.data());
+            });
+            if (tempPosts.length != 0)
+                setPosts(tempPosts);
+        });
+    } else {
+        if (lastLength != 0 && posts.length > lastLength) {
+            lastPost.id = posts[0].id;
+            lastPost.category = posts[0].category;
+            lastPost.datetime = moment(posts[0].datetime, 'MMM Do, YYYY hh:mm A');
+            lastPost.location = posts[0].location;
+            setModalVisible(true);
+        }
+
+        lastLength = posts.length;
+    }
+
+    const cardClick = (post) => {
+        console.log(post);
+        curPost.id = post.id;
+        curPost.category = post.category;
+        curPost.datetime = moment(post.datetime, 'MMM Do, YYYY hh:mm A');
+        curPost.location = post.location;
+        setCardModalVisible(true);
+    }
+
     return (
         <View onLayout={onLayoutRootView}>
             <Modal
@@ -41,9 +85,10 @@ const UserCardTask = () => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <PostActivityCard
-                            category="Replace another card"
-                            datetime="!!!!!!!"
-                            location="!!!!!"
+                            id={lastPost.id}
+                            category={lastPost.category}
+                            datetime={lastPost.datetime}
+                            location={lastPost.location}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
@@ -53,9 +98,46 @@ const UserCardTask = () => {
                     </View>
                 </View>
             </Modal>
-            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-                <UserCard name="Zo Adisa" task="Just posted a new task." pic={require("../../assets/userPhoto.png")} />
-            </TouchableOpacity>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={cardModalVisible}
+                onRequestClose={() => {
+                    Alert.alert("New Task screen has been closed.");
+                    setCardModalVisible(!cardModalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <PostActivityCard
+                            id={curPost.id}
+                            category={curPost.category}
+                            datetime={curPost.datetime}
+                            location={curPost.location}
+                        />
+                        <View style={styles.buttonCont}>
+                            <TouchableOpacity onPress={() => setCardModalVisible(!cardModalVisible)} style={styles.closeButton}>
+                                <Text style={styles.closeButtonText}>Back to Alerts</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+            {
+                posts.map((post) => {
+                    return (
+                        <TouchableOpacity onPress={() => cardClick(post)}>
+                            <UserCard
+                                id={post.id}
+                                name={post.category}
+                                tasks={post.tasks}
+                                rel={post.userName}
+                                pic={require("../../assets/userPhoto.png")}
+                            />
+                        </TouchableOpacity>
+                    )
+                })
+            }
 
         </View>
     )
