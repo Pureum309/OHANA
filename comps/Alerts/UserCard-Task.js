@@ -1,7 +1,8 @@
 import React,{useState, useCallback} from "react";
-import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet} from "react-native";
+import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet, ScrollView} from "react-native";
 import UserCard from "../Network_User/UserCard";
-import PostActivityCard from "../PostActivityCard";
+import CGNewTaskCard from "./CGNewTaskCard";
+
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
@@ -27,8 +28,8 @@ const UserCardTask = () =>{
         return null;
     }
     
-    return(     
-        <View onLayout={onLayoutRootView}>
+    return(  
+        <View onLayout={onLayoutRootView}> 
             <Modal
                 animationType="fade"
                 transparent={true}
@@ -38,26 +39,25 @@ const UserCardTask = () =>{
                     setModalVisible(!modalVisible);
                 }}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <PostActivityCard 
-                        category = "Clothes Return"
-                        datetime = "Sept 12, 2022"
-                        location = "1538 King George Blv, Surrey, BC V3R 5H1"
-                        />
-                        <View style={styles.buttonCont}>
-                            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
-                                <Text style={styles.closeButtonText}>Back to Alerts</Text>
-                            </TouchableOpacity>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <CGNewTaskCard
+                            />
+                            <View style={styles.buttonCont}>
+                                <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
+                                    <Text style={styles.closeButtonText}>Back to Alerts</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
-                </View>
-            </Modal>       
+                </ScrollView> 
+            </Modal>  
                <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
                     <UserCard name="Zo Adisa" task="Just posted a new task." pic={require("../../assets/userPhoto.png")} />
                </TouchableOpacity>
-                 
         </View>
+        
     )
 }
 
