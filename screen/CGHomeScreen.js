@@ -72,7 +72,7 @@ const CGHomeScreen = ({ navigation }) => {
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
+                tempPosts.push({ id: doc.id, ...doc.data() });
             });
             if (tempPosts.length != 0)
                 setPosts(tempPosts);

@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet } from "react-native";
-import UserCard from "../Network_User/UserCard";
-import PostActivityCard from "../PostActivityCard";
+import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet, ScrollView } from "react-native";
 import moment from "moment";
+
+import UserCard from "../Network_User/UserCard";
+import CGNewTaskCard from "./CGNewTaskCard";
+
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
@@ -14,8 +16,8 @@ import { db } from '../../firebase/firebase';
 import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
 
 let lastLength = 0;
-let lastPost = { id: "", category: "", datetime: "", location: "" };
-let curPost = { id: "", category: "", datetime: "", location: "" };
+let lastPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0 };
+let curPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0 };
 
 const UserCardTask = () => {
 
@@ -45,7 +47,7 @@ const UserCardTask = () => {
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
+                tempPosts.push({ id: doc.id, ...doc.data() });
             });
             if (tempPosts.length != 0)
                 setPosts(tempPosts);
@@ -56,6 +58,12 @@ const UserCardTask = () => {
             lastPost.category = posts[0].category;
             lastPost.datetime = moment(posts[0].datetime, 'MMM Do, YYYY hh:mm A');
             lastPost.location = posts[0].location;
+            var detail = "";
+            posts[0].tasks.map((task) => {
+                detail += task + "\n";
+            });
+            lastPost.detail = detail;
+            lastPost.counter = posts[0].counter
             setModalVisible(true);
         }
 
@@ -63,11 +71,17 @@ const UserCardTask = () => {
     }
 
     const cardClick = (post) => {
-        console.log(post);
         curPost.id = post.id;
         curPost.category = post.category;
         curPost.datetime = moment(post.datetime, 'MMM Do, YYYY hh:mm A');
         curPost.location = post.location;
+        var detail = "";
+        post.tasks.map((task) => {
+            detail += task + "\n";
+        });
+        console.log(detail);
+        curPost.detail = detail;
+        curPost.counter = posts.counter
         setCardModalVisible(true);
     }
 
@@ -84,11 +98,14 @@ const UserCardTask = () => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <PostActivityCard
+                        <CGNewTaskCard
                             id={lastPost.id}
-                            category={lastPost.category}
-                            datetime={lastPost.datetime}
+                            taskTitle={lastPost.category}
+                            date={moment(lastPost.datetime).format('MMM Do, YYYY')}
+                            time={moment(lastPost.datetime).format('hh:mma')}
+                            detail={lastPost.detail}
                             location={lastPost.location}
+                            counter={lastPost.counter}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
@@ -109,11 +126,14 @@ const UserCardTask = () => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <PostActivityCard
+                        <CGNewTaskCard
                             id={curPost.id}
                             category={curPost.category}
-                            datetime={curPost.datetime}
+                            date={moment(curPost.datetime).format('MMM Do, YYYY')}
+                            time={moment(curPost.datetime).format('hh:mma')}
+                            detail={curPost.detail}
                             location={curPost.location}
+                            counter={curPost.counter}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setCardModalVisible(!cardModalVisible)} style={styles.closeButton}>
@@ -140,6 +160,7 @@ const UserCardTask = () => {
             }
 
         </View>
+
     )
 }
 
