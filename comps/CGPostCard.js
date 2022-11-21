@@ -1,11 +1,15 @@
 import React, { useCallback, useState } from "react";
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native'
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import moment from "moment";
 
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
+//DATABASE for FIRESTORE
+import { db } from '../firebase/firebase';
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const iconSize = 20
 const iconFirColor = "#126B8A"
@@ -15,7 +19,8 @@ const CGPostCard = ({
     id = "",
     userName = "AAA",
     category = "Sample",
-    tasks = "Lorem ipsum"
+    tasks = "Lorem ipsum",
+    progress = 0,
 }) => {
 
     const [users, setUsers] = useState({});
@@ -37,6 +42,18 @@ const CGPostCard = ({
     }
     ////Font USE Finished
 
+    const accept = async () => {
+        let postDocSnap = await getDoc(doc(db, 'posts', id));
+        await setDoc(doc(db, "posts", id), { ...postDocSnap.data(), progress: progress + 1 });
+    }
+
+    let acceptText = "";
+    if (progress == 0) {
+        acceptText = "Accept";
+    } else if (progress >= 1) {
+        acceptText = "Done";
+    }
+
     return (
         <View style={styles.cardPadding} onLayout={onLayoutRootView}>
             <View style={styles.container}>
@@ -57,10 +74,10 @@ const CGPostCard = ({
                         <IonicIcon name="chatbox-ellipses-outline" size={iconSize} color={iconSecColor} />
                         <Text style={styles.commnetStyle}>Comment</Text>
                     </View>
-                    <View style={styles.acceptCont}>
+                    <TouchableOpacity onPress={accept} style={styles.acceptCont} >
                         <IonicIcon name="checkmark-circle-outline" size={iconSize} color={iconSecColor} />
-                        <Text style={styles.acceptStyle}>Accept</Text>
-                    </View>
+                        <Text style={styles.acceptStyle}>{acceptText}</Text>
+                    </TouchableOpacity >
                 </View>
             </View>
         </View>
@@ -155,7 +172,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     acceptCont: {
-
         alignItems: 'center',
     },
     acceptStyle: {

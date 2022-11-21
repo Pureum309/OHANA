@@ -15,12 +15,12 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRESTORE
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
-import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
+import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 import CGPostCard from './CGPostCard';
 
 function NewTab({ navigation }) {
     const [key, setKey] = useState(0);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -49,35 +49,35 @@ function NewTab({ navigation }) {
 
     //Read DATA from FIRESTORE
 
-    if (posts.length == 0) {
+    if (posts == null) {
         const postsRef = collection(db, `posts`);
-        const q = query(postsRef, orderBy("datetime", "desc"));
+        const q = query(postsRef, where("progress", "==", 0));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
+                tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            if (tempPosts.length != 0)
-                setPosts(tempPosts);
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
         });
     }
 
     return (
         <PaperProvider key={key}>
             <View style={styles.container} onLayout={onLayoutRootView}>
-                {
+                {posts != null &&
                     posts.map((post) => {
-                        if (post.progress == 0) {
-                            return (
-                                <TouchableOpacity >
-                                    <CGPostCard
-                                        category={post.category}
-                                        tasks={post.tasks}
-                                        userName={post.userName}
-                                    />
-                                </TouchableOpacity>
-                            )
-                        }
+                        return (
+                            <TouchableOpacity >
+                                <CGPostCard
+                                    id={post.docId}
+                                    progress={post.progress}
+                                    category={post.category}
+                                    tasks={post.tasks}
+                                    userName={post.userName}
+                                />
+                            </TouchableOpacity>
+                        )
                     })
                 }
             </View>
@@ -87,7 +87,7 @@ function NewTab({ navigation }) {
 
 function InProgressTab({ navigation }) {
     const [key, setKey] = useState(0);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -116,35 +116,35 @@ function InProgressTab({ navigation }) {
 
     //Read DATA from FIRESTORE
 
-    if (posts.length == 0) {
+    if (posts == null) {
         const postsRef = collection(db, `posts`);
-        const q = query(postsRef, orderBy("datetime", "desc"));
+        const q = query(postsRef, where("progress", "==", 1));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
+                tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            if (tempPosts.length != 0)
-                setPosts(tempPosts);
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
         });
     }
 
     return (
         <PaperProvider key={key}>
             <View style={styles.container} onLayout={onLayoutRootView}>
-                {
+                {posts != null &&
                     posts.map((post) => {
-                        if (post.progress == 1) {
-                            return (
-                                <TouchableOpacity >
-                                    <CGPostCard
-                                        category={post.category}
-                                        tasks={post.tasks}
-                                        userName={post.userName}
-                                    />
-                                </TouchableOpacity>
-                            )
-                        }
+                        return (
+                            <TouchableOpacity >
+                                <CGPostCard
+                                    id={post.docId}
+                                    progress={post.progress}
+                                    category={post.category}
+                                    tasks={post.tasks}
+                                    userName={post.userName}
+                                />
+                            </TouchableOpacity>
+                        )
                     })
                 }
             </View>
@@ -154,7 +154,7 @@ function InProgressTab({ navigation }) {
 
 function AcceptedTab({ navigation }) {
     const [key, setKey] = useState(0);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -183,36 +183,35 @@ function AcceptedTab({ navigation }) {
 
     //Read DATA from FIRESTORE
 
-    if (posts.length == 0) {
+    if (posts == null) {
         const postsRef = collection(db, `posts`);
-        const q = query(postsRef, orderBy("datetime", "desc"));
+        const q = query(postsRef, where("progress", "==", 2));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
+                tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            if (tempPosts.length != 0)
-                setPosts(tempPosts);
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
         });
     }
 
     return (
         <PaperProvider key={key}>
             <View style={styles.container} onLayout={onLayoutRootView}>
-                {
+                {posts != null &&
                     posts.map((post) => {
-                        if (post.progress == 2) {
-                            return (
-                                <TouchableOpacity >
-                                    <CGPostCard
-                                        id={post.id}
-                                        category={post.category}
-                                        tasks={post.tasks}
-                                        userName={post.userName}
-                                    />
-                                </TouchableOpacity>
-                            )
-                        }
+                        return (
+                            <TouchableOpacity >
+                                <CGPostCard
+                                    id={post.docId}
+                                    progress={post.progress}
+                                    category={post.category}
+                                    tasks={post.tasks}
+                                    userName={post.userName}
+                                />
+                            </TouchableOpacity>
+                        )
                     })
                 }
             </View>

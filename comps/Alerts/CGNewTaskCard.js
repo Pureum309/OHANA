@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons';
@@ -7,6 +7,10 @@ import moment from "moment";
 
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+
+//DATABASE for FIRESTORE
+import { db } from '../../firebase/firebase';
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const iconSize = 20
 const iconFirColor = "#00A0C3"
@@ -19,6 +23,7 @@ const CGNewTaskCard = ({
     detail = "Return clothes at my local clothing store. All the items are listed in the photo below.",
     location = "1538 KingGeorge Blv, Surrey, BC V3R 5H1",
     counter = 0,
+    onPress,
 }) => {
 
     //For FONT USAGE
@@ -38,6 +43,12 @@ const CGNewTaskCard = ({
         return null;
     }
     ////Font USE Finished
+
+    const accept = async () => {
+        onPress();
+        let postDocSnap = await getDoc(doc(db, 'posts', id));
+        await setDoc(doc(db, "posts", id), { ...postDocSnap.data(), progress: 1 });
+    }
 
     return (
         <View style={styles.cardPadding} onLayout={onLayoutRootView}>
@@ -60,12 +71,12 @@ const CGNewTaskCard = ({
                         <Text style={styles.taskStyle}> {location}</Text>
                     </Text>
                 </View>
-                <View>
-                    <Text style={styles.taskImageLabelStyle}>Photo:</Text>
-                    <View style={styles.taskImageCont}>
-                        <Image style={styles.taskImageStyle} source={require("../../assets/newTaskImage.jpg")} />
-                    </View>
-                </View>
+                {/* <View>
+                        <Text style={styles.taskImageLabelStyle}>Photo:</Text>
+                        <View style={styles.taskImageCont}>
+                            <Image style={styles.taskImageStyle} source={require("../../assets/newTaskImage.jpg")} />
+                        </View>
+                    </View> */}
                 <View style={styles.taskLabelCont}>
                     <Text style={styles.taskTitleStyle}>Number of Caregiver(s):
                         <Text style={styles.taskStyle}> {counter}</Text>
@@ -79,7 +90,7 @@ const CGNewTaskCard = ({
                             <Text style={styles.commetStyle}>Chat</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={accept}>
                         <View style={styles.acceptCont}>
                             <IonicIcon name="checkmark-circle-outline" size={iconSize} color={iconFirColor} />
                             <Text style={styles.acceptStyle}>Accept</Text>

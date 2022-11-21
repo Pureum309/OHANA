@@ -13,7 +13,7 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRESTORE
 import { loginUser } from "../Login/Login";
 import { db } from '../../firebase/firebase';
-import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
+import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 
 let lastLength = 0;
 let lastPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0 };
@@ -23,7 +23,7 @@ const UserCardTask = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [cardModalVisible, setCardModalVisible] = useState(false);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -41,20 +41,20 @@ const UserCardTask = () => {
         return null;
     }
 
-    if (posts.length == 0) {
+    if (posts == null) {
         const postsRef = collection(db, `posts`);
-        const q = query(postsRef, orderBy("datetime", "desc"));
+        const q = query(postsRef, where("progress", "==", 0));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push({ id: doc.id, ...doc.data() });
+                tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            if (tempPosts.length != 0)
-                setPosts(tempPosts);
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
         });
     } else {
         if (lastLength != 0 && posts.length > lastLength) {
-            lastPost.id = posts[0].id;
+            lastPost.id = posts[0].docId;
             lastPost.category = posts[0].category;
             lastPost.datetime = moment(posts[0].datetime, 'MMM Do, YYYY hh:mm A');
             lastPost.location = posts[0].location;
@@ -71,7 +71,7 @@ const UserCardTask = () => {
     }
 
     const cardClick = (post) => {
-        curPost.id = post.id;
+        curPost.id = post.docId;
         curPost.category = post.category;
         curPost.datetime = moment(post.datetime, 'MMM Do, YYYY hh:mm A');
         curPost.location = post.location;
@@ -83,6 +83,14 @@ const UserCardTask = () => {
         curPost.detail = detail;
         curPost.counter = posts.counter
         setCardModalVisible(true);
+    }
+
+    const lastAcceptClick = () => {
+        setModalVisible(false);
+    }
+
+    const curAcceptClick = () => {
+        setCardModalVisible(false);
     }
 
     return (
@@ -106,6 +114,7 @@ const UserCardTask = () => {
                             detail={lastPost.detail}
                             location={lastPost.location}
                             counter={lastPost.counter}
+                            onPress={lastAcceptClick}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
@@ -134,6 +143,7 @@ const UserCardTask = () => {
                             detail={curPost.detail}
                             location={curPost.location}
                             counter={curPost.counter}
+                            onPress={curAcceptClick}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setCardModalVisible(!cardModalVisible)} style={styles.closeButton}>
@@ -143,7 +153,7 @@ const UserCardTask = () => {
                     </View>
                 </View>
             </Modal>
-            {
+            {posts != null &&
                 posts.map((post) => {
                     return (
                         <TouchableOpacity onPress={() => cardClick(post)}>
