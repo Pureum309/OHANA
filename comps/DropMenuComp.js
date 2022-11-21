@@ -83,7 +83,7 @@ const DropMenuComp = () => {
         postCards.push(post);
 
         const postRef = doc(collection(db, 'posts'));
-        await setDoc(postRef, { ...post, userId: loginUser.user.uid });
+        await setDoc(postRef, { ...post, userId: loginUser.user.uid, progress: 0 });
         await setDoc(doc(db, "users", loginUser.user.uid, "posts", postRef.id), post);
 
         init();
