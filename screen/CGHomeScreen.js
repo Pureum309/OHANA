@@ -16,13 +16,12 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRESTORE
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
-import { doc, onSnapshot, collection } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 
 
 const CGHomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
     const [firstName, setFirstname] = useState("");
-    const [posts, setPosts] = useState([]);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -65,20 +64,6 @@ const CGHomeScreen = ({ navigation }) => {
         }
         return 'Morning';
     }
-
-    if (posts.length == 0) {
-        const postsRef = collection(db, `users/${loginUser.user.uid}/posts`);
-        const unsubscribe = onSnapshot(postsRef, (snapshot) => {
-            const tempPosts = [];
-            snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
-            });
-            if (tempPosts.length != 0)
-                setPosts(tempPosts);
-        });
-    }
-
-    let index = 0;
 
     return (
         <PaperProvider key={key}>

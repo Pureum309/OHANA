@@ -15,12 +15,11 @@ import * as SplashScreen from 'expo-splash-screen';
 //DATABASE for FIRESTORE
 import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
-import { doc, onSnapshot, collection } from "firebase/firestore";
+import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 
 function NewTab({ navigation }) {
     const [key, setKey] = useState(0);
-    const [posts, setPosts] = useState([]);
-
+    const [posts, setPosts] = useState(null);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -49,39 +48,33 @@ function NewTab({ navigation }) {
 
     //Read DATA from FIRESTORE
 
-    if (posts.length == 0) {
-        const postsRef = collection(db, `users/${loginUser.user.uid}/posts`);
-        const unsubscribe = onSnapshot(postsRef, (snapshot) => {
+    if (posts == null) {
+        const postsRef = collection(db, 'posts');
+        const q = query(postsRef, where("userId", "==", loginUser.user.uid), where("progress", "==", 0));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
             const tempPosts = [];
             snapshot.forEach((doc) => {
-                tempPosts.push(doc.data());
+                tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            if (tempPosts.length != 0)
-                setPosts(tempPosts);
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
         });
     }
-
-    let index = 0;
 
     return (
         <PaperProvider key={key}>
             <View style={styles.container} onLayout={onLayoutRootView}>
-                {
+                {posts != null &&
                     posts.map((post) => {
                         return (
                             <TouchableOpacity >
                                 <PostActivityCard
-                                    // category={item.category}
-                                    // datetime={item.datetime}
-                                    // location={item.location}
-                                    // counter={item.counter}
-                                    // tasks={item.tasks} 
                                     category={post.category}
                                     datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
                                     location={post.location}
                                     counter={post.counter}
                                     tasks={post.tasks}
-                                    id={post.id}
+                                    id={post.docId}
                                 />
                             </TouchableOpacity>
                         )
@@ -92,21 +85,139 @@ function NewTab({ navigation }) {
     );
 }
 
-function InProgressTab() {
+function InProgressTab({ navigation }) {
+    const [key, setKey] = useState(0);
+    const [posts, setPosts] = useState(null);
+
+    React.useEffect(() => {
+        const focusHandler = navigation.addListener('focus', () => {
+            setKey(Math.random() + key + 1);
+        });
+        return focusHandler;
+    }, [navigation])
+
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    ///End FONT USAGE
+
+
+    //Read DATA from FIRESTORE
+
+    if (posts == null) {
+        const postsRef = collection(db, 'posts');
+        const q = query(postsRef, where("userId", "==", loginUser.user.uid), where("progress", "==", 1));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const tempPosts = [];
+            snapshot.forEach((doc) => {
+                tempPosts.push({ docId: doc.id, ...doc.data() });
+            });
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
+        });
+    }
+
     return (
-        <View>
-            <PostActivityCard />
-            <PostActivityCard />
-            <PostActivityCard />
-        </View>
+        <PaperProvider key={key}>
+            <View style={styles.container} onLayout={onLayoutRootView}>
+                {posts != null &&
+                    posts.map((post) => {
+                        return (
+                            <TouchableOpacity >
+                                <PostActivityCard
+                                    category={post.category}
+                                    datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
+                                    location={post.location}
+                                    counter={post.counter}
+                                    tasks={post.tasks}
+                                    id={post.docId}
+                                />
+                            </TouchableOpacity>
+                        )
+                    })
+                }
+            </View>
+        </PaperProvider>
     );
 }
 
-function AcceptedTab() {
+function AcceptedTab({ navigation }) {
+    const [key, setKey] = useState(0);
+    const [posts, setPosts] = useState(null);
+
+    React.useEffect(() => {
+        const focusHandler = navigation.addListener('focus', () => {
+            setKey(Math.random() + key + 1);
+        });
+        return focusHandler;
+    }, [navigation])
+
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    ///End FONT USAGE
+
+
+    //Read DATA from FIRESTORE
+
+    if (posts == null) {
+        const postsRef = collection(db, 'posts');
+        const q = query(postsRef, where("userId", "==", loginUser.user.uid), where("progress", "==", 2));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const tempPosts = [];
+            snapshot.forEach((doc) => {
+                tempPosts.push({ docId: doc.id, ...doc.data() });
+            });
+            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            setPosts(tempPosts);
+        });
+    }
+
     return (
-        <View>
-            <Text>Accepted task cards will go here...</Text>
-        </View>
+        <PaperProvider key={key}>
+            <View style={styles.container} onLayout={onLayoutRootView}>
+                {posts != null &&
+                    posts.map((post) => {
+                        return (
+                            <TouchableOpacity >
+                                <PostActivityCard
+                                    category={post.category}
+                                    datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
+                                    location={post.location}
+                                    counter={post.counter}
+                                    tasks={post.tasks}
+                                    id={post.docId}
+                                />
+                            </TouchableOpacity>
+                        )
+                    })
+                }
+            </View>
+        </PaperProvider>
     );
 }
 

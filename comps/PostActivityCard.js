@@ -12,6 +12,7 @@ const iconFirColor = "#126B8A"
 const iconSecColor = "#00A0C3"
 
 const PostActivityCard = ({
+    id = "",
     category = "Sample",
     datetime = "Mar 09, 1990",
     location = "Sample",
