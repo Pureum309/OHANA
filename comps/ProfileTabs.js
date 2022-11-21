@@ -1,8 +1,15 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from 'react-native';
+import { List } from 'react-native-paper';
 
 import PostActivityCard from "../comps/PostActivityCard";
+
+//Needed for Back button
+const handleBack = ({ navigation }) => {
+    console.log("test")
+    navigation.navigate('Intro')
+}
 
 function HomeScreen() {
     return (
@@ -15,9 +22,46 @@ function HomeScreen() {
 }
 
 function SettingsScreen() {
+
+    const [expanded, setExpanded] = React.useState(true);
+    const handlePress = () => setExpanded(!expanded);
+
     return (
         <View>
-            <Text>Even more things go here!</Text>
+            <List.Section title="Accordions">
+                <List.Accordion
+                    title="Edit Profile"
+                    left={props => <List.Icon {...props} icon="account" />}>
+                    <List.Item title="First item" />
+                    <List.Item title="Second item" />
+                </List.Accordion>
+                <List.Accordion
+                    title="Settings"
+                    left={props => <List.Icon {...props} icon="cog" />}>
+                    <List.Item title="First item" />
+                    <List.Item title="Second item" />
+                </List.Accordion>
+                <List.Accordion
+                    title="Invite to network"
+                    left={props => <List.Icon {...props} icon="account-multiple-outline" />}>
+                    <List.Item title="First item" />
+                    <List.Item title="Second item" />
+                </List.Accordion>
+                <List.Accordion
+                    title="Help"
+                    left={props => <List.Icon {...props} icon="help-circle-outline" />}>
+                    <List.Item title="First item" />
+                    <List.Item title="Second item" />
+                </List.Accordion>
+                <List.Accordion
+                    title="Sign out"
+                    left={props => <List.Icon {...props} icon="logout" />}>
+                    <List.Item
+                        title="Sign out"
+                        onPress={handleBack}
+                    />
+                </List.Accordion>
+            </List.Section>
 
         </View>
     );
