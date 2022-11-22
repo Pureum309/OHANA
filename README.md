@@ -24,12 +24,9 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Created CaregiverProfile Screen
 - Implimented CareGiverUser component
 - Implimented Lower Tabs section for profile screens 
-<<<<<<< HEAD
 - Created caregiver lowerTabs comp on CG homepage
-=======
 - Implimented Accordion list for lower profile settings tab.
 - Created sign out button
->>>>>>> settings-tab
 
 ##Sarah
 ###Until the midterm
@@ -88,4 +85,8 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Get order by date post activity card
 - Implemented function (click accept button -> card goes to in progress -> Click done button -> card goes to Done)
 - Fixed minor issue on post screen
+
+###Nov 21
+- Implementing chat function (User click open the chatroom screen)
+- Connecting database chatrooms message (send messages and receive messages)
 

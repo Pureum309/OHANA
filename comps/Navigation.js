@@ -27,6 +27,7 @@ import TutorialComp from "./TutorialComp";
 import ChatScreen from "../screen/ChatScreen";
 
 import CGHomeScreen from "../screen/CGHomeScreen";
+import ChatRoom from "./Chat/ChatRoom";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -192,6 +193,7 @@ export default function Navigation(props) {
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="ChatRoom" component={ChatRoom} options={{ headerShown: true }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >

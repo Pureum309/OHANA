@@ -3,13 +3,15 @@ import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions
 import CustomButton from "../comps/Login/CustomButton";
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 
-import Chat from "../comps/Chat"
+import ChatList from "../comps/Chat/ChatList"
 import Header from "../comps/Header";
 import { PropsService } from "@ui-kitten/components/devsupport";
+import ChatRoom from "../comps/Chat/ChatRoom";
 
 
 
-const ChatScreen = ({ navigation }) => {
+
+const ChatScreen = (props) => {
 
     const handleBack = () => {
         console.log("test")
@@ -17,11 +19,12 @@ const ChatScreen = ({ navigation }) => {
     }
     return (
         <>
-            <Header label="Chat" navigation={navigation} />
+            <Header label="Chat" navigation={props.navigation} />
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.container}>
-                        <Chat />
+                        <ChatList navigation={props.navigation} />
+                        {/* <ChatRoom /> */}
                     </View>
                 </ScrollView>
             </SafeAreaView>

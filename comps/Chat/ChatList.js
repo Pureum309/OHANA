@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, TextInput, StyleSheet, Dimensions } from 'react-native'
 
-import UserCard from "./Chat_User/UserCard";
+import UserCard from "../Chat_User/UserCard";
+import ChatRoom from "./ChatRoom";
 
-import { user_txts } from "./Chat_User/data"
+import { user_txts } from "../Chat_User/data"
 
 //DATABASE for FIRBASE
-import { loginUser } from "./Login/Login";
-import { db } from '../firebase/firebase';
+import { loginUser } from "../Login/Login";
+import { db } from '../../firebase/firebase';
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-import Search from "./SearchBar";
+import Search from "../SearchBar";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 
-const Chat = (props) => {
+const ChatList = (props) => {
     const [relationships, setRelationships] = useState([]);
     const [filter, setFilter] = useState("");
 
@@ -21,12 +23,17 @@ const Chat = (props) => {
         setFilter(e);
     }
 
+    const onPress = (userId) => {
+        props.navigation.navigate('ChatRoom', { userId: userId });
+        //navigate to Chatroom;
+    }
+
     if (relationships.length == 0) {
         const relRef = collection(db, `users/${loginUser.user.uid}/relationships`);
         const unsubscribe = onSnapshot(relRef, (snapshot) => {
             var tempRels = [];
             snapshot.forEach((doc) => {
-                tempRels.push(doc.data());
+                tempRels.push({ userId: doc.id, ...doc.data() });
             });
 
             if (filter.length != 0) {
@@ -54,13 +61,13 @@ const Chat = (props) => {
                 onChangeText={onChangeText}
             />
             {/* <UserCard name="Sun" rel="dd" /> */}
-            {relationships.map(users => { return <UserCard key={users.uid} name={[users.first, ' ', users.last]} rel={users.relationship} pic={user_txts[index++].pic} /> })}
+            {relationships.map(users => { return <TouchableOpacity onPress={() => onPress(users.userId)} ><UserCard key={users.uid} name={[users.first, ' ', users.last]} rel={users.relationship} pic={user_txts[index++].pic} userId={users.userId} /></TouchableOpacity> })}
 
         </View>
     )
 }
 
-export default Chat
+export default ChatList
 const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
