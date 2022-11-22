@@ -42,7 +42,7 @@ const slides = [
         id: '1',
         image: require('../assets/tutorial4.png'),
         title: 'ACKNOWLEDGEMENT',
-        subtitle: 'The Ohana app acknowledges that our app name and message, Ohana, is based off of the traditional indigenous Hawaiian way of life that is the extension of care and devotion to all members of the human family. Ohana is the concept of ensuring that your community has what they need to survive and live with joy. This is the core value and mission of the Ohana app.',
+        subtitle: 'The Ohana app acknowledges that our name, Ohana, is based off of the traditional indigenous Hawaiian way of life that is the extension of care and devotion to all members of the human family. Ohana is the concept of ensuring that your community has what they need to survive and live with joy.',
 
     },
     {
