@@ -23,8 +23,11 @@ const ChatList = (props) => {
         setFilter(e);
     }
 
-    const onPress = (userId) => {
-        props.navigation.navigate('ChatRoom', { userId: userId });
+    const onPress = (userId, first, last) => {
+        let roomName = first
+        if (last != null)
+            roomName += " " + last;
+        props.navigation.navigate('ChatRoom', { userId: userId, roomName: roomName });
         //navigate to Chatroom;
     }
 
@@ -61,7 +64,7 @@ const ChatList = (props) => {
                 onChangeText={onChangeText}
             />
             {/* <UserCard name="Sun" rel="dd" /> */}
-            {relationships.map(users => { return <TouchableOpacity onPress={() => onPress(users.userId)} ><UserCard key={users.uid} name={[users.first, ' ', users.last]} rel={users.relationship} pic={user_txts[index++].pic} userId={users.userId} /></TouchableOpacity> })}
+            {relationships.map(users => { return <TouchableOpacity onPress={() => onPress(users.userId, users.first, users.last)} ><UserCard key={users.uid} name={[users.first, ' ', users.last]} rel={users.relationship} pic={user_txts[index++].pic} userId={users.userId} /></TouchableOpacity> })}
 
         </View>
     )

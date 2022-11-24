@@ -34,6 +34,7 @@
     "react-native-calendar-picker": "^7.1.2",
     "react-native-dropdown-picker": "^5.4.2",
     "react-native-element-dropdown": "^2.3.0",
+    "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-ionicons": "^4.x",
     "react-native-maps": "0.31.1",

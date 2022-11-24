@@ -13,10 +13,6 @@ import ChatRoom from "../comps/Chat/ChatRoom";
 
 const ChatScreen = (props) => {
 
-    const handleBack = () => {
-        console.log("test")
-        // props.navigation.goBack();
-    }
     return (
         <>
             <Header label="Chat" navigation={props.navigation} />

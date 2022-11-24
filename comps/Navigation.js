@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useCallback } from "react";
 
 //Navigation components
 
@@ -8,7 +8,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
-import { Text, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native'
+
+//for FONT USAGE
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 //Import Screens
 
@@ -35,16 +39,59 @@ const Stack = createStackNavigator()
 
 function HomeStackScreen() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#CFE0E2',
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                },
+            }}
+        >
+            <Stack.Screen name="Home" options={{ headerShown: true }} component={HomeScreen} />
         </Stack.Navigator>
     );
 }
 
 function NetworkStackScreen() {
+
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    ///End FONT USAGE
+
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Network" options={{ headerShown: false }} component={NetworkView} />
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#CFE0E2',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                },
+            }}
+        >
+            <Stack.Screen name="Network" options={{ headerShown: true }} component={NetworkView} />
         </Stack.Navigator>
     );
 }

@@ -1,10 +1,9 @@
-import React, { useState, useCallback } from "react";
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
+import React, { useState, useCallback, useLayoutEffect } from "react";
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
 import HomeLowerTabs from "../comps/HomeTabs";
 
-import { postCards } from "../comps/DropMenuComp";
-import PostActivityCard from "../comps/PostActivityCard";
+import { AntDesign } from '@expo/vector-icons';
 
 import moment from "moment";
 
@@ -18,9 +17,50 @@ import { db } from '../firebase/firebase';
 import { doc, onSnapshot } from "firebase/firestore";
 
 
+const iconSize = 24
+const lightBlue = "#00A0C3"
+const iconSecColor = "#126B8A"
+
 const HomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
     const [firstName, setFirstname] = useState("");
+
+    const pressChat = () => {
+        console.log("test");
+        navigation.navigate('Chat');
+    }
+
+    const pressHome = () => {
+        console.log("!!!");
+        navigation.navigate('Home');
+    }
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerBackTitleVisible: false,
+            headerStyle: { height: 150, backgroundColor: "#CFE0E2", },
+
+            headerLeft: () => (
+                <TouchableOpacity
+                    style={styles.logo}
+                    onPress={pressHome}
+                >
+                    <Image
+                        style={styles.imageStyle}
+                        source={require('../assets/logoicon.png')} />
+                </TouchableOpacity>
+            ),
+            headerRight: () => (
+                <TouchableOpacity
+                    style={styles.chat}
+                    onPress={pressChat}
+                >
+                    <AntDesign name="message1" size={24} color="black"
+                    />
+                </TouchableOpacity>
+            )
+        });
+    }, [navigation]);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {
@@ -93,7 +133,20 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         paddingLeft: 20,
         fontFamily: 'Rubik',
+    },
+    imageStyle: {
+        height: 40,
+        width: 40,
+        resizeMode: 'contain',
+        // marginTop: 15,
+    },
+    logo: {
+        marginLeft: 30,
+    },
+    chat: {
+        marginRight: 30,
     }
+
 });
 
 export default HomeScreen
