@@ -75,6 +75,7 @@ function NewTab({ navigation }) {
                                     counter={post.counter}
                                     tasks={post.tasks}
                                     id={post.docId}
+                                    cardColor="#6AC278"
                                 />
                             </TouchableOpacity>
                         )
@@ -143,6 +144,7 @@ function InProgressTab({ navigation }) {
                                     counter={post.counter}
                                     tasks={post.tasks}
                                     id={post.docId}
+                                    cardColor="#EDC81B"
                                 />
                             </TouchableOpacity>
                         )
@@ -211,6 +213,7 @@ function AcceptedTab({ navigation }) {
                                     counter={post.counter}
                                     tasks={post.tasks}
                                     id={post.docId}
+                                    cardColor="#00ADC3"
                                 />
                             </TouchableOpacity>
                         )

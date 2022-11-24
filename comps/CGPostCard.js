@@ -14,6 +14,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 const iconSize = 20
 const iconFirColor = "#126B8A"
 const iconSecColor = "#00A0C3"
+let cardColor = "#6AC278";
 
 const CGPostCard = ({
     id = "",
@@ -54,9 +55,17 @@ const CGPostCard = ({
         acceptText = "Done";
     }
 
+    if (progress == 0) {
+        cardColor = "#6AC278";
+    } else if (progress == 1) {
+        cardColor = "#EDC81B"
+    } else {
+        cardColor = "#00ADC3"
+    }
+
     return (
         <View style={styles.cardPadding} onLayout={onLayoutRootView}>
-            <View style={styles.container}>
+            <View style={[styles.container, { borderColor: cardColor }]}>
                 <View style={styles.cardContainer}>
                     <Image style={styles.imageStyle} source={require("../assets/userPlaceholder.png")} />
                     <View >
@@ -125,7 +134,7 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         paddingLeft: 15,
         paddingTop: 15,
-        borderColor: '#6AC278',
+        //borderColor: cardColor,
         borderWidth: 3,
         shadowColor: '#171717',
         shadowOffset: { width: 3, height: 4 },

@@ -35,7 +35,7 @@ import ChatRoom from "./Chat/ChatRoom";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
-let headerColor = "#CFE0E2"
+let headerColor = "#E6F7F9"
 let careHeader = "#126B8A"
 let cgColor = "#DDE2E5"
 
@@ -83,7 +83,7 @@ function NetworkStackScreen() {
     ///End FONT USAGE
 
     if (loginUserRole == 1) {
-        headerColor = "#CFE0E2"
+        headerColor = "#E6F7F9"
         cgColor = "black"
     } else if (loginUserRole == 2) {
         headerColor = "#126B8A"
@@ -344,7 +344,7 @@ const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
     if (loginUserRole == 1) {
-        careHeader = "#CFE0E2"
+        careHeader = "#E6F7F9"
         cgColor = "black"
     } else if (loginUserRole == 2) {
         careHeader = "#126B8A"

@@ -18,6 +18,7 @@ const PostActivityCard = ({
     location = "Sample",
     counter = 0,
     tasks = [],
+    cardColor = "green"
 }) => {
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
@@ -39,7 +40,7 @@ const PostActivityCard = ({
 
     return (
         <View style={styles.cardPadding} onLayout={onLayoutRootView}>
-            <View style={styles.container}>
+            <View style={[styles.container, { borderColor: cardColor }]}>
                 <Text style={styles.categoryStyle}>{category}</Text>
                 <View style={styles.datetimeCont}>
                     <Text style={styles.datetimeStyle}>{moment(datetime).format('MMMM Do, YYYY')}</Text>
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         paddingLeft: 15,
         paddingTop: 15,
-        borderColor: '#6AC278',
+        // borderColor: '#6AC278',
         borderWidth: 3,
         shadowColor: '#171717',
         shadowOffset: { width: 3, height: 4 },
