@@ -16,6 +16,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export var loginUser;
+export var loginUserRole;
 
 const isValidObjField = (obj) => {
     return Object.values(obj).every(value => value.trim())
@@ -103,6 +104,7 @@ export default function LoginScreen({ navigation }) {
             const docRef = doc(db, 'users', user.user.uid);
             const docSnap = await getDoc(docRef);
             const data = docSnap.data();
+            loginUserRole = data.role;
             if (data.role == 1) {
                 navigation.navigate('Main');
             } else if (data.role == 2) {

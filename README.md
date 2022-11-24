@@ -90,3 +90,7 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Implementing chat function (User click open the chatroom screen)
 - Connecting database chatrooms message (send messages and receive messages)
 
+###Nov 23
+- Stylized chat room screen
+- Fixing minor issue (navigation method in caregiver side)
+- Chaning header in all screen

@@ -1,8 +1,50 @@
-import React from "react";
-import { StyleSheet, View } from 'react-native'
+import React, { useLayoutEffect } from "react";
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import AlertList from '../comps/Alerts/AlertList.js'
 
-const AlertScreen = () => {
+import { AntDesign } from '@expo/vector-icons';
+
+const AlertScreen = ({ navigation }) => {
+
+    const pressChat = () => {
+        console.log("test");
+        navigation.navigate('Chat');
+    }
+
+    const pressHome = () => {
+        console.log("!!!");
+        navigation.navigate('Home');
+    }
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerBackTitleVisible: false,
+            headerLeft: () => (
+                <TouchableOpacity
+                    style={{ marginLeft: 30 }}
+                    onPress={pressHome}
+                >
+                    <Image
+                        style={{
+                            height: 40,
+                            width: 40,
+                            resizeMode: 'contain',
+                        }}
+                        source={require('../assets/logoicon.png')} />
+                </TouchableOpacity>
+            ),
+            headerRight: () => (
+                <TouchableOpacity
+                    style={{ marginRight: 30 }}
+                    onPress={pressChat}
+                >
+                    <AntDesign name="message1" size={24} color="black"
+                    />
+                </TouchableOpacity>
+            )
+        });
+    }, [navigation]);
+
     return (
         <View style={styles.container}>
             <AlertList />
