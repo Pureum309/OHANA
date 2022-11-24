@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         borderColor: '#2D2D2A',
         borderWidth: 1,
-        width: 340,
-        height: 150,
+        width: 300,
+        height: 100,
     },
     addWrapper: {
         // width: 60,

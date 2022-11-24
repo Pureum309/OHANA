@@ -95,7 +95,6 @@ const DropMenuComp = () => {
 
     return (
         <View key={curId} style={styles.container}>
-            <PostTask />
             <DropdownComponent
                 label_txt="Category"
                 data={category_data}
@@ -110,6 +109,7 @@ const DropMenuComp = () => {
             />
             <DTPicker style={styles.couterStyle} />
             <CouterDrop />
+            <PostTask />
             <DropButton onPress={onClick} />
         </View>
     )
@@ -122,9 +122,12 @@ const deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        // height: deviceHeight,
         paddingVertical: 50,
+        height: "100%",
     },
+    txt: {
+
+    }
     //     couterStyle: {
     //         position: 'absolute',
     //     }

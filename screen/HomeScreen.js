@@ -106,8 +106,8 @@ const HomeScreen = ({ navigation }) => {
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.container} onLayout={onLayoutRootView}>
-                        <Text style={styles.textStyle}>{getGreeting()}, {firstName}</Text>
-                        <Text style={styles.textStyle}>What are you up to today?</Text>
+                        <Text style={[styles.textStyle, { paddingTop: 15, }]}>{getGreeting()}, {firstName}</Text>
+                        <Text style={[styles.textStyle, { paddingBottom: 15, }]}>What are you up to today?</Text>
                         <HomeLowerTabs />
                     </View>
                 </ScrollView>
