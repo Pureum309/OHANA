@@ -94,3 +94,4 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Stylized chat room screen
 - Fixing minor issue (navigation method in caregiver side)
 - Chaning header in all screen
+- Stylizd card color in different progress
