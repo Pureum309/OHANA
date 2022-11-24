@@ -22,11 +22,11 @@ import Post from "../screen/Post";
 import MapView from "../screen/MapView";
 import Profile from "../screen/Profile";
 import CareGiverProfileScreen from "../screen/CaregiverProfileScreen";
-import Header from "../comps/Header";
+
 import AlertScreen from "../screen/AlertScreen";
 
 import IntroScreen from "../screen/IntroScreen";
-import LoginScreen from "./Login/Login";
+import LoginScreen, { loginUserRole } from "./Login/Login";
 import TutorialComp from "./TutorialComp";
 import ChatScreen from "../screen/ChatScreen";
 
@@ -35,6 +35,10 @@ import ChatRoom from "./Chat/ChatRoom";
 
 const fullScreenWidth = Dimensions.get('window').width;
 
+let headerColor = "#CFE0E2"
+let careHeader = "#126B8A"
+let cgColor = "#DDE2E5"
+
 const Stack = createStackNavigator()
 
 function HomeStackScreen() {
@@ -42,13 +46,15 @@ function HomeStackScreen() {
         <Stack.Navigator
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: '#CFE0E2',
+                    backgroundColor: headerColor,
+                    height: 150,
                 },
                 headerTitleStyle: {
                     fontSize: 36,
-                    fontWeight: '700',
+                    fontWeight: "700",
                     paddingRight: 14,
                     fontFamily: 'Rubik',
+                    marginLeft: "25%",
                 },
             }}
         >
@@ -76,18 +82,29 @@ function NetworkStackScreen() {
     }
     ///End FONT USAGE
 
+    if (loginUserRole == 1) {
+        headerColor = "#CFE0E2"
+        cgColor = "black"
+    } else if (loginUserRole == 2) {
+        headerColor = "#126B8A"
+        cgColor = "#DDE2E5"
+    }
+
     return (
+
         <Stack.Navigator
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: '#CFE0E2',
+                    backgroundColor: headerColor,
+                    height: 150,
                 },
-                headerTintColor: '#fff',
                 headerTitleStyle: {
                     fontSize: 36,
                     fontWeight: '700',
                     paddingRight: 14,
                     fontFamily: 'Rubik',
+                    marginLeft: "15%",
+                    color: cgColor
                 },
             }}
         >
@@ -98,32 +115,112 @@ function NetworkStackScreen() {
 
 function PostStackScreen() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Post" options={{ headerShown: false }} component={Post} />
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: headerColor,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "30%",
+                },
+            }}
+        >
+            <Stack.Screen name="Post" options={{ headerShown: true }} component={Post} />
         </Stack.Navigator>
     );
 }
 
 function MapStackScreen() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Map" options={{ headerShown: false }} component={MapView} />
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: headerColor,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "30%",
+                },
+            }}
+        >
+            <Stack.Screen name="Map" options={{ headerShown: true }} component={MapView} />
         </Stack.Navigator>
     );
 }
 
 function ProfileStackScreen() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: headerColor,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "20%",
+                },
+            }}
+        >
+            <Stack.Screen name="Profile" options={{ headerShown: true }} component={Profile} />
+        </Stack.Navigator>
+    );
+}
+/////////////////////**************CAREGIVER SCREEN ***********////////////
+function CGHomeStackScreen() {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: careHeader,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "25%",
+                    color: cgColor,
+                },
+            }}
+        >
+            <Stack.Screen name="Home" options={{ headerShown: true }} component={CGHomeScreen} />
         </Stack.Navigator>
     );
 }
 
 function AlertStackScreen() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Alert" options={{ headerShown: false }} component={AlertScreen} />
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: careHeader,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "20%",
+                    color: cgColor,
+                },
+            }}
+        >
+            <Stack.Screen name="Alerts" options={{ headerShown: true }} component={AlertScreen} />
         </Stack.Navigator>
     );
 }
@@ -131,8 +228,24 @@ function AlertStackScreen() {
 // ********** display caregiver profile ***********
 function CaregiverProfileStackScreen() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Caregiver Profile" options={{ headerShown: false }} component={CareGiverProfileScreen} />
+        <Stack.Navigator
+            screenOptions={{
+                title: "Profile",
+                headerStyle: {
+                    backgroundColor: careHeader,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "20%",
+                    color: cgColor,
+                },
+            }}
+        >
+            <Stack.Screen name="Caregiver Profile" options={{ headerShown: true }} component={CareGiverProfileScreen} />
         </Stack.Navigator>
     );
 }
@@ -142,7 +255,7 @@ function TabNavigationScreen() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 // headerTitle: () => <Text>Header</Text>,
-                header: (props) => <Header label={route.name} navigation={props.navigation} />,
+                headerShown: false,
                 tabBarIcon: ({ focused, color, size, padding }) => {
                     let iconName;
                     if (route.name == 'Home') {
@@ -187,7 +300,7 @@ function TabCaregiverNavigationScreen() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 // headerTitle: () => <Text>Header</Text>,
-                header: (props) => <Header label={route.name} />,
+                headerShown: false,
                 tabBarIcon: ({ focused, color, size, padding }) => {
                     let iconName;
                     if (route.name == 'Home') {
@@ -218,7 +331,7 @@ function TabCaregiverNavigationScreen() {
                     width: fullScreenWidth,
                 }
             }}>
-            <Tab.Screen name="Home" component={CGHomeScreen} />
+            <Tab.Screen name="Home" component={CGHomeStackScreen} />
             <Tab.Screen name="Network" component={NetworkStackScreen} />
             <Tab.Screen name="Alerts" component={AlertStackScreen} />
             <Tab.Screen name="Profile" component={CaregiverProfileStackScreen} />
@@ -229,17 +342,38 @@ function TabCaregiverNavigationScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function Navigation(props) {
+export default function Navigation() {
+    if (loginUserRole == 1) {
+        careHeader = "#CFE0E2"
+        cgColor = "black"
+    } else if (loginUserRole == 2) {
+        careHeader = "#126B8A"
+    }
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: careHeader,
+                        height: 150,
+                    },
+                    headerTitleStyle: {
+                        fontSize: 36,
+                        fontWeight: '700',
+                        paddingRight: 14,
+                        fontFamily: 'Rubik',
+                        marginLeft: "25%",
+                        color: cgColor,
+                    },
+                }}
+            >
                 {/* All screens should be placed here to be navigated. */}
                 <Stack.Screen name="Intro" component={IntroScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={TabNavigationScreen} options={{ title: '', headerShown: false }} />
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: true }} />
                 <Stack.Screen name="ChatRoom" component={ChatRoom} options={{ headerShown: true }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>

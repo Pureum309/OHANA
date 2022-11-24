@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native'
+import React, { useState, useCallback, useLayoutEffect } from "react";
+import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
 import HomeLowerTabs from "../comps/HomeTabs";
 
@@ -8,6 +8,8 @@ import PostActivityCard from "../comps/PostActivityCard";
 import CGHomeLowerTabs from "../comps/CGHomeTabs";
 
 import moment from "moment";
+
+import { AntDesign } from '@expo/vector-icons';
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
@@ -22,6 +24,44 @@ import { doc, onSnapshot } from "firebase/firestore";
 const CGHomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
     const [firstName, setFirstname] = useState("");
+    const pressChat = () => {
+        console.log("test");
+        navigation.navigate('Chat');
+    }
+
+    const pressHome = () => {
+        console.log("!!!");
+        navigation.navigate('Home');
+    }
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerBackTitleVisible: false,
+            headerLeft: () => (
+                <TouchableOpacity
+                    style={{ marginLeft: 30 }}
+                    onPress={pressHome}
+                >
+                    <Image
+                        style={{
+                            height: 40,
+                            width: 40,
+                            resizeMode: 'contain',
+                        }}
+                        source={require('../assets/logoicon.png')} />
+                </TouchableOpacity>
+            ),
+            headerRight: () => (
+                <TouchableOpacity
+                    style={{ marginRight: 30 }}
+                    onPress={pressChat}
+                >
+                    <AntDesign name="message1" size={24} color="black"
+                    />
+                </TouchableOpacity>
+            )
+        });
+    }, [navigation]);
 
     React.useEffect(() => {
         const focusHandler = navigation.addListener('focus', () => {

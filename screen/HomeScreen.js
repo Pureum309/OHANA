@@ -16,11 +16,6 @@ import { loginUser } from "../comps/Login/Login";
 import { db } from '../firebase/firebase';
 import { doc, onSnapshot } from "firebase/firestore";
 
-
-const iconSize = 24
-const lightBlue = "#00A0C3"
-const iconSecColor = "#126B8A"
-
 const HomeScreen = ({ navigation }) => {
     const [key, setKey] = useState(0);
     const [firstName, setFirstname] = useState("");
@@ -38,21 +33,23 @@ const HomeScreen = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerBackTitleVisible: false,
-            headerStyle: { height: 150, backgroundColor: "#CFE0E2", },
-
             headerLeft: () => (
                 <TouchableOpacity
-                    style={styles.logo}
+                    style={{ marginLeft: 30 }}
                     onPress={pressHome}
                 >
                     <Image
-                        style={styles.imageStyle}
+                        style={{
+                            height: 40,
+                            width: 40,
+                            resizeMode: 'contain',
+                        }}
                         source={require('../assets/logoicon.png')} />
                 </TouchableOpacity>
             ),
             headerRight: () => (
                 <TouchableOpacity
-                    style={styles.chat}
+                    style={{ marginRight: 30 }}
                     onPress={pressChat}
                 >
                     <AntDesign name="message1" size={24} color="black"
@@ -134,19 +131,6 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         fontFamily: 'Rubik',
     },
-    imageStyle: {
-        height: 40,
-        width: 40,
-        resizeMode: 'contain',
-        // marginTop: 15,
-    },
-    logo: {
-        marginLeft: 30,
-    },
-    chat: {
-        marginRight: 30,
-    }
-
 });
 
 export default HomeScreen
