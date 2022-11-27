@@ -41,7 +41,7 @@ function SettingsScreen() {
 
     return (
         <View>
-            <List.Section>
+            <List.Section style={styles.listSection}>
                 <List.Accordion
                     title="Edit Profile"
                     left={props => <List.Icon {...props} icon="account" />}>
@@ -107,6 +107,20 @@ function ProfileLowerTabs() {
 export default ProfileLowerTabs;
 
 const styles = StyleSheet.create({
+    listSection: {
+        margin: 20,
+        borderRadius: 20,
+        backgroundColor: "white",
+        boxShadow: '1px 2px 9px #F4AAB9',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
     centeredView: {
         flex: 1,
         justifyContent: "center",
