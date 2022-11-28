@@ -70,6 +70,13 @@ const DropMenuComp = () => {
         const docSnap = await getDoc(docRef);
         const data = docSnap.data();
 
+        let picUrl = "";
+        if (data.pic != null) {
+            picUrl = data.pic;
+        } else {
+            picUrl = "https://firebasestorage.googleapis.com/v0/b/ohana-db-18be1.appspot.com/o/userPlaceholder.png?alt=media&token=f4a5d66c-88bf-4015-9247-def23ba809a9";
+        }
+
         let post = {
             id: curId,
             datetime: moment(chosenDatetime).format("MMMM Do, YYYY hh:mm A"),
@@ -77,7 +84,9 @@ const DropMenuComp = () => {
             location: chosenLocation,
             counter: chosenCounter,
             tasks: chosenText,
-            userName: data.first + " " + data.last
+            userName: data.first + " " + data.last,
+            pic: picUrl,
+            createdTime: moment().format("MMMM Do, YYYY hh:mm:ss A")
         };
 
         postCards.push(post);

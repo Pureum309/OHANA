@@ -56,7 +56,7 @@ function NewTab({ navigation }) {
             snapshot.forEach((doc) => {
                 tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            tempPosts.sort(function (a, b) { return a.createdTime < b.createdTime });
             setPosts(tempPosts);
         });
     }
