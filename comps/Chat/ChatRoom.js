@@ -19,7 +19,7 @@ const lightBlue = "#00A0C3"
 const iconSecColor = "#126B8A"
 
 const ChatRoom = ({ route, navigation }) => {
-    const { userId, roomName } = route.params;
+    const { userId, roomName, pic } = route.params;
 
     const [chats, setChats] = useState(null);
     const [message, setMesage] = useState("");
@@ -37,7 +37,7 @@ const ChatRoom = ({ route, navigation }) => {
                 }}>
                     <Avatar
                         rounded
-                        source={user1}
+                        source={{ uri: pic }}
                     />
                     <Text style={{ color: "#126B8A", fontWeight: "700", fontSize: 20, marginLeft: 10 }}>{roomName}</Text>
                 </View>

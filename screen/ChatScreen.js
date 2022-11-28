@@ -71,14 +71,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: deviceHeight,
     },
-    back_button: {
-        flexDirection: 'row',
-        position: 'absolute',
-        top: 45,
-        left: 10,
-        alignItems: 'center',
-        paddingTop: 10,
-    }
 });
 
 export default ChatScreen
