@@ -32,7 +32,7 @@ export default function UserProfile() {
 
     return (
         <View style={styles.container} onLayout={onLayoutRootView}>
-            <Image style={styles.imageStyle} source={require("../../assets/userPhoto.png")} />
+            <Image style={styles.imageStyle} source={{ uri: user.pic }} />
             <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
             <Text style={styles.locationStyle}>{user.location}</Text>
             <Text style={styles.bioStyle}>{user.bio}</Text>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         height: 125,
         width: 125,
         margin: 15,
+        borderRadius: 60,
     },
     nameStyle: {
         fontWeight: 'bold',

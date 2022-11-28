@@ -53,7 +53,7 @@ const Network = (props) => {
                 onChangeText={onChangeText}
             />
             {/* <UserCard name="Sun" rel="dd" /> */}
-            {relationships.map(users => { return <UserCard key={users.uid} name={[users.first, ' ', users.last]} rel={users.relationship} pic={user_txts[index++].pic} /> })}
+            {relationships.map(user => { return <UserCard key={user.uid} name={[user.first, ' ', user.last]} rel={user.relationship} pic={user.pic} /> })}
         </View>
     )
 }
