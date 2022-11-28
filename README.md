@@ -95,3 +95,8 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Fixing minor issue (navigation method in caregiver side)
 - Chaning header in all screen
 - Stylizd card color in different progress
+
+###Nov 24
+- Fixed signout function (add navigation action = once sign out back to Login page)
+- Implement sign up page
+- Moved image data to storage and retrived in network and profile
