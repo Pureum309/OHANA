@@ -32,6 +32,7 @@ import ChatScreen from "../screen/ChatScreen";
 
 import CGHomeScreen from "../screen/CGHomeScreen";
 import ChatRoom from "./Chat/ChatRoom";
+import ResigerScreen from "../screen/Register"
 
 const fullScreenWidth = Dimensions.get('window').width;
 
@@ -375,6 +376,7 @@ export default function Navigation() {
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: true }} />
                 <Stack.Screen name="ChatRoom" component={ChatRoom} options={{ headerShown: true }} />
+                <Stack.Screen name="Register" component={ResigerScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
             </Stack.Navigator>
         </NavigationContainer >

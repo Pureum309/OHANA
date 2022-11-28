@@ -187,8 +187,8 @@ const styles = StyleSheet.create({
     back_button: {
         flexDirection: 'row',
         position: 'absolute',
-        top: 45,
-        left: 10,
+        top: "4.5%",
+        left: "3%",
         alignItems: 'center',
         paddingTop: 10,
     },
