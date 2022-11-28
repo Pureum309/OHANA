@@ -54,14 +54,15 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         paddingHorizontal: 15,
-        paddingTop: 5,
+        // paddingTop: 5,
+        paddingBottom: 15,
     },
     dropdown: {
         height: 50,
         borderColor: '#2D2D2A',
         borderWidth: 1,
         borderRadius: 8,
-        paddingHorizontal: 8,
+        //paddingHorizontal: 8,
 
         display: "flex",
         justifyContent: 'center'
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
         borderColor: '#00A0C3',
         borderWidth: 1,
         borderRadius: 8,
-        paddingHorizontal: 8,
+        //paddingHorizontal: 8,
         color: "#00A0C3",
 
         display: "flex",

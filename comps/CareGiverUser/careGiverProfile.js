@@ -36,7 +36,7 @@ export default function CareGiverProfile({
 
     return (
         <View style={styles.container}>
-            <Image style={styles.imageStyle} source={require("../../assets/userPlaceholder.png")} />
+            <Image style={styles.imageStyle} source={{ uri: user.pic }} />
             <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
             <Text style={styles.locationStyle}>{user.location}</Text>
             <Text style={styles.bioStyle}>{user.bio}</Text>
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         height: 125,
         width: 125,
         margin: 15,
+        borderRadius: 70,
     },
     nameStyle: {
         fontWeight: 'bold',

@@ -23,6 +23,7 @@ const CGNewTaskCard = ({
     detail = "Return clothes at my local clothing store. All the items are listed in the photo below.",
     location = "1538 KingGeorge Blv, Surrey, BC V3R 5H1",
     counter = 0,
+    pic = "https://firebasestorage.googleapis.com/v0/b/ohana-db-18be1.appspot.com/o/userPlaceholder.png?alt=media&token=f4a5d66c-88bf-4015-9247-def23ba809a9",
     onPress,
 }) => {
 
@@ -54,7 +55,7 @@ const CGNewTaskCard = ({
         <View style={styles.cardPadding} onLayout={onLayoutRootView}>
             <View style={styles.container}>
                 <View style={styles.cardContainer}>
-                    <Image style={styles.imageStyle} source={require("../../assets/userPhoto.png")} />
+                    <Image style={styles.imageStyle} source={{ uri: pic }} />
                     <View>
                         <Text style={styles.nameStyle}>{taskTitle}</Text>
                         <Text style={styles.statusStyle}>{date} | {time}</Text>

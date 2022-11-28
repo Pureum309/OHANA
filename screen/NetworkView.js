@@ -47,7 +47,7 @@ const NetworkView = ({ navigation }) => {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
-                    <Network />
+                    <Network navigation={navigation} />
                 </View>
             </ScrollView>
         </SafeAreaView>

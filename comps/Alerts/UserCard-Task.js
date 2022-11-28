@@ -49,7 +49,7 @@ const UserCardTask = () => {
             snapshot.forEach((doc) => {
                 tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            tempPosts.sort(function (a, b) { return a.createdTime < b.createdTime });
             setPosts(tempPosts);
         });
     } else {
@@ -63,7 +63,8 @@ const UserCardTask = () => {
                 detail += task + "\n";
             });
             lastPost.detail = detail;
-            lastPost.counter = posts[0].counter
+            lastPost.counter = posts[0].counter;
+            lastPost.pic = posts[0].pic;
             setModalVisible(true);
         }
 
@@ -81,7 +82,8 @@ const UserCardTask = () => {
         });
         console.log(detail);
         curPost.detail = detail;
-        curPost.counter = posts.counter
+        curPost.counter = post.counter;
+        curPost.pic = post.pic;
         setCardModalVisible(true);
     }
 
@@ -114,6 +116,7 @@ const UserCardTask = () => {
                             detail={lastPost.detail}
                             location={lastPost.location}
                             counter={lastPost.counter}
+                            pic={lastPost.pic}
                             onPress={lastAcceptClick}
                         />
                         <View style={styles.buttonCont}>
@@ -143,6 +146,7 @@ const UserCardTask = () => {
                             detail={curPost.detail}
                             location={curPost.location}
                             counter={curPost.counter}
+                            pic={curPost.pic}
                             onPress={curAcceptClick}
                         />
                         <View style={styles.buttonCont}>
@@ -162,7 +166,7 @@ const UserCardTask = () => {
                                 name={post.category}
                                 tasks={post.tasks}
                                 rel={post.userName}
-                                pic={require("../../assets/userPhoto.png")}
+                                pic={post.pic}
                             />
                         </TouchableOpacity>
                     )

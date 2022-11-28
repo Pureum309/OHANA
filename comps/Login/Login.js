@@ -144,8 +144,10 @@ export default function LoginScreen({ navigation }) {
     /////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////Firebase User sign up////////////////////////////////
     const handleSignUP = async () => {
-        const user = await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password);
-        console.log(user.user.uid);
+        navigation.navigate('Register')
+        //Press write info on firebase
+        // const user = await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password);
+        // console.log(user.user.uid);
 
         /* When pass and write the users add below */
         // const docRef = doc(db, 'users', user.user.uid);
@@ -210,14 +212,12 @@ export default function LoginScreen({ navigation }) {
                 <CustomButton text="Forgot Password?" type="TERTIARY" />
 
                 <CustomButton text="LOG IN" onPress={submitForm} />
-                <CustomButton text="SIGN UP" onPress={handleSignUP} />
+                <CustomButton text="New to OHANA? Create an Account" onPress={handleSignUP} />
 
                 <Text style={{ fontFamily: 'Nunito' }}>Or log In With</Text>
 
                 <CustomButton text="Continue with Google" type="SECONDARY" />
                 <CustomButton text="Continue with Facebook" type="SECONDARY" />
-
-                <CustomButton text="New to OHANA? Create an Account" type="TERTIARY" />
 
             </View>
         </ImageBackground>
@@ -237,8 +237,8 @@ const styles = StyleSheet.create({
     back_button: {
         flexDirection: 'row',
         position: 'absolute',
-        top: 45,
-        left: 10,
+        top: "4.5%",
+        left: "3%",
         alignItems: 'center',
         paddingTop: 10,
     },

@@ -57,10 +57,11 @@ const Post = ({ navigation }) => {
 
 export default Post
 
+const deviceHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        // height: 1000,
-
+        // height: deviceHeight,
     },
 });
