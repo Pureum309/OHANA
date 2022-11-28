@@ -4,7 +4,7 @@ import { Text, View, Modal, StyleSheet, Alert, Pressable, Button } from 'react-n
 import { List } from 'react-native-paper';
 
 //Firebase imports
-import { signOut } from 'firebase/auth';
+import { signOut } from "firebase/auth";
 import { auth } from '../firebase/firebase';
 
 //for FONT USAGE
@@ -28,15 +28,20 @@ function HomeScreen() {
     );
 }
 
-function SettingsScreen() {
+function SettingsScreen({ navigation }) {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
     const pressOk = async () => {
         setIsModalVisible(!isModalVisible);
-        await signOut(auth);
         console.log("user logged out");
+        try {
+            await signOut(auth);
+            navigation.navigate('Login')
+        } catch {
+            alert("Error!")
+        }
     }
 
     return (
