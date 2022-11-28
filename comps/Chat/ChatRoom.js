@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
         // color: "green",
     },
     sendTxt: {
-        // color: "blue",
+        color: "white",
     },
     reciever: {
         padding: 15,
@@ -216,5 +216,6 @@ const styles = StyleSheet.create({
         margin: 15,
         maxWidth: "80%",
         position: "relative",
-    }
+    },
+
 });
