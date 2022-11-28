@@ -179,6 +179,38 @@ function ProfileStackScreen() {
         </Stack.Navigator>
     );
 }
+
+function ChatStackScreen() {
+    if (loginUserRole == 1) {
+        headerColor = "#E6F7F9"
+        cgColor = "black"
+    } else if (loginUserRole == 2) {
+        headerColor = "#126B8A"
+    }
+
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: headerColor,
+                    height: 150,
+                },
+                headerTitleStyle: {
+                    fontSize: 36,
+                    fontWeight: '700',
+                    paddingRight: 14,
+                    fontFamily: 'Rubik',
+                    marginLeft: "20%",
+                    color: cgColor,
+                },
+            }}
+        >
+            <Stack.Screen name="Chat" options={{ headerShown: true }} component={ChatScreen} />
+        </Stack.Navigator>
+    );
+}
+
+
 /////////////////////**************CAREGIVER SCREEN ***********////////////
 function CGHomeStackScreen() {
     return (
@@ -292,6 +324,11 @@ function TabNavigationScreen() {
             <Tab.Screen name="Post" component={PostStackScreen} />
             <Tab.Screen name="Map" component={MapStackScreen} />
             <Tab.Screen name="Profile" component={ProfileStackScreen} />
+            <Tab.Screen name="Chat" component={ChatStackScreen}
+                options={{
+                    tabBarButton: () => null,
+                    tabBarVisible: false,
+                }} />
         </Tab.Navigator>
     )
 }
@@ -336,6 +373,11 @@ function TabCaregiverNavigationScreen() {
             <Tab.Screen name="Network" component={NetworkStackScreen} />
             <Tab.Screen name="Alerts" component={AlertStackScreen} />
             <Tab.Screen name="Profile" component={CaregiverProfileStackScreen} />
+            <Tab.Screen name="Chat" component={ChatStackScreen}
+                options={{
+                    tabBarButton: () => null,
+                    tabBarVisible: false,
+                }} />
         </Tab.Navigator >
     )
 }
@@ -374,7 +416,7 @@ export default function Navigation() {
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Tutorial" component={TutorialComp} options={{ headerShown: false }} />
                 <Stack.Screen name="CaregiverMain" component={TabCaregiverNavigationScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: true }} />
+                {/* <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: true }} /> */}
                 <Stack.Screen name="ChatRoom" component={ChatRoom} options={{ headerShown: true }} />
                 <Stack.Screen name="Register" component={ResigerScreen} options={{ headerShown: false }} />
                 {/* All contents in TabNavigationScreen was here. */}
