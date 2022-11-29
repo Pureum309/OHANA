@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native'
+import { Dimensions } from 'react-native'
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';

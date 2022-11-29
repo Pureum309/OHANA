@@ -1,32 +1,153 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import React, { useState } from "react";
-import { Text, View, Modal, StyleSheet, Alert, Pressable, Button, TouchableOpacity } from 'react-native';
+import React, { useState, useCallback } from "react";
+import { Text, View, Modal, StyleSheet, Alert, Pressable, Button, TouchableOpacity, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 
-//Firebase imports
-import { signOut } from "firebase/auth";
-import { auth } from '../firebase/firebase';
+import moment from "moment";
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
+//Firebase imports
+import { signOut } from "firebase/auth";
+import { auth } from '../firebase/firebase';
+
+//DATABASE for FIRESTORE
+import { loginUser } from "../comps/Login/Login";
+import { db } from '../firebase/firebase';
+import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
+
 import PostActivityCard from "../comps/PostActivityCard";
+import { loginUserRole } from "./Login/Login";
+import RewardCard from './Reward';
 
-const logout = async () => {
-    await signOut(auth);
-    console.log("user logged out");
-}
+function Summary({ navigation }) {
+    const [key, setKey] = useState(0);
+    const [posts, setPosts] = useState(null);
 
-function HomeScreen() {
+    React.useEffect(() => {
+        const focusHandler = navigation.addListener('focus', () => {
+            setKey(Math.random() + key + 1);
+        });
+        return focusHandler;
+    }, [navigation])
+
+    const postsRef = collection(db, 'posts');
+    const q = query(postsRef, where("progress", "==", 1, "or", "progress", "==", 2));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+        const tempPosts = [];
+        snapshot.forEach((doc) => {
+            tempPosts.push({ docId: doc.id, ...doc.data() });
+        });
+        tempPosts.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm A") < moment(b.datetime, "MMMM Do, YYYY hh:mm A") });
+        setPosts(tempPosts);
+    });
+
     return (
-        <View>
-            <PostActivityCard />
-            <PostActivityCard />
-            <PostActivityCard />
-        </View>
+        <PaperProvider key={key}>
+            <ScrollView>
+                <View style={styles.postCont}>
+                    <View style={{ alignItems: "center", paddingTop: 20, }}>
+                        <RewardCard />
+                    </View>
+                    <Text
+                        style={{
+                            fontFamily: 'Nunito-bold',
+                            fontSize: 20,
+                            marginLeft: 20,
+                            paddingTop: 30,
+                        }}>Completed Tasks</Text>
+
+                    {posts != null &&
+                        posts.map((post) => {
+                            return (
+                                <TouchableOpacity >
+                                    <PostActivityCard
+                                        category={post.category}
+                                        datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
+                                        location={post.location}
+                                        counter={post.counter}
+                                        tasks={post.tasks}
+                                        id={post.docId}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
+            </ScrollView>
+        </PaperProvider>
     );
 }
+
+function Posts({ navigation }) {
+    const [key, setKey] = useState(0);
+    const [posts, setPosts] = useState(null);
+
+    React.useEffect(() => {
+        const focusHandler = navigation.addListener('focus', () => {
+            setKey(Math.random() + key + 1);
+        });
+        return focusHandler;
+    }, [navigation])
+
+    const postsRef = collection(db, 'posts');
+    const q = query(postsRef, where("userId", "==", loginUser.user.uid));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+        const tempPosts = [];
+        snapshot.forEach((doc) => {
+            tempPosts.push({ docId: doc.id, ...doc.data() });
+        });
+        tempPosts.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm A") < moment(b.datetime, "MMMM Do, YYYY hh:mm A") });
+        setPosts(tempPosts);
+    });
+
+    //For FONT USAGE
+    const [fontsLoaded] = useFonts({
+        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-bold': require('../assets/fonts/Nunito-Bold.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    })
+
+    if (!fontsLoaded) {
+        return null;
+    }
+    ///End FONT USAGE
+
+    return (
+        <PaperProvider key={key}>
+            <ScrollView>
+                <View style={styles.postCont} onLayout={onLayoutRootView}>
+                    {posts != null &&
+                        posts.map((post) => {
+                            return (
+                                <TouchableOpacity >
+                                    <PostActivityCard
+                                        category={post.category}
+                                        datetime={moment(post.datetime, "MMMM Do, YYYY hh:mm A")}
+                                        location={post.location}
+                                        counter={post.counter}
+                                        tasks={post.tasks}
+                                        id={post.docId}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
+            </ScrollView>
+        </PaperProvider>
+    );
+}
+
 
 function SettingsScreen({ navigation }) {
 
@@ -108,19 +229,28 @@ function SettingsScreen({ navigation }) {
 const Tab = createMaterialTopTabNavigator();
 
 function ProfileLowerTabs() {
-    return (
-        <Tab.Navigator sceneContainerStyle={{ backgroundColor: '#fff' }}>
-            <Tab.Screen name="Summary" component={HomeScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-    );
+    if (loginUserRole == 1) {
+        return (
+            <Tab.Navigator sceneContainerStyle={{ backgroundColor: '#fff' }}>
+                <Tab.Screen name="Posts" component={Posts} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+        );
+    } else if (loginUserRole == 2) {
+        return (
+            <Tab.Navigator sceneContainerStyle={{ backgroundColor: '#fff' }}>
+                <Tab.Screen name="Summary" component={Summary} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+        );
+    }
 }
 
 export default ProfileLowerTabs;
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: "20%",
+        padding: 50,
     },
     listSection: {
         margin: 20,

@@ -1,15 +1,11 @@
 import React, { useState, useCallback, useLayoutEffect } from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
-import HomeLowerTabs from "../comps/HomeTabs";
-
-import { postCards } from "../comps/DropMenuComp";
-import PostActivityCard from "../comps/PostActivityCard";
-import CGHomeLowerTabs from "../comps/CGHomeTabs";
 
 import moment from "moment";
-
 import { AntDesign } from '@expo/vector-icons';
+
+import CGHomeLowerTabs from "../comps/CGHomeTabs";
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
