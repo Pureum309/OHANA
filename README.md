@@ -101,3 +101,16 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Implement sign up page
 - Moved image data to storage and retrived in network and profile
 - Stylized search bar
+
+###Nov 25
+- Polishing app 
+- Changing caregiver side logo, header opacity, chat icon color
+- Chaning both side text aceepted to completed
+- Chaning settings structure and styling
+
+###Nov 26
+- Polishing app
+- Divide with profile tab with caregiver and user with different tab screen
+- user grab every post that user made
+- caregiver grab every posts that care giver accept
+- Implement reward card

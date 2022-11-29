@@ -49,7 +49,7 @@ const UserCardTask = () => {
             snapshot.forEach((doc) => {
                 tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            tempPosts.sort(function (a, b) { return a.createdTime < b.createdTime });
+            tempPosts.sort(function (a, b) { return moment(a.createdTime, "MMMM Do, YYYY hh:mm:ss A") < moment(b.createdTime, "MMMM Do, YYYY hh:mm:ss A") });
             setPosts(tempPosts);
         });
     } else {

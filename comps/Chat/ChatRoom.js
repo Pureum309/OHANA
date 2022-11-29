@@ -8,6 +8,8 @@ import user2 from '../../assets/user2.jpg'
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
+import { loginUserRole } from "../Login/Login"
+
 //DATABASE for FIRBASE
 import { loginUser } from "../Login/Login";
 import { db } from '../../firebase/firebase';
@@ -15,8 +17,17 @@ import { doc, onSnapshot, collection, query, where, setDoc } from "firebase/fire
 import { NavigationContainer } from "@react-navigation/native";
 
 const iconSize = 24
+
 const lightBlue = "#00A0C3"
-const iconSecColor = "#126B8A"
+const careColor = "#DDE2E5"
+const darkBlue = "#126B8A"
+
+let backColor = lightBlue
+let phoneColor = lightBlue
+let videoColor = lightBlue
+let headerColor = "#E6F7F9"
+let textColor = darkBlue
+let cgOpacity = 0.85
 
 const ChatRoom = ({ route, navigation }) => {
     const { userId, roomName, pic } = route.params;
@@ -24,12 +35,27 @@ const ChatRoom = ({ route, navigation }) => {
     const [chats, setChats] = useState(null);
     const [message, setMesage] = useState("");
 
+    if (loginUserRole == 1) {
+        backColor
+        phoneColor
+        videoColor
+        headerColor
+        textColor
+    } else if (loginUserRole == 2) {
+        backColor = careColor
+        phoneColor = careColor
+        videoColor = careColor
+        headerColor = darkBlue
+        textColor = careColor
+        cgOpacity
+    }
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "Test",
             headerBackTitleVisible: false,
             headerTitleAlign: "left",
-            headerStyle: { height: 150, backgroundColor: "#CFE0E2" },
+            headerStyle: { height: 150, backgroundColor: headerColor, opacity: cgOpacity },
             headerTitle: () => (
                 <View style={{
                     flexDirection: "row",
@@ -39,7 +65,7 @@ const ChatRoom = ({ route, navigation }) => {
                         rounded
                         source={{ uri: pic }}
                     />
-                    <Text style={{ color: "#126B8A", fontWeight: "700", fontSize: 20, marginLeft: 10 }}>{roomName}</Text>
+                    <Text style={{ color: textColor, fontWeight: "700", fontSize: 20, marginLeft: 10 }}>{roomName}</Text>
                 </View>
             ),
             headerLeft: () => (
@@ -50,7 +76,7 @@ const ChatRoom = ({ route, navigation }) => {
                     <IonicIcon
                         name="arrow-back-outline"
                         size="30"
-                        color={lightBlue}
+                        color={backColor}
                     />
                 </TouchableOpacity>
             ),
@@ -67,14 +93,14 @@ const ChatRoom = ({ route, navigation }) => {
                         <IonicIcon
                             name="call"
                             size="24"
-                            color={lightBlue}
+                            color={phoneColor}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <IonicIcon
                             name="videocam"
                             size="24"
-                            color={lightBlue}
+                            color={videoColor}
                         />
                     </TouchableOpacity>
                 </View>
@@ -97,7 +123,7 @@ const ChatRoom = ({ route, navigation }) => {
             snapshot.forEach((doc) => {
                 tempChat.push({ docId: doc.id, ...doc.data() });
             });
-            tempChat.sort(function (a, b) { return a.datetime > b.datetime });
+            tempChat.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm A") > moment(b.datetime, "MMMM Do, YYYY hh:mm A") });
             setChats(tempChat);
         });
     }
@@ -158,7 +184,7 @@ const ChatRoom = ({ route, navigation }) => {
                             onChangeText={setMesage}
                         />
                         <TouchableOpacity onPress={sendMessage} activeOpacity={0.5} style={styles.acceptCont} >
-                            <IonicIcon name="send" size={iconSize} color={iconSecColor} />
+                            <IonicIcon name="send" size={iconSize} color={darkBlue} />
                         </TouchableOpacity >
                     </View >
                 </>

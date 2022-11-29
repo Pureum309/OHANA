@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
-import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native'
+import { Dimensions } from 'react-native'
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
@@ -39,6 +39,7 @@ const fullScreenWidth = Dimensions.get('window').width;
 let headerColor = "#E6F7F9"
 let careHeader = "#126B8A"
 let cgColor = "#DDE2E5"
+let cgOpacity = 0.85
 
 const Stack = createStackNavigator()
 
@@ -98,6 +99,7 @@ function NetworkStackScreen() {
                 headerStyle: {
                     backgroundColor: headerColor,
                     height: 150,
+                    opacity: cgOpacity
                 },
                 headerTitleStyle: {
                     fontSize: 36,
@@ -186,6 +188,7 @@ function ChatStackScreen() {
         cgColor = "black"
     } else if (loginUserRole == 2) {
         headerColor = "#126B8A"
+        cgOpacity
     }
 
     return (
@@ -194,6 +197,7 @@ function ChatStackScreen() {
                 headerStyle: {
                     backgroundColor: headerColor,
                     height: 150,
+                    opacity: cgOpacity
                 },
                 headerTitleStyle: {
                     fontSize: 36,
@@ -219,6 +223,7 @@ function CGHomeStackScreen() {
                 headerStyle: {
                     backgroundColor: careHeader,
                     height: 150,
+                    opacity: 0.85,
                 },
                 headerTitleStyle: {
                     fontSize: 36,
@@ -242,6 +247,7 @@ function AlertStackScreen() {
                 headerStyle: {
                     backgroundColor: careHeader,
                     height: 150,
+                    opacity: 0.85,
                 },
                 headerTitleStyle: {
                     fontSize: 36,
@@ -267,6 +273,7 @@ function CaregiverProfileStackScreen() {
                 headerStyle: {
                     backgroundColor: careHeader,
                     height: 150,
+                    opacity: 0.85,
                 },
                 headerTitleStyle: {
                     fontSize: 36,

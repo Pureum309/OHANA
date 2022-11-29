@@ -3,6 +3,10 @@ import { StyleSheet, Text, View, StatusBar, ScrollView, SafeAreaView, Dimensions
 import Network from "../comps/Network";
 import { AntDesign } from '@expo/vector-icons';
 
+import { loginUserRole } from "../comps/Login/Login";
+
+let logo = require('../assets/logoicon.png')
+let iconColor = "black"
 
 const NetworkView = ({ navigation }) => {
     const pressChat = () => {
@@ -13,6 +17,14 @@ const NetworkView = ({ navigation }) => {
     const pressHome = () => {
         console.log("!!!");
         navigation.navigate('Home');
+    }
+
+    if (loginUserRole == 1) {
+        logo
+        iconColor
+    } else if (loginUserRole == 2) {
+        logo = require('../assets/logocaregiver.png')
+        iconColor = "#DDE2E5"
     }
 
     useLayoutEffect(() => {
@@ -29,7 +41,7 @@ const NetworkView = ({ navigation }) => {
                             width: 40,
                             resizeMode: 'contain',
                         }}
-                        source={require('../assets/logoicon.png')} />
+                        source={logo} />
                 </TouchableOpacity>
             ),
             headerRight: () => (
@@ -37,7 +49,7 @@ const NetworkView = ({ navigation }) => {
                     style={{ marginRight: 30 }}
                     onPress={pressChat}
                 >
-                    <AntDesign name="message1" size={24} color="black"
+                    <AntDesign name="message1" size={24} color={iconColor}
                     />
                 </TouchableOpacity>
             )
