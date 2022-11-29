@@ -48,7 +48,7 @@ const CGHomeScreen = ({ navigation }) => {
                             width: 40,
                             resizeMode: 'contain',
                         }}
-                        source={require('../assets/logoicon.png')} />
+                        source={require('../assets/logocaregiver.png')} />
                 </TouchableOpacity>
             ),
             headerRight: () => (
@@ -56,7 +56,7 @@ const CGHomeScreen = ({ navigation }) => {
                     style={{ marginRight: 30 }}
                     onPress={pressChat}
                 >
-                    <AntDesign name="message1" size={24} color="black"
+                    <AntDesign name="message1" size={24} color="#DDE2E5"
                     />
                 </TouchableOpacity>
             )

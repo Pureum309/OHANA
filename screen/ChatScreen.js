@@ -9,6 +9,11 @@ import { PropsService } from "@ui-kitten/components/devsupport";
 import ChatRoom from "../comps/Chat/ChatRoom";
 import { AntDesign } from '@expo/vector-icons';
 
+import { loginUserRole } from "../comps/Login/Login";
+
+let logo = require('../assets/logoicon.png')
+let iconColor = "black"
+
 const ChatScreen = ({ navigation }) => {
     const pressChat = () => {
         console.log("test");
@@ -18,6 +23,14 @@ const ChatScreen = ({ navigation }) => {
     const pressHome = () => {
         console.log("!!!");
         navigation.navigate('Home');
+    }
+
+    if (loginUserRole == 1) {
+        logo
+        iconColor
+    } else if (loginUserRole == 2) {
+        logo = require('../assets/logocaregiver.png')
+        iconColor = "#DDE2E5"
     }
 
     useLayoutEffect(() => {
@@ -34,7 +47,7 @@ const ChatScreen = ({ navigation }) => {
                             width: 40,
                             resizeMode: 'contain',
                         }}
-                        source={require('../assets/logoicon.png')} />
+                        source={logo} />
                 </TouchableOpacity>
             ),
             headerRight: () => (
@@ -42,7 +55,7 @@ const ChatScreen = ({ navigation }) => {
                     style={{ marginRight: 30 }}
                     onPress={pressChat}
                 >
-                    <AntDesign name="message1" size={24} color="black"
+                    <AntDesign name="message1" size={24} color={iconColor}
                     />
                 </TouchableOpacity>
             )

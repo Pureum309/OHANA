@@ -56,7 +56,7 @@ function NewTab({ navigation }) {
             snapshot.forEach((doc) => {
                 tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            tempPosts.sort(function (a, b) { return a.createdTime < b.createdTime });
+            tempPosts.sort(function (a, b) { return moment(a.createdTime, "MMMM Do, YYYY hh:mm:ss A") < moment(b.createdTime, "MMMM Do, YYYY hh:mm:ss A") });
             setPosts(tempPosts);
         });
     }
@@ -125,7 +125,7 @@ function InProgressTab({ navigation }) {
             snapshot.forEach((doc) => {
                 tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            tempPosts.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm A") < moment(b.datetime, "MMMM Do, YYYY hh:mm A") });
             setPosts(tempPosts);
         });
     }
@@ -194,7 +194,7 @@ function AcceptedTab({ navigation }) {
             snapshot.forEach((doc) => {
                 tempPosts.push({ docId: doc.id, ...doc.data() });
             });
-            tempPosts.sort(function (a, b) { return a.datetime < b.datetime });
+            tempPosts.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm A") < moment(b.datetime, "MMMM Do, YYYY hh:mm A") });
             setPosts(tempPosts);
         });
     }
@@ -241,7 +241,7 @@ function HomeLowerTabs() {
                 component={InProgressTab}
             />
             <Tab.Screen
-                name="Accepted"
+                name="Completed"
                 component={AcceptedTab}
             />
         </Tab.Navigator>
