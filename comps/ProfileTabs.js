@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { useState } from "react";
-import { Text, View, Modal, StyleSheet, Alert, Pressable, Button } from 'react-native';
+import { Text, View, Modal, StyleSheet, Alert, Pressable, Button, TouchableOpacity } from 'react-native';
 import { List } from 'react-native-paper';
 
 //Firebase imports
@@ -45,37 +45,44 @@ function SettingsScreen({ navigation }) {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <List.Section style={styles.listSection}>
-                <List.Accordion
-                    title="Edit Profile"
-                    left={props => <List.Icon {...props} icon="account" />}>
-                    <List.Item title="First item" />
-                    <List.Item title="Second item" />
-                </List.Accordion>
-                <List.Accordion
-                    title="Settings"
-                    left={props => <List.Icon {...props} icon="cog" />}>
-                    <List.Item title="First item" />
-                    <List.Item title="Second item" />
-                </List.Accordion>
-                <List.Accordion
-                    title="Invite to network"
-                    left={props => <List.Icon {...props} icon="account-multiple-outline" />}>
-                    <List.Item title="First item" />
-                    <List.Item title="Second item" />
-                </List.Accordion>
-                <List.Accordion
-                    title="Help"
-                    left={props => <List.Icon {...props} icon="help-circle-outline" />}>
-                    <List.Item title="First item" />
-                    <List.Item title="Second item" />
-                </List.Accordion>
-                <List.Item
-                    icon="logout"
-                    title="Sign out"
-                    onPress={handleModal}
-                />
+                <TouchableOpacity>
+                    <List.Item
+                        title="Edit Profile"
+                        left={(props) => <List.Icon {...props} icon='account' />}
+                        right={(props) => <List.Icon {...props} icon='chevron-right' />}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <List.Item
+                        title="Settings"
+                        left={(props) => <List.Icon {...props} icon='cog' />}
+                        right={(props) => <List.Icon {...props} icon='chevron-right' />}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <List.Item
+                        title="Invite to network"
+                        left={(props) => <List.Icon {...props} icon='account-multiple-outline' />}
+                        right={(props) => <List.Icon {...props} icon='chevron-right' />}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <List.Item
+                        title="Help"
+                        left={(props) => <List.Icon {...props} icon='help-circle-outline' />}
+                        right={(props) => <List.Icon {...props} icon='chevron-right' />}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <List.Item
+                        title="Sign out"
+                        left={(props) => <List.Icon {...props} icon='logout' />}
+                        right={(props) => <List.Icon {...props} icon='chevron-right' />}
+                        onPress={handleModal}
+                    />
+                </TouchableOpacity>
             </List.Section>
 
             <Modal visible={isModalVisible}>
@@ -102,7 +109,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function ProfileLowerTabs() {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator sceneContainerStyle={{ backgroundColor: '#fff' }}>
             <Tab.Screen name="Summary" component={HomeScreen} />
             <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>
@@ -112,6 +119,9 @@ function ProfileLowerTabs() {
 export default ProfileLowerTabs;
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: "20%",
+    },
     listSection: {
         margin: 20,
         borderRadius: 20,
