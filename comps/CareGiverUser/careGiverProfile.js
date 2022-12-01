@@ -17,7 +17,8 @@ export default function CareGiverProfile({
     const [user, setUser] = useState({});
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf'),
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {
@@ -36,6 +37,7 @@ export default function CareGiverProfile({
 
     return (
         <View style={styles.container}>
+            <Text style={styles.profileStyle}>Caregiver</Text>
             <Image style={styles.imageStyle} source={{ uri: user.pic }} />
             <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
             <Text style={styles.locationStyle}>{user.location}</Text>
@@ -71,5 +73,10 @@ const styles = StyleSheet.create({
     bioStyle: {
         margin: 10,
         fontFamily: 'Nunito',
+    },
+    profileStyle: {
+        fontFamily: 'Rubik',
+        fontSize: 32,
+        color: "#2D2D2A",
     }
 })

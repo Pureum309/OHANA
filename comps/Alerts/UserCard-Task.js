@@ -16,10 +16,10 @@ import { db } from '../../firebase/firebase';
 import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 
 let lastLength = 0;
-let lastPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0 };
-let curPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0 };
+let lastPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0, pic: "", userName: "", userId: "" };
+let curPost = { id: "", category: "", datetime: "", location: "", detail: "", counter: 0, pic: "", userName: "", userId: "" };
 
-const UserCardTask = () => {
+const UserCardTask = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [cardModalVisible, setCardModalVisible] = useState(false);
@@ -65,6 +65,8 @@ const UserCardTask = () => {
             lastPost.detail = detail;
             lastPost.counter = posts[0].counter;
             lastPost.pic = posts[0].pic;
+            lastPost.userName = posts[0].userName;
+            lastPost.userId = posts[0].userId;
             setModalVisible(true);
         }
 
@@ -84,6 +86,8 @@ const UserCardTask = () => {
         curPost.detail = detail;
         curPost.counter = post.counter;
         curPost.pic = post.pic;
+        curPost.userName = post.userName;
+        curPost.userId = post.userId;
         setCardModalVisible(true);
     }
 
@@ -118,6 +122,9 @@ const UserCardTask = () => {
                             counter={lastPost.counter}
                             pic={lastPost.pic}
                             onPress={lastAcceptClick}
+                            navigation={navigation}
+                            userName={lastPost.userName}
+                            userId={lastPost.userId}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.closeButton}>
@@ -148,6 +155,9 @@ const UserCardTask = () => {
                             counter={curPost.counter}
                             pic={curPost.pic}
                             onPress={curAcceptClick}
+                            navigation={navigation}
+                            userName={curPost.userName}
+                            userId={curPost.userId}
                         />
                         <View style={styles.buttonCont}>
                             <TouchableOpacity onPress={() => setCardModalVisible(!cardModalVisible)} style={styles.closeButton}>
