@@ -47,7 +47,9 @@ const AlertScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <AlertList />
+            <AlertList
+                navigation={navigation}
+            />
         </View>
     )
 }

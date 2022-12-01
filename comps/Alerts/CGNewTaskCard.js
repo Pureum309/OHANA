@@ -25,6 +25,9 @@ const CGNewTaskCard = ({
     counter = 0,
     pic = "https://firebasestorage.googleapis.com/v0/b/ohana-db-18be1.appspot.com/o/userPlaceholder.png?alt=media&token=f4a5d66c-88bf-4015-9247-def23ba809a9",
     onPress,
+    navigation,
+    userName,
+    userId
 }) => {
 
     //For FONT USAGE
@@ -50,6 +53,13 @@ const CGNewTaskCard = ({
         let postDocSnap = await getDoc(doc(db, 'posts', id));
         await setDoc(doc(db, "posts", id), { ...postDocSnap.data(), progress: 1 });
     }
+
+    const onPressChat = (userId, userName, pic) => {
+        onPress();
+        navigation.navigate('ChatRoom', { userId: userId, roomName: userName, pic: pic });
+        //navigate to Chatroom;
+    }
+
 
     return (
         <View style={styles.cardPadding} onLayout={onLayoutRootView}>
@@ -85,7 +95,7 @@ const CGNewTaskCard = ({
                 </View>
                 <View style={styles.borderWidth} />
                 <View style={styles.bottomCont}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => onPressChat(userId, userName, pic)}>
                         <View style={styles.commentCont}>
                             <AntDesign name="message1" size={iconSize} color={iconFirColor} />
                             <Text style={styles.commetStyle}>Chat</Text>

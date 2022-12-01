@@ -64,24 +64,27 @@ function NewTab({ navigation }) {
 
     return (
         <PaperProvider key={key}>
-            <View style={styles.container} onLayout={onLayoutRootView}>
-                {posts != null &&
-                    posts.map((post) => {
-                        return (
-                            <TouchableOpacity >
-                                <CGPostCard
-                                    id={post.docId}
-                                    progress={post.progress}
-                                    category={post.category}
-                                    tasks={post.tasks}
-                                    userName={post.userName}
-                                    pic={post.pic}
-                                />
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-            </View>
+            <ScrollView>
+                <View style={styles.container} onLayout={onLayoutRootView}>
+                    {posts != null &&
+                        posts.map((post) => {
+                            return (
+                                <TouchableOpacity >
+                                    <CGPostCard
+                                        id={post.docId}
+                                        progress={post.progress}
+                                        category={post.category}
+                                        tasks={post.tasks}
+                                        userName={post.userName}
+                                        pic={post.pic}
+                                        createTime={moment(post.createdTime, "MMMM Do, YYYY hh:mm:ss A").fromNow()}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
+            </ScrollView>
         </PaperProvider>
     );
 }
@@ -132,23 +135,27 @@ function InProgressTab({ navigation }) {
 
     return (
         <PaperProvider key={key}>
-            <View style={styles.container} onLayout={onLayoutRootView}>
-                {posts != null &&
-                    posts.map((post) => {
-                        return (
-                            <TouchableOpacity >
-                                <CGPostCard
-                                    id={post.docId}
-                                    progress={post.progress}
-                                    category={post.category}
-                                    tasks={post.tasks}
-                                    userName={post.userName}
-                                />
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-            </View>
+            <ScrollView>
+                <View style={styles.container} onLayout={onLayoutRootView}>
+                    {posts != null &&
+                        posts.map((post) => {
+                            return (
+                                <TouchableOpacity >
+                                    <CGPostCard
+                                        id={post.docId}
+                                        progress={post.progress}
+                                        category={post.category}
+                                        tasks={post.tasks}
+                                        userName={post.userName}
+                                        pic={post.pic}
+                                        createTime={moment(post.createdTime, "MMMM Do, YYYY").subtract(3, 'days').calendar()}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
+            </ScrollView>
         </PaperProvider>
     );
 }
@@ -199,23 +206,27 @@ function AcceptedTab({ navigation }) {
 
     return (
         <PaperProvider key={key}>
-            <View style={styles.container} onLayout={onLayoutRootView}>
-                {posts != null &&
-                    posts.map((post) => {
-                        return (
-                            <TouchableOpacity >
-                                <CGPostCard
-                                    id={post.docId}
-                                    progress={post.progress}
-                                    category={post.category}
-                                    tasks={post.tasks}
-                                    userName={post.userName}
-                                />
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-            </View>
+            <ScrollView>
+                <View style={styles.container} onLayout={onLayoutRootView}>
+                    {posts != null &&
+                        posts.map((post) => {
+                            return (
+                                <TouchableOpacity >
+                                    <CGPostCard
+                                        id={post.docId}
+                                        progress={post.progress}
+                                        category={post.category}
+                                        tasks={post.tasks}
+                                        userName={post.userName}
+                                        pic={post.pic}
+                                        createTime={moment(post.createdTime, "MMMM Do, YYYY").format("MMM Do YYYY")}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
+            </ScrollView>
         </PaperProvider>
     );
 }
@@ -224,25 +235,23 @@ const Tab = createMaterialTopTabNavigator();
 
 function CGHomeLowerTabs() {
     return (
-        <ScrollView>
-            <Tab.Navigator
-                sceneContainerStyle={{ backgroundColor: '#fff' }}
-                style={styles.container}
-            >
-                <Tab.Screen
-                    name="New"
-                    component={NewTab}
-                />
-                <Tab.Screen
-                    name="In Progress"
-                    component={InProgressTab}
-                />
-                <Tab.Screen
-                    name="Completed"
-                    component={AcceptedTab}
-                />
-            </Tab.Navigator>
-        </ScrollView>
+        <Tab.Navigator
+            sceneContainerStyle={{ backgroundColor: '#fff' }}
+            style={styles.container}
+        >
+            <Tab.Screen
+                name="New"
+                component={NewTab}
+            />
+            <Tab.Screen
+                name="In Progress"
+                component={InProgressTab}
+            />
+            <Tab.Screen
+                name="Completed"
+                component={AcceptedTab}
+            />
+        </Tab.Navigator>
     );
 }
 

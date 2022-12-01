@@ -4,11 +4,13 @@ import UserCardTask from "./UserCard-Task";
 import UserCardMessage from "./UserCard-Message";
 import UserCardNetwork from "./UserCard-Network";
 
-const Alerts = () => {
+const Alerts = ({ navigation }) => {
     return (
         <ScrollView>
             <View>
-                <UserCardTask />
+                <UserCardTask
+                    navigation={navigation}
+                />
             </View>
         </ScrollView>
     )

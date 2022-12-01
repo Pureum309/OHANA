@@ -22,7 +22,8 @@ const CGPostCard = ({
     category = "Sample",
     tasks = "Lorem ipsum",
     progress = 0,
-    pic = "https://firebasestorage.googleapis.com/v0/b/ohana-db-18be1.appspot.com/o/userPlaceholder.png?alt=media&token=f4a5d66c-88bf-4015-9247-def23ba809a9"
+    pic = "https://firebasestorage.googleapis.com/v0/b/ohana-db-18be1.appspot.com/o/userPlaceholder.png?alt=media&token=f4a5d66c-88bf-4015-9247-def23ba809a9",
+    createTime = "Just Now"
 }) => {
 
     const [users, setUsers] = useState({});
@@ -71,7 +72,10 @@ const CGPostCard = ({
                     <Image style={styles.imageStyle} source={{ uri: pic }} />
                     <View >
                         <Text style={styles.nameStyle}>{userName}</Text>
-                        <Text style={styles.statusStyle}>Just Now</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={[styles.statusStyle, { paddingRight: 7, color: '#ACB5BD' }]}>Posted:</Text>
+                            <Text style={[styles.statusStyle, { color: '#ACB5BD' }]}>{createTime}</Text>
+                        </View>
                     </View>
                 </View>
                 <View>
