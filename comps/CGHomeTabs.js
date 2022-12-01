@@ -219,7 +219,7 @@ function AcceptedTab({ navigation }) {
                                         tasks={post.tasks}
                                         userName={post.userName}
                                         pic={post.pic}
-                                        createTime={moment(post.createdTime, "MMMM Do, YYYY hh:mm A").subtract(3, 'days').calendar()}
+                                        createTime={moment(post.createdTime, "MMMM Do, YYYY").format("MMM Do YYYY")}
                                     />
                                 </TouchableOpacity>
                             )

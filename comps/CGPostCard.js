@@ -72,7 +72,10 @@ const CGPostCard = ({
                     <Image style={styles.imageStyle} source={{ uri: pic }} />
                     <View >
                         <Text style={styles.nameStyle}>{userName}</Text>
-                        <Text style={styles.statusStyle}>{createTime}</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={[styles.statusStyle, { paddingRight: 7, color: '#ACB5BD' }]}>Posted:</Text>
+                            <Text style={[styles.statusStyle, { color: '#ACB5BD' }]}>{createTime}</Text>
+                        </View>
                     </View>
                 </View>
                 <View>
