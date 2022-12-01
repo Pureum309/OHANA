@@ -102,17 +102,15 @@ const CGHomeScreen = ({ navigation }) => {
     }
 
     return (
-        <PaperProvider key={key}>
-            <SafeAreaView>
-                <ScrollView>
-                    <View style={styles.container} onLayout={onLayoutRootView}>
-                        <Text style={[styles.textStyle, { paddingTop: 10, }]}>Welcome, {firstName}</Text>
-                        <Text style={styles.textStyle}>who are you going to help today?</Text>
-                        <CGHomeLowerTabs />
-                    </View>
-                </ScrollView>
-            </SafeAreaView>
-        </PaperProvider>
+        <SafeAreaView>
+            <ScrollView>
+                <View style={styles.container} onLayout={onLayoutRootView}>
+                    <Text style={[styles.textStyle, { paddingTop: 10, }]}>Welcome, {firstName}</Text>
+                    <Text style={styles.textStyle}>who are you going to help today?</Text>
+                    <CGHomeLowerTabs />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

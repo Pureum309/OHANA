@@ -118,4 +118,7 @@ Ohana is an app that creates a network for people with accessibility issues to h
 ###Nov 30
 - Polishing app
 - implementing custom pin for the map
+- implemented onPress functions in caregiver post card chat button lead to chat room
+- Change database that created time "just now" connected hard coded
+- Changed caregiver sides sentences
 
