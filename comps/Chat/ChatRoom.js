@@ -156,6 +156,18 @@ const ChatRoom = ({ route, navigation }) => {
                                                 size={30}
                                                 source={user1}
                                             /> */}
+                                            <View style={{
+                                                position: "absolute",
+                                                bottom: "-70%",
+                                                left: "3%",
+                                            }}>
+                                                <Text
+                                                    style={{
+                                                        fontSize: 10,
+
+                                                    }}
+                                                >{moment().format('LT')}</Text>
+                                            </View>
                                             <Text style={styles.recieverTxt}>{chat.message}</Text>
                                         </View>
                                     )
@@ -170,6 +182,18 @@ const ChatRoom = ({ route, navigation }) => {
                                                 size={30}
                                                 source={user2}
                                             /> */}
+                                            <View style={{
+                                                position: "absolute",
+                                                bottom: "-70%",
+                                                right: "3%",
+                                            }}>
+                                                <Text
+                                                    style={{
+                                                        fontSize: 10,
+
+                                                    }}
+                                                >{moment().format('LT')}</Text>
+                                            </View>
                                             <Text style={styles.sendTxt}>{chat.message}</Text>
                                         </View>
                                     )
