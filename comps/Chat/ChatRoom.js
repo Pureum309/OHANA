@@ -131,6 +131,7 @@ const ChatRoom = ({ route, navigation }) => {
     const sendMessage = async () => {
         const chatRef = doc(collection(db, 'chatHistory'));
         await setDoc(chatRef, { from: loginUser.user.uid, to: userId, datetime: moment().format("MMMM Do, YYYY hh:mm A"), message: message, roomId: roomId });
+        setMesage("")
     }
 
     return (
@@ -205,7 +206,8 @@ const ChatRoom = ({ route, navigation }) => {
                         <TextInput
                             style={styles.textInput}
                             placeholder={'Write message'}
-                            onChangeText={setMesage}
+                            value={message}
+                            onChangeText={(value) => setMesage(value)}
                         />
                         <TouchableOpacity onPress={sendMessage} activeOpacity={0.5} style={styles.acceptCont} >
                             <IonicIcon name="send" size={iconSize} color={darkBlue} />
