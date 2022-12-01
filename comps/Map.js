@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 // imports for map and map functions 
 import MapView, { Marker, Callout } from 'react-native-maps';
 
 // test stylings
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
+
+import CustomMarker from "./CustomMarker";
 
 
 export default function Map() {
@@ -15,41 +17,35 @@ export default function Map() {
             {/* our map */}
             <MapView
                 initialRegion={{
-                    latitude: 49.246292,
-                    longitude: -123.116226,
+                    latitude: 49.248499,
+                    longitude: -123.001375,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}
                 showsUserLocation={true}
                 style={styles.map}
                 provider="google"
+                maxZoomLevel={50}
             >
                 {/* ****Test Markers**** */}
-                <Marker
+                {/* <Marker
                     coordinate={{
                         latitude: 49.251014,
                         longitude: -123.003636
                     }}
-                    pinColor='green'
+                    pinColor="red"
                 >
-                    {/* Tappable call out for the pin */}
                     <Callout>
                         <Text>BCIT</Text>
                     </Callout>
-                </Marker>
+                </Marker> */}
 
-                <Marker
+                <CustomMarker
                     coordinate={{
-                        latitude: 49.265746,
-                        longitude: -123.249492
+                        latitude: 49.251014,
+                        longitude: -123.003636
                     }}
-                    pinColor='green'
-                >
-                    <Callout>
-                        <Text>UBC</Text>
-                    </Callout>
-                </Marker>
-
+                />
             </MapView>
         </View>
 

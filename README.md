@@ -114,3 +114,8 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - user grab every post that user made
 - caregiver grab every posts that care giver accept
 - Implement reward card
+
+###Nov 30
+- Polishing app
+- implementing custom pin for the map
+
