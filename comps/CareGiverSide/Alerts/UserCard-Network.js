@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
-import UserCard from "../Network_User/UserCard";
+import UserCard from "../../Network_User/UserCard";
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';
@@ -12,8 +12,8 @@ const UserCardNetwork = ({ navigation }) => {
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+        'Rubik': require('../../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../../assets/fonts/Nunito-Regular.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {
@@ -33,7 +33,7 @@ const UserCardNetwork = ({ navigation }) => {
     return (
         <View onLayout={onLayoutRootView}>
             <TouchableOpacity onPress={() => setShow(true)}>
-                <UserCard name="Angela Verena" task="Would like to join your network." pic={require("../../assets/user2.jpg")} />
+                <UserCard name="Angela Verena" task="Would like to join your network." pic={require("../../../assets/user2.jpg")} />
             </TouchableOpacity>
             {
                 show ?

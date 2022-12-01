@@ -21,7 +21,7 @@ import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 
 import PostActivityCard from "../comps/PostActivityCard";
 import { loginUserRole } from "./Login/Login";
-import RewardCard from './Reward';
+import RewardCard from '../comps/CareGiverSide/Reward';
 
 function Summary({ navigation }) {
     const [key, setKey] = useState(0);

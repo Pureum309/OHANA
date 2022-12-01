@@ -5,7 +5,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import moment from "moment";
 import { AntDesign } from '@expo/vector-icons';
 
-import CGHomeLowerTabs from "../comps/CGHomeTabs";
+import CGHomeLowerTabs from "../comps/CareGiverSide/CGHomeTabs";
 
 //for FONT USAGE
 import { useFonts } from 'expo-font';

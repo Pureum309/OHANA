@@ -8,7 +8,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 //DATABASE for FIRESTORE
-import { db } from '../firebase/firebase';
+import { db } from '../../firebase/firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const iconSize = 20
@@ -29,9 +29,9 @@ const CGPostCard = ({
     const [users, setUsers] = useState({});
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../assets/fonts/Nunito-Regular.ttf'),
-        'Nunito-bold': require('../assets/fonts/Nunito-Bold.ttf')
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-bold': require('../../assets/fonts/Nunito-Bold.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {

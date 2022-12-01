@@ -1,10 +1,9 @@
 import React, { useLayoutEffect } from "react";
 import { View, Text, Dimensions, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
-import { caregiver_info } from '../comps/CareGiverUser/careGiverInfo'
+import { caregiver_info } from '../comps/CareGiverSide/CareGiverUser/careGiverInfo'
 import ProfileLowerTabs from "../comps/ProfileTabs";
 
-import Header from "../comps/Header";
-import CareGiverProfile from '../comps/CareGiverUser/careGiverProfile'
+import CareGiverProfile from '../comps/CareGiverSide/CareGiverUser/careGiverProfile'
 
 import { AntDesign } from '@expo/vector-icons';
 

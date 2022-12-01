@@ -4,8 +4,6 @@ import { Text, View, TouchableOpacity, SafeAreaView, ScrollView, Dimensions, Sty
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import PostActivityCard from "../comps/PostActivityCard";
-
 import moment from "moment";
 
 //for FONT USAGE
@@ -13,9 +11,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 //DATABASE for FIRESTORE
-import { loginUser } from "../comps/Login/Login";
-import { db } from '../firebase/firebase';
-import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
+import { db } from '../../firebase/firebase';
+import { onSnapshot, collection, query, where } from "firebase/firestore";
 import CGPostCard from './CGPostCard';
 
 function NewTab({ navigation }) {
@@ -31,8 +28,8 @@ function NewTab({ navigation }) {
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {
@@ -102,8 +99,8 @@ function InProgressTab({ navigation }) {
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {
@@ -173,8 +170,8 @@ function AcceptedTab({ navigation }) {
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../assets/fonts/Nunito-Regular.ttf')
+        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {

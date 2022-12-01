@@ -7,9 +7,9 @@ import * as SplashScreen from 'expo-splash-screen';
 export default function RewardCard() {
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf'),
-        'Nunito-bold': require('../../assets/fonts/Nunito-Bold.ttf')
+        'Rubik': require('../../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-bold': require('../../../assets/fonts/Nunito-Bold.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {
@@ -26,7 +26,7 @@ export default function RewardCard() {
         <View style={[styles.container, { borderColor: "#126B8A" }]} onLayout={onLayoutRootView}>
             <View style={styles.display}>
                 <View style={styles.imgCont}>
-                    <Image style={styles.imgStyle} source={require('../../assets/reward.png')} />
+                    <Image style={styles.imgStyle} source={require('../../../assets/reward.png')} />
                 </View>
                 <View style={styles.textCont}>
                     <View>

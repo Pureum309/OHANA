@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { TouchableOpacity, Alert, Modal, Text, View, StyleSheet, ScrollView } from "react-native";
 import moment from "moment";
 
-import UserCard from "../Network_User/UserCard";
+import UserCard from "../../Network_User/UserCard";
 import CGNewTaskCard from "./CGNewTaskCard";
 
 
@@ -11,8 +11,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 //DATABASE for FIRESTORE
-import { loginUser } from "../Login/Login";
-import { db } from '../../firebase/firebase';
+import { db } from '../../../firebase/firebase';
 import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
 
 let lastLength = 0;
@@ -27,8 +26,8 @@ const UserCardTask = ({ navigation }) => {
 
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf'),
-        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
+        'Rubik': require('../../../assets/fonts/Rubik-Bold.ttf'),
+        'Nunito': require('../../../assets/fonts/Nunito-Regular.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
-import AlertList from '../comps/Alerts/AlertList.js'
+import AlertList from '../comps/CareGiverSide/Alerts/AlertList'
 
 import { AntDesign } from '@expo/vector-icons';
 

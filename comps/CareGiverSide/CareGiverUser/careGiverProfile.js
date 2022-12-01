@@ -5,8 +5,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 //DATABASE for FIRBASE
-import { loginUser } from "../Login/Login";
-import { db } from '../../firebase/firebase';
+import { loginUser } from "../../Login/Login";
+import { db } from '../../../firebase/firebase';
 import { doc, onSnapshot } from "firebase/firestore";
 
 export default function CareGiverProfile({
@@ -17,8 +17,8 @@ export default function CareGiverProfile({
     const [user, setUser] = useState({});
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
-        'Nunito': require('../../assets/fonts/Nunito-Regular.ttf'),
-        'Rubik': require('../../assets/fonts/Rubik-Bold.ttf')
+        'Nunito': require('../../../assets/fonts/Nunito-Regular.ttf'),
+        'Rubik': require('../../../assets/fonts/Rubik-Bold.ttf')
     });
 
     const onLayoutRootView = useCallback(async () => {

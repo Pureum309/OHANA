@@ -3,9 +3,6 @@ import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, SafeAreaVi
 import { Avatar } from "react-native-elements";
 import moment from 'moment';
 
-import user1 from '../../assets/user1.jpg'
-import user2 from '../../assets/user2.jpg'
-
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 
 import { loginUserRole } from "../Login/Login"
@@ -131,6 +128,7 @@ const ChatRoom = ({ route, navigation }) => {
     const sendMessage = async () => {
         const chatRef = doc(collection(db, 'chatHistory'));
         await setDoc(chatRef, { from: loginUser.user.uid, to: userId, datetime: moment().format("MMMM Do, YYYY hh:mm A"), message: message, roomId: roomId });
+        setMesage("")
     }
 
     return (
@@ -147,8 +145,9 @@ const ChatRoom = ({ route, navigation }) => {
                             chats.map((chat) => {
                                 if (chat.from == userId) {
                                     return (
-                                        <View style={styles.reciever}>
-                                            {/* <Avatar
+                                        <>
+                                            <View style={styles.reciever}>
+                                                {/* <Avatar
                                                 position="absolute"
                                                 rounded
                                                 bottom={-15}
@@ -156,8 +155,22 @@ const ChatRoom = ({ route, navigation }) => {
                                                 size={30}
                                                 source={user1}
                                             /> */}
-                                            <Text style={styles.recieverTxt}>{chat.message}</Text>
-                                        </View>
+                                                <View style={{
+                                                    position: "absolute",
+                                                    bottom: "-70%",
+                                                    left: "3%",
+                                                }}>
+                                                    <Text
+                                                        style={{
+                                                            fontSize: 10,
+
+                                                        }}
+                                                    >{moment().format('LT')}</Text>
+                                                </View>
+                                                <Text style={styles.recieverTxt}>{chat.message}</Text>
+                                            </View>
+
+                                        </>
                                     )
                                 } else {
                                     return (
@@ -170,6 +183,18 @@ const ChatRoom = ({ route, navigation }) => {
                                                 size={30}
                                                 source={user2}
                                             /> */}
+                                            <View style={{
+                                                position: "absolute",
+                                                bottom: "-70%",
+                                                right: "3%",
+                                            }}>
+                                                <Text
+                                                    style={{
+                                                        fontSize: 10,
+
+                                                    }}
+                                                >{moment().format('LT')}</Text>
+                                            </View>
                                             <Text style={styles.sendTxt}>{chat.message}</Text>
                                         </View>
                                     )
@@ -181,7 +206,8 @@ const ChatRoom = ({ route, navigation }) => {
                         <TextInput
                             style={styles.textInput}
                             placeholder={'Write message'}
-                            onChangeText={setMesage}
+                            value={message}
+                            onChangeText={(value) => setMesage(value)}
                         />
                         <TouchableOpacity onPress={sendMessage} activeOpacity={0.5} style={styles.acceptCont} >
                             <IonicIcon name="send" size={iconSize} color={darkBlue} />
