@@ -121,4 +121,5 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - implemented onPress functions in caregiver post card chat button lead to chat room
 - Change database that created time "just now" connected hard coded
 - Changed caregiver sides sentences
+- implementing time on chat room, and clear the text input field after send a message
 
