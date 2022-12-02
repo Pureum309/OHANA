@@ -25,15 +25,15 @@ export default function CareGiverProfile({
         if (fontsLoaded) {
             await SplashScreen.hideAsync();
         }
+
+        const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+            setUser(doc.data());
+        });
     })
 
     if (!fontsLoaded) {
         return null;
     }
-
-    const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
-        setUser(doc.data());
-    });
 
     return (
         <View style={styles.container}>

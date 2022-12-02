@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 //for FONT USAGE
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const UserCard = ({ id = "", name = "", rel = "", pic = "", tasks = [] }) => {
     //For FONT USAGE
@@ -21,11 +20,6 @@ const UserCard = ({ id = "", name = "", rel = "", pic = "", tasks = [] }) => {
     if (!fontsLoaded) {
         return null;
     }
-
-    const storage = getStorage();
-    const userImgRef = ref(storage, 'images/user1.jpg');
-
-    getDownloadURL(userImgRef);
 
     return (
         <View style={styles.cardPadding} style={styles.cardMargin} onLayout={onLayoutRootView}>

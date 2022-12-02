@@ -123,14 +123,14 @@ const ChatRoom = ({ route, navigation }) => {
             snapshot.forEach((doc) => {
                 tempChat.push({ docId: doc.id, ...doc.data() });
             });
-            tempChat.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm A") > moment(b.datetime, "MMMM Do, YYYY hh:mm A") });
+            tempChat.sort(function (a, b) { return moment(a.datetime, "MMMM Do, YYYY hh:mm:ss A") > moment(b.datetime, "MMMM Do, YYYY hh:mm:ss A") });
             setChats(tempChat);
         });
     }
 
     const sendMessage = async () => {
         const chatRef = doc(collection(db, 'chatHistory'));
-        await setDoc(chatRef, { from: loginUser.user.uid, to: userId, datetime: moment().format("MMMM Do, YYYY hh:mm A"), message: message, roomId: roomId });
+        await setDoc(chatRef, { from: loginUser.user.uid, to: userId, datetime: moment().format("MMMM Do, YYYY hh:mm:ss A"), message: message, roomId: roomId });
         setMesage("")
     }
 
