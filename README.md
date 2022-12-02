@@ -122,3 +122,5 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Change database that created time "just now" connected hard coded
 - Changed caregiver sides sentences
 
+###Dec 12
+- Implementing microphone icon on post page TextInput
