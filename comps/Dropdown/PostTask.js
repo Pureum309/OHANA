@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, View, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 
 import TextCard from './TextCard';
 import IonicIcon from 'react-native-vector-icons/Ionicons'
+
+import { TextInput } from 'react-native-paper';
 
 import { setChosenText, removeChosenText } from '../DropMenuComp';
 
@@ -50,13 +52,30 @@ export default function PostTask() {
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 style={styles.writeTaskWrapper}
             >
-                <TextInput style={styles.input} placeholder={'Tap to share what are you up to?'} value={task} onChangeText={text => setTask(text)} />
-                <TouchableOpacity onPress={() => handleAddTask()}>
-                    <View style={styles.addWrapper}>
-                        {/* <Text style={styles.addText}>+</Text> */}
-                        <IonicIcon name="add-circle-outline" color="#00A0C3" size="30px" />
-                    </View>
-                </TouchableOpacity>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Tap to share what are you up to?"
+                    mode="outlined"
+                    theme={{
+                        colors: {
+                            primary: '#00ADC3', // Outline color here
+                        },
+                    }}
+                    left={<TextInput.Icon
+                        icon="microphone-outline"
+                        size={30}
+                        iconColor={"#00ADC3"}
+                    />}
+                    right={<TextInput.Icon
+                        icon="plus-circle-outline"
+                        size={30}
+                        iconColor={"#00ADC3"}
+                        onPress={() => handleAddTask()}
+                    />}
+
+                    value={task}
+                    onChangeText={text => setTask(text)}
+                />
             </KeyboardAvoidingView>
 
         </View>
@@ -68,51 +87,21 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF',
     },
-    tasksWrapper: {
-        // paddingTop: 80,
-        // paddingHorizontal: 20,
-    },
     sectionTitle: {
         fontSize: 24,
         fontWeight: 'bold'
     },
-    items: {
-        // marginTop: 30,
-    },
     writeTaskWrapper: {
-        // position: 'absolute',
-        // bottom: 60,
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-
-        // shadowColor: '#171717',
-        // shadowOffset: { width: 3, height: 4 },
-        // shadowOpacity: 0.2,
-        // shadowRadius: 3,
     },
     input: {
-        paddingVertical: 15,
-        paddingHorizontal: 15,
+        paddingVertical: 55,
         backgroundColor: '#FFF',
-        borderRadius: 16,
-        borderColor: '#2D2D2A',
-        borderWidth: 1,
-        width: 300,
-        height: 100,
+        width: 360,
     },
-    addWrapper: {
-        // width: 60,
-        // height: 60,
-        // backgroundColor: '#FFF',
-        // borderRadius: 60,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // borderColor: '#C0C0C0',
-        // borderWidth: 1,
-    },
-    addText: {},
     iconStyle: {
         padding: 10,
         margin: 5,

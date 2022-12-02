@@ -123,3 +123,5 @@ Ohana is an app that creates a network for people with accessibility issues to h
 - Changed caregiver sides sentences
 - implementing time on chat room, and clear the text input field after send a message
 
+###Dec 12
+- Implementing microphone icon on post page TextInput
