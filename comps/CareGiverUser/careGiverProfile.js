@@ -36,7 +36,7 @@ export default function CareGiverProfile({
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
             <Text style={styles.profileStyle}>Caregiver</Text>
             <Image style={styles.imageStyle} source={{ uri: user.pic }} />
             <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
