@@ -8,9 +8,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import { loginUser } from "../Login/Login";
 import { db } from '../../firebase/firebase';
 import { doc, onSnapshot } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 export default function UserProfile() {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({ pic: "" });
     //For FONT USAGE
     const [fontsLoaded] = useFonts({
         'Nunito': require('../../assets/fonts/Nunito-Regular.ttf')
@@ -20,19 +21,37 @@ export default function UserProfile() {
         if (fontsLoaded) {
             await SplashScreen.hideAsync();
         }
-    })
+
+        const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+            // const storage = getStorage();
+            // const picUrl = "";
+            // getDownloadURL(ref(storage, "user7.jpg"))
+            //     .then((url) => {
+            //         picUrl = url;
+            //     })
+            //     .catch((error) => {
+            //     });
+
+            var data = doc.data();
+            // data.pic = picUrl;
+
+            setUser(data);
+        });
+    });
 
     if (!fontsLoaded) {
         return null;
     }
-
-    const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
-        setUser(doc.data());
-    });
+    console.log(user.pic)
+    // const unsub = onSnapshot(doc(db, 'users', loginUser.user.uid), (doc) => {
+    //     setUser(doc.data());
+    // });
 
     return (
         <View style={styles.container} onLayout={onLayoutRootView}>
-            <Image style={styles.imageStyle} source={{ uri: user.pic }} />
+            {user.pic != "" &&
+                <Image style={styles.imageStyle} source={{ uri: user.pic }} />
+            }
             <Text style={styles.nameStyle}>{user.first} {user.last}</Text>
             <Text style={styles.locationStyle}>{user.location}</Text>
             <Text style={styles.bioStyle}>{user.bio}</Text>

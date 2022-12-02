@@ -66,6 +66,7 @@ const ChatList = ({ navigation }) => {
                         },
                     }}
                     left={<TextInput.Icon icon="magnify" size={30} iconColor={"grey"} />}
+                    right={<TextInput.Icon icon="microphone-outline" size={30} iconColor={"grey"} />}
                     onChangeText={onChangeText}
                 />
             </View>
